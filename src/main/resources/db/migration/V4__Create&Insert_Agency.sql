@@ -1,0 +1,24 @@
+drop table if exists agency cascade;
+drop sequence if exists agency_id_seq;
+
+create sequence agency_id_seq
+  as integer
+  maxvalue 2147483647;
+alter sequence agency_id_seq owner to nastya;
+
+create table agency
+(
+  id int default nextval('agency_id_seq'),
+  constraint agency_pk
+    primary key (id),
+  name varchar
+);
+
+INSERT INTO agency VALUES
+(1,	'Hello, World'),
+(2,	'GreatAgency'),
+(4,	'Trick & Trip'),
+(3,	'Привет, Мир'),
+(6,	'Турнир'),
+(7,	'Лучший тур для вас'),
+(8,	'поТУРции');

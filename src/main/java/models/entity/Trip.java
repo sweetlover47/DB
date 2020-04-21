@@ -1,0 +1,51 @@
+package models.entity;
+
+import com.sun.istack.Nullable;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
+import java.sql.Date;
+import java.sql.Timestamp;
+
+@Entity(name = "trip")
+public class Trip {
+    @Id
+    @Getter
+    @Setter
+    @GeneratedValue(generator="trip_id_seq", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name="trip_id_seq",sequenceName="trip_id_seq", allocationSize=1)
+    private int id;
+
+    @Getter
+    @Setter
+    private String country;
+
+    @Getter
+    @Setter
+    @Temporal(TemporalType.TIMESTAMP)
+    private Timestamp date_in;
+
+    @Getter
+    @Setter
+    @Temporal(TemporalType.TIMESTAMP)
+    private Timestamp date_out;
+
+    @Getter
+    @Setter
+    @OneToOne
+    @JoinColumn(name = "hotel_room_id")
+    @Nullable
+    private Room room;
+
+    @Getter
+    @Setter
+    @ManyToOne
+    @JoinColumn(name = "id_tourist", referencedColumnName = "id")
+    private Tourist tourist;
+
+    @Column(name = "id_group")
+    @Getter
+    @Setter
+    private int group;
+}
