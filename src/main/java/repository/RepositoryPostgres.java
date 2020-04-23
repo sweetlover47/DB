@@ -19,7 +19,6 @@ public class RepositoryPostgres implements Repository {
     @Override
     public List<Excursion> getExcursions() {
         EntityManager entityManager = emf.createEntityManager();
-        // entityManager.getTransaction().begin();
         List<Excursion> list = entityManager
                 .createQuery("select e from Excursion e", Excursion.class)
                 .getResultList();
@@ -55,6 +54,7 @@ public class RepositoryPostgres implements Repository {
         return;
     }
 
+    //TODO: вместо создания брать имеющегося туриста и менять его
     @Override
     public int updateTourist(Long id, String name, int age, String passport, String sex) {
         EntityManager entityManager = emf.createEntityManager();
@@ -83,7 +83,7 @@ public class RepositoryPostgres implements Repository {
     public Tourist getTouristById(Long id) {
         EntityManager entityManager = emf.createEntityManager();
         Tourist tourist = entityManager
-                .createQuery("select t from tourist t where id = :id", Tourist.class)
+                .createQuery("select t from tourist t where t.id = :id", Tourist.class)
                 .setParameter("id", id)
                 .getSingleResult();
         entityManager.close();
@@ -93,77 +93,24 @@ public class RepositoryPostgres implements Repository {
     @Override
     public void addNewCargoTrip(Long id, String statement, String country, Timestamp dateIn, Timestamp dateOut) {
         EntityManager entityManager = emf.createEntityManager();
+        entityManager.getTransaction().begin();
         Cargo cargo = entityManager
                 .createQuery("select c from Cargo c where c.statement.id = :statement", Cargo.class)
                 .setParameter("statement", Integer.parseInt(statement))
                 .getSingleResult();
-        entityManager.getTransaction().begin();
         Tourist tourist = entityManager.find(Tourist.class, id);
-        tourist.getCargos().add(cargo);
+        tourist.getCargos().add(cargo); //ввнутри транзакции должно выполняться
         tourist = entityManager.merge(tourist);
-        entityManager.getTransaction().commit();
-        entityManager.close();
-
-
         Trip trip = new Trip();
         trip.setCountry(country);
         trip.setDate_in(dateIn);
         trip.setDate_out(dateOut);
         trip.setTourist(tourist);
-        trip.setRoom(new Room());
-        entityManager = emf.createEntityManager();
-        //entityManager.getTransaction().begin();
+        trip.setRoom(null);
         entityManager.persist(trip);
         System.out.println(trip.getTourist().toString());
         entityManager.getTransaction().commit();
         entityManager.close();
-
-
-        /*
-        EntityManager entityManager = emf.createEntityManager();
-        Cargo cargo = entityManager
-                .createQuery("select c from Cargo c where c.statement.id = :statement", Cargo.class)
-                .setParameter("statement", Integer.parseInt(statement))
-                .getSingleResult();
-        if (entityManager.getTransaction().isActive()) {
-            entityManager.getTransaction().commit();
-            entityManager.close();
-            entityManager = emf.createEntityManager();
-        }
-
-        Tourist tourist = getTouristById(id);
-        Trip trip = new Trip();
-        trip.setCountry(country);
-        trip.setDate_in(dateIn);
-        trip.setDate_out(dateOut);
-        trip.setTourist(tourist);
-        entityManager = emf.createEntityManager();
-        entityManager.getTransaction().begin();
-        Room room = entityManager.createQuery("select r from Room r where r.id = 1", Room.class).getSingleResult();
-        trip.setRoom(room);
-        tourist.getCargos().add(cargo);
-        tourist.getTripList().add(trip);
-        try {
-            entityManager.getTransaction().commit();
-            entityManager.close();
-        } catch (Exception e) {
-            entityManager.getTransaction().rollback();
-            e.printStackTrace();
-        }
-        try {
-            entityManager = emf.createEntityManager();
-            entityManager.getTransaction().begin();
-            entityManager.merge(tourist);
-            entityManager.getTransaction().commit();
-            entityManager.getTransaction().begin();
-            entityManager.persist(trip);
-            entityManager.getTransaction().commit();
-        } catch (Exception e) {
-            entityManager.getTransaction().rollback();
-            e.printStackTrace();
-        }
-        entityManager.close();
-        */
     }
 
     private boolean isUniquePassport(Long id, String passport, EntityManager entityManager) {
