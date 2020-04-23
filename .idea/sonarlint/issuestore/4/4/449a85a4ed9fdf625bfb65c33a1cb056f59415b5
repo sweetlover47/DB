@@ -1,0 +1,10 @@
+
+N
+java:S1068"1Remove this unused "passportLabel" private field.(ôÌº8üòŒ˜.
+W
+java:S1128":Remove this unused import 'java.awt.event.ActionListener'.(Ìä¹8üòŒ˜.
+]	java:S110"<This class has 6 parents which is greater than 5 authorized.(¨üö¹ùÿÿÿÿ8üòŒ˜.
+T
+java:S1128"7Remove this unused import 'java.awt.event.ActionEvent'.(Úù“‘8üòŒ˜.
+I
+java:S1068",Remove this unused "ageField" private field.(Äï©8üòŒ˜.

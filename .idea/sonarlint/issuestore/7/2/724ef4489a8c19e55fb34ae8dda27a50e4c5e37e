@@ -1,0 +1,9 @@
+
+v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ß°¸8‰ğÜ.
+X	java:S125"<This block of commented-out lines of code should be removed.(¸´áŠ8Ûñé™.
+v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(áÜÍ÷8õ³‰½—.
+X	java:S125"<This block of commented-out lines of code should be removed.(ÇÌÁ¬8õ³‰½—.
+{	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(«Ÿßúÿÿÿÿ8‰ğÜ.
+X	java:S1253"<This block of commented-out lines of code should be removed.(ÉÊÙ­8ÿ†Ù¿•.
+‰
+java:S1130"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(œû¿Ø8ü€öÁ—.

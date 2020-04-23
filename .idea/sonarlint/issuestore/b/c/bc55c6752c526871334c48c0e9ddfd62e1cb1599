@@ -1,0 +1,12 @@
+
+‡	java:S116"kRename this field "Ğ°Ğ´Ğ¼Ğ¸Ğ½Ğ¸ÑÑ‚Ñ€Ğ°Ñ‚Ğ¾Ñ€Button" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(éíÇƒ8ìé°‘˜.
+”	java:S116"sRename this field "Ğ¿Ñ€ĞµĞ´ÑÑ‚Ğ°Ğ²Ğ¸Ñ‚ĞµĞ»ÑŒÑÑ‚Ğ²Ğ¾Button" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(úššÿÿÿÿÿ8ìé°‘˜.
+k
+java:S1068"NRemove this unused "Ñ‚ÑƒÑ€Ğ¸ÑÑ‚Ğ¸Ñ‡ĞµÑĞºĞ°ÑĞ¤Ğ¸Ñ€Ğ¼Ğ°Button" private field.(¨óÃÃ8ìé°‘˜.
+]	java:S110"<This class has 6 parents which is greater than 5 authorized.(€ïçœÿÿÿÿÿ8ìé°‘˜.
+‘	java:S116"uRename this field "Ñ‚ÑƒÑ€Ğ¸ÑÑ‚Ğ¸Ñ‡ĞµÑĞºĞ°ÑĞ¤Ğ¸Ñ€Ğ¼Ğ°Button" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨óÃÃ8ìé°‘˜.
+n
+java:S1068"LRemove this unused "Ğ¿Ñ€ĞµĞ´ÑÑ‚Ğ°Ğ²Ğ¸Ñ‚ĞµĞ»ÑŒÑÑ‚Ğ²Ğ¾Button" private field.(úššÿÿÿÿÿ8ìé°‘˜.
+~	java:S116"]Rename this field "Ñ‚ÑƒÑ€Ğ¸ÑÑ‚Button" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦äÄæÿÿÿÿÿ8ìé°‘˜.
+a
+java:S1068"DRemove this unused "Ğ°Ğ´Ğ¼Ğ¸Ğ½Ğ¸ÑÑ‚Ñ€Ğ°Ñ‚Ğ¾Ñ€Button" private field.(éíÇƒ8ìé°‘˜.

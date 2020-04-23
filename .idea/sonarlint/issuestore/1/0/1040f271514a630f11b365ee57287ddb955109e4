@@ -1,0 +1,31 @@
+
+W
+java:S1128
+":Remove this unused import 'java.awt.event.ActionListener'.(Ìä¹8‘òé™.
+I
+java:S1068 ",Remove this unused "bigPanel" private field.(˜Ä³Ô8±ëà—.
+]	java:S110"<This class has 6 parents which is greater than 5 authorized.(áõÔ·şÿÿÿÿ8±ëà—.
+L
+java:S1068"/Remove this unused "scrollPanel" private field.(ÉÖÉ8”Ôè‘˜.
+p
+java:S1450"TRemove the "title" field and declare it as a local variable in the relevant methods.(Éº~8¾ëé‘˜.
+T
+java:S1128	"7Remove this unused import 'java.awt.event.ActionEvent'.(Úù“‘8‘òé™.
+w
+java:S1450"URemove the "agency" field and declare it as a local variable in the relevant methods.(’éÃ§ûÿÿÿÿ8¾ëé‘˜.
+w
+java:S1450"ZRemove the "countOrders" field and declare it as a local variable in the relevant methods.(ˆ¦Âã8¾ëé‘˜.
+p
+java:S1450"SRemove the "date" field and declare it as a local variable in the relevant methods.(´÷ªÉ8¾ëé‘˜.
+F
+java:S2387"*"title" is the name of a field in "Frame".(Éº~8šƒŞ‘˜.
+R
+java:S1068"0Remove this unused "searchButton" private field.(„–‘Ÿÿÿÿÿÿ8”Ôè‘˜.
+~
+java:S1450"\Remove the "templatePanel" field and declare it as a local variable in the relevant methods.(è‰Ìåıÿÿÿÿ8ÿİõ‘˜.
+L
+java:S1068"/Remove this unused "searchField" private field.(Ğ–‡Ú8”Ôè‘˜.
+T
+java:S1068"2Remove this unused "planTripButton" private field.(ß¬å—ûÿÿÿÿ8”Ôè‘˜.
+T
+java:S1068"7Remove this unused "advanceSearchButton" private field.(Ğé×Û8”Ôè‘˜.
