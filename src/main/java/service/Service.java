@@ -38,4 +38,8 @@ public class Service {
     public void addNewCargoTrip(Long id, String statement, String country, Timestamp dateIn, Timestamp dateOut) {
         repository.addNewCargoTrip(id, statement, country, dateIn, dateOut);
     }
+
+    public List<Trip> getTripList(Tourist tourist) {
+        return repository.getTripList(tourist);
+    }
 }

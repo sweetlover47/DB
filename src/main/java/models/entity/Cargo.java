@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "cargo")
@@ -47,4 +48,13 @@ public class Cargo {
     @Getter
     @Setter
     private String kind;
+
+    @Getter
+    @Setter
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "cargo_tourist",
+            joinColumns = @JoinColumn(name = "id_trip", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "id_cargo", referencedColumnName = "id")
+    )
+    private Trip ownerTrip;
 }

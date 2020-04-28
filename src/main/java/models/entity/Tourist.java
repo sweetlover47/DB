@@ -36,6 +36,7 @@ public class Tourist {
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
     private List<Child> children;
 
+    /*
     @Getter
     @Setter
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -53,7 +54,7 @@ public class Tourist {
             inverseJoinColumns = @JoinColumn(name = "id_cargo", referencedColumnName = "id")
     )
     private List<Cargo> cargos;
-
+*/
     @Getter
     @Setter
     @OneToMany(mappedBy = "tourist")

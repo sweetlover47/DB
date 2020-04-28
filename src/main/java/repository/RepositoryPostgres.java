@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -99,18 +100,32 @@ public class RepositoryPostgres implements Repository {
                 .setParameter("statement", Integer.parseInt(statement))
                 .getSingleResult();
         Tourist tourist = entityManager.find(Tourist.class, id);
-        tourist.getCargos().add(cargo); //ввнутри транзакции должно выполняться
-        tourist = entityManager.merge(tourist);
+        /*tourist.getCargos().add(cargo); //ввнутри транзакции должно выполняться
+        tourist = entityManager.merge(tourist);*/
         Trip trip = new Trip();
         trip.setCountry(country);
         trip.setDate_in(dateIn);
         trip.setDate_out(dateOut);
         trip.setTourist(tourist);
         trip.setRoom(null);
+        trip.setCargos(new ArrayList<>());
+        trip.getCargos().add(cargo);
         entityManager.persist(trip);
-        System.out.println(trip.getTourist().toString());
+        cargo.setOwnerTrip(trip);
         entityManager.getTransaction().commit();
         entityManager.close();
+    }
+
+    @Override
+    public List<Trip> getTripList(Tourist tourist) {
+        EntityManager entityManager = emf.createEntityManager();
+        entityManager.getTransaction().begin();
+        List<Trip> tripList = entityManager
+                .createQuery("select t from trip t where t.tourist.id = :id")
+                .setParameter("id", tourist.getId())
+                .getResultList();
+        entityManager.getTransaction().commit();
+        return tripList;
     }
 
     private boolean isUniquePassport(Long id, String passport, EntityManager entityManager) {

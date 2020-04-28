@@ -38,4 +38,8 @@ public class Controller {
     public void addNewCargoTrip(Long id, String statement, String country, Timestamp dateIn, Timestamp dateOut) {
         service.addNewCargoTrip(id, statement, country, dateIn, dateOut);
     }
+
+    public List<Trip> getTripList(Tourist tourist) {
+        return service.getTripList(tourist);
+    }
 }

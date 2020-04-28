@@ -19,4 +19,6 @@ public interface Repository {
     Tourist getTouristById(Long id);
 
     void addNewCargoTrip(Long id, String statement, String country, Timestamp dateIn, Timestamp dateOut);
+
+    List<Trip> getTripList(Tourist tourist);
 }

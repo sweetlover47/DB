@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity(name = "trip")
 public class Trip {
@@ -48,4 +49,19 @@ public class Trip {
     @Getter
     @Setter
     private int group;
+
+
+    @Getter
+    @Setter
+    @OneToMany(mappedBy = "ownerTrip")
+    private List<Cargo> cargos;
+
+    @Getter
+    @Setter
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "rest_tourist",
+            joinColumns = @JoinColumn(name = "id_trip", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "id_excursion", referencedColumnName = "id")
+    )
+    private List<Excursion> excursions;
 }

@@ -59,7 +59,7 @@ public class MainFrame extends JFrame {
         }
 
         myInfoButton.addActionListener(e -> new Profile(controller, tourist.getId()));
-        myTripsButton.addActionListener(e -> new MyTrips(tourist.getTripList()));
+        myTripsButton.addActionListener(e -> new MyTrips(controller.getTripList(tourist)));
         takeCargoButton.addActionListener(e -> new PlanCargoTrip(controller, tourist.getId()));
     }
 

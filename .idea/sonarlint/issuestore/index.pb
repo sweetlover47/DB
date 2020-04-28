@@ -77,8 +77,6 @@ W
 'src/main/java/models/entity/Flight.java,3\d\3d63ee376eb5e61941625536050c09858e742331
 X
 (src/main/resources/db/migration/drop.sql,0\b\0b3c7a2f21e9a4547bb12647c48d5ce734afe770
-m
-=src/main/resources/db/migration/V2__Create&Insert_Tourist.sql,5\0\50c46d9d6607dff3bbb2dcd7f1b0f82a8fac7119
 j
 :src/main/resources/db/migration/V3__Create&Insert_Trip.sql,e\d\edc7671355e3a5150e81e007649df6ace8353db5
 l
@@ -107,5 +105,7 @@ p
 @src/main/resources/db/migration/V16__Create&Insert_Warehouse.sql,6\c\6c564a683e14c11d812bbc836387073d73f410cc
 `
 0src/main/resources/db/migration/V17__AlterFK.sql,7\9\7954f7553ca47391f0b9a6a03d082b95c6eb44a9
-[
-+src/main/resources/META-INF/persistence.xml,3\b\3be4f79b5828b3982f3f6a62bf8fc67b3adedf58
+B
+DBclientserver.iml,f\f\ffae3f1a4acb5fe96a835890a336375f4df58721
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec

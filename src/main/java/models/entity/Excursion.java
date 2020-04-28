@@ -44,10 +44,17 @@ public class Excursion {
     @Setter
     private String title;
 
+    /*
     @Getter
     @Setter
     @ManyToMany(mappedBy = "excursions")
     private List<Tourist> participatingTourists;
+
+     */
+    @Getter
+    @Setter
+    @ManyToMany(mappedBy = "excursions")
+    private List<Trip> participatingTourists;
 }
 
 

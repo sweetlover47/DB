@@ -32,7 +32,7 @@ create table cargo_tourist
   id_cargo int,
   id_trip int,
   constraint cargo_tourist_pk
-    primary key (id, id_cargo, id_trip)
+    primary key (id_cargo)
 );
 
 
@@ -77,13 +77,9 @@ INSERT INTO tourist (name, passport, sex, age) VALUES ('Васильев Вас�
 
 INSERT into cargo_tourist VALUES
 (24,	1,	79),
-(25,	2,	77),
 (25,	2,	74),
-(23,	3,	78),
 (23,	3,	75),
-(23,	4,	78),
 (23,	4,	75),
-(25,	5,	77),
 (25,	5,	74);
 
 insert into rest_tourist values
