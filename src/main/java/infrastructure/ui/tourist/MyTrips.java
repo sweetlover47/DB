@@ -1,5 +1,8 @@
 package infrastructure.ui.tourist;
 
+import com.intellij.uiDesigner.core.GridConstraints;
+import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.intellij.uiDesigner.core.Spacer;
 import models.entity.Trip;
 
 import javax.swing.*;
@@ -37,7 +40,7 @@ public class MyTrips extends JFrame {
             JPanel tripPanel = new JPanel();
             tripPanel.setLayout(new GridLayout(3, 1, 10, 5));
             //tripPanel.setPreferredSize(new Dimension(, 50));
-            tripPanel.setBackground((i++ % 2 == 0) ? new Color(242, 242, 242) : new Color(150, 150, 150));
+            tripPanel.setBackground((i++ % 2 == 0) ? new Color(242, 242, 242) : new Color(220, 220, 220));
             JLabel lCountry = new JLabel("Страна: " + trip.getCountry());
             JLabel lDateIn = new JLabel("С " + trip.getDate_in().toString());
             JLabel lDateOut = new JLabel("По " + trip.getDate_out().toString());
@@ -47,4 +50,5 @@ public class MyTrips extends JFrame {
             listPanel.add(tripPanel);
         }
     }
+
 }

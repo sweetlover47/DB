@@ -1,6 +1,9 @@
 package infrastructure.ui.tourist;
 
 import api.Controller;
+import com.intellij.uiDesigner.core.GridConstraints;
+import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.intellij.uiDesigner.core.Spacer;
 import models.entity.Tourist;
 
 import javax.swing.*;
@@ -25,7 +28,6 @@ public class Profile extends JFrame {
     private JTextField ageField = new JTextField();
     private JTextField passportField = new JTextField();
 
-// TODO: updatable tourist (maybe add controller.getTouristById(id))
     public Profile(Controller controller, Long id) {
         Tourist tourist = controller.getTouristById(id);
         String name = tourist.getName();

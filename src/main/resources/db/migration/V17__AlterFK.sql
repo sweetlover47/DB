@@ -41,19 +41,19 @@ alter table rest_tourist
 alter table rest_tourist
   add constraint rest_tourist_trip_trip_id_fk
     foreign key (id_trip) references trip;
-
+/*
 alter table rest_tourist
   add constraint rest_tourist_tourist_tourist_id_fk
     foreign key (id) references tourist;
-
+*/
 alter table cargo_tourist
   add constraint cargo_tourist_trip_trip_id_fk
     foreign key (id_trip) references trip;
-
+/*
 alter table cargo_tourist
   add constraint cargo_tourist_tourist_tourist_id_fk
     foreign key (id) references tourist;
-
+*/
 alter table trip
   add constraint trip_tourist_tourist_id_fk
     foreign key (id_tourist) references tourist;

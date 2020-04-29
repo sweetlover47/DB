@@ -25,7 +25,7 @@ public class Cargo {
 
     @Getter
     @Setter
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_statement")
     private Statement statement;
 
@@ -53,8 +53,8 @@ public class Cargo {
     @Setter
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "cargo_tourist",
-            joinColumns = @JoinColumn(name = "id_trip", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "id_cargo", referencedColumnName = "id")
+            joinColumns = @JoinColumn(name = "id_cargo", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "id_trip", referencedColumnName = "id")
     )
     private Trip ownerTrip;
 }

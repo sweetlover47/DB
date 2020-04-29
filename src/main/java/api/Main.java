@@ -1,13 +1,13 @@
 package api;
 
 import infrastructure.ui.ChooseRole;
+import infrastructure.ui.tourist.PlanRestTrip;
 import org.flywaydb.core.Flyway;
 import repository.RepositoryPostgres;
 import service.Service;
 
 import java.awt.*;
 import java.io.IOException;
-import java.sql.Timestamp;
 
 public class Main {
     private static final String url = "jdbc:postgresql://localhost:5432/travelagency";
@@ -20,8 +20,13 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Flyway flyway = Flyway.configure().dataSource(url, user, password).load();
         flyway.migrate();
-        //new ChooseRole(new Controller(new Service(new RepositoryPostgres())));
-        new Controller(new Service(new RepositoryPostgres())).addNewCargoTrip(26L, "5", "russia", new Timestamp(0), new Timestamp(200));
+        new ChooseRole(new Controller(new Service(new RepositoryPostgres())));
+
+        //Controller c = new Controller(new Service(new RepositoryPostgres()));//.addNewCargoTrip(26L, "5", "russia", new Timestamp(0), new Timestamp(200));
+        //c.setToCacheJoinedExcursions(8L);
+        //c.setToCacheJoinedExcursions(1L);
+        //c.setToCacheJoinedExcursions(3L);
+        //new PlanRestTrip(c, c.getFromCacheJoinedExcursions());
         /*tourist tourist = new tourist();
         tourist.setAge(10);
         tourist.setName("Kirill");
@@ -54,9 +59,10 @@ BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("out.
         int i = 0;
         out.write("(");
         while ((r = bufferedReader.read()) != -1) {
-            if (String.valueOf((char) r).equals("\""))
-                r = (int) '\'';
-            else if (r == '\t') {
+            if (String.valueOf((char) r).equals("\r")) {
+               out.write("),");
+            }
+            /*else if (r == '\t') {
                 i++;                                    //timestamp
                 out.write(',');
             }
@@ -64,18 +70,12 @@ BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("out.
                 out.write("),");
                 i = 0;                                  //timestamp
             }
-            else {
-                if (r == '\t' && (i == 3)) { //timestamp
+            else if (r == '\n')
+                    out.write("\n(");
+                    else
                     out.write(r);
-                    out.write("TIMESTAMP");
-                }else
-                out.write(r);
-
-            }
-            if (r == '\n')
-                out.write('(');
-        }
-        out.write(");");
-        out.flush();
-        out.close();
- */
+                    }
+                    out.write(");");
+                    out.flush();
+                    out.close();
+*/

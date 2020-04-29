@@ -14,7 +14,7 @@ public class Excursion {
     @Id
     @Getter
     @Setter
-    private int id;
+    private Long id;
 
    // @Column(name = "id_agency")
     @Getter

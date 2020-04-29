@@ -6,10 +6,12 @@ import models.entity.Trip;
 import repository.Repository;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Service {
     private final Repository repository;
+    private List<Excursion> joinedExcursions = new ArrayList<>();
 
     public Service(Repository repository) {
         this.repository = repository;
@@ -39,7 +41,23 @@ public class Service {
         repository.addNewCargoTrip(id, statement, country, dateIn, dateOut);
     }
 
-    public List<Trip> getTripList(Tourist tourist) {
-        return repository.getTripList(tourist);
+    public List<Trip> getTripList(Long id) {
+        return repository.getTripList(id);
+    }
+
+    public void setToCacheJoinedExcursions(Long id) {
+        Excursion excursion = repository.getExcursionById(id);
+        for (Excursion ex : joinedExcursions)
+            if(ex.getId().equals(excursion.getId()))
+                return;
+        joinedExcursions.add(excursion);
+    }
+
+    public List<Excursion> getFromCacheJoinedExcursions(){
+        return joinedExcursions;
+    }
+
+    public void addNewRestTrip(Long id, String country, Timestamp dateIn, Timestamp dateOut, List<Excursion> joinedExcursions) {
+        repository.addNewRestTrip(id, country, dateIn, dateOut, joinedExcursions);
     }
 }

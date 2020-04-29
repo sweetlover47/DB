@@ -20,5 +20,9 @@ public interface Repository {
 
     void addNewCargoTrip(Long id, String statement, String country, Timestamp dateIn, Timestamp dateOut);
 
-    List<Trip> getTripList(Tourist tourist);
+    List<Trip> getTripList(Long id);
+
+    Excursion getExcursionById(Long id);
+
+    void addNewRestTrip(Long id, String country, Timestamp dateIn, Timestamp dateOut, List<Excursion> joinedExcursions);
 }

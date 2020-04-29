@@ -18,8 +18,6 @@ drop table excursion cascade ;
 
 drop table flight cascade ;
 
-drop table groups cascade ;
-
 drop table passengers cascade ;
 
 drop table airplane cascade ;

@@ -57,7 +57,7 @@ public class TouristMainFrame extends JFrame {
         newTrip.setBackground(darkest);
         newTrip.setForeground(lightest);
         newTrip.addActionListener(e -> {
-            new PlanNewTrip(controller);
+          //  new PlanNewTrip(controller);
         });
         topPanel.add(newTrip);
 

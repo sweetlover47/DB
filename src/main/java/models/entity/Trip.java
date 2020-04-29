@@ -1,6 +1,5 @@
 package models.entity;
 
-import com.sun.istack.Nullable;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,19 +23,16 @@ public class Trip {
 
     @Getter
     @Setter
-    @Temporal(TemporalType.TIMESTAMP)
     private Timestamp date_in;
 
     @Getter
     @Setter
-    @Temporal(TemporalType.TIMESTAMP)
     private Timestamp date_out;
 
     @Getter
     @Setter
     @OneToOne
     @JoinColumn(name = "hotel_room_id")
-    @Nullable
     private Room room;
 
     @Getter

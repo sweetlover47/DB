@@ -39,7 +39,19 @@ public class Controller {
         service.addNewCargoTrip(id, statement, country, dateIn, dateOut);
     }
 
-    public List<Trip> getTripList(Tourist tourist) {
-        return service.getTripList(tourist);
+    public List<Trip> getTripList(Long id) {
+        return service.getTripList(id);
+    }
+
+    public void setToCacheJoinedExcursions(Long id) {
+        service.setToCacheJoinedExcursions(id);
+    }
+
+    public List<Excursion> getFromCacheJoinedExcursions() {
+        return service.getFromCacheJoinedExcursions();
+    }
+
+    public void addNewRestTrip(Long id, String country, Timestamp dateIn, Timestamp dateOut, List<Excursion> joinedExcursions) {
+        service.addNewRestTrip(id, country, dateIn, dateOut, joinedExcursions);
     }
 }
