@@ -1,7 +1,11 @@
 
-T
-java:S1135"2Complete the task associated to this TODO comment.(ªö‡õûÿÿÿÿ8š•˜.
-X	java:S110"<This class has 6 parents which is greater than 5 authorized.(½¼´Á8±ëà—.
-y	java:S116"XRename this field "Ğ¼RadioButton" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸¹şÿÿÿÿ8­ù˜.
-†	java:S116"kRename this field "Ñ€ĞµĞ´Ğ°ĞºÑ‚Ğ¸Ñ€Ğ¾Ğ²Ğ°Ñ‚ÑŒButton" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²£s8±ëà—.
-y	java:S116"XRename this field "Ğ¶RadioButton" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(…Øˆªüÿÿÿÿ8Ù‹˜.
+†	java:S116"kRename this field "Ñ€ĞµĞ´Ğ°ĞºÑ‚Ğ¸Ñ€Ğ¾Ğ²Ğ°Ñ‚ÑŒButton" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²£s8±ëà—.
+X	java:S110"<This class has 6 parents which is greater than 5 authorized.(½¼´Á8±ëà—.
+y	java:S116"XRename this field "Ğ¼RadioButton" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸¹şÿÿÿÿ8­ù˜.
+y	java:S116"XRename this field "Ğ¶RadioButton" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(…Øˆªüÿÿÿÿ8Ù‹˜.
+h
+java:S1128"KRemove this unused import 'com.intellij.uiDesigner.core.GridLayoutManager'.(‡ĞºÁ8­¥óœ.
+e
+java:S1128"IRemove this unused import 'com.intellij.uiDesigner.core.GridConstraints'.(ş·ô(8­¥óœ.
+]
+java:S1128"@Remove this unused import 'com.intellij.uiDesigner.core.Spacer'.(­ åÀ8­¥óœ.

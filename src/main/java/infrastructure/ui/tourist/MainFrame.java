@@ -3,6 +3,7 @@ package infrastructure.ui.tourist;
 import api.Controller;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.intellij.uiDesigner.core.Spacer;
 import models.entity.Excursion;
 import models.entity.Tourist;
 
@@ -34,7 +35,6 @@ public class MainFrame extends JFrame {
     private JLabel date;
     private JPanel bigPanel;
     private JButton joinExcursion;
-
     private final static int numExcursionsOnList = 5;
     private int page = 0;
     private List<Excursion> searchedExcursions;
@@ -52,14 +52,19 @@ public class MainFrame extends JFrame {
         setVisible(true);
 
         List<Excursion> excursionList = (searchedExcursions != null) ? searchedExcursions : controller.getExcursions().subList(0, Math.min(controller.getExcursions().size(), numExcursionsOnList));
-        if (excursionList.size() < numExcursionsOnList)
+        if (excursionList.size() < numExcursionsOnList) {
             nextButton.setEnabled(false);
+        }
         fillListPanel(excursionList, controller);
 
         myInfoButton.addActionListener(e -> new Profile(controller, id));
         myTripsButton.addActionListener(e -> new MyTrips(controller.getTripList(id)));
         takeCargoButton.addActionListener(e -> new PlanCargoTrip(controller, id));
         planTripButton.addActionListener(e -> new PlanRestTrip(controller, id, controller.getFromCacheJoinedExcursions()));
+        advanceSearchButton.addActionListener(e -> {
+            dispose();
+            new AdvanceSearchExcursions(controller, id);
+        });
         nextButton.addActionListener(e -> {
             page++;
             boolean isSearching = excursionList.equals(searchedExcursions);
@@ -120,9 +125,6 @@ public class MainFrame extends JFrame {
             nextButton.setEnabled(searchedExcursions.size() > numExcursionsOnList);
             validate();
             repaint();
-        });
-        advanceSearchButton.addActionListener(e -> {
-
         });
     }
 

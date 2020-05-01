@@ -1,33 +1,31 @@
 
-F
-java:S2387"*"title" is the name of a field in "Frame".(Éº~8æàãÿ›.
-g
-java:S1124&"EReorder the modifiers to comply with the Java Language Specification.(™ ¢úÿÿÿÿ8æàãÿ›.
-o
-java:S3776*"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(©Ö‘²8ğÕ²‚œ.
-T
-java:S1068"7Remove this unused "advanceSearchButton" private field.(Ğé×Û8”Ôè‘˜.
-w
-java:S1450!"ZRemove the "countOrders" field and declare it as a local variable in the relevant methods.(ˆ¦Âã8¾ëé‘˜.
-w
-java:S1450 "URemove the "agency" field and declare it as a local variable in the relevant methods.(’éÃ§ûÿÿÿÿ8¾ëé‘˜.
-O
-java:S1135~"2Complete the task associated to this TODO comment.(…Öƒ€8ÂÃÂƒœ.
-p
-java:S1450""SRemove the "date" field and declare it as a local variable in the relevant methods.(´÷ªÉ8¾ëé‘˜.
-~
-java:S1450"\Remove the "templatePanel" field and declare it as a local variable in the relevant methods.(è‰Ìåıÿÿÿÿ8æàãÿ›.
-I
-java:S1068#",Remove this unused "bigPanel" private field.(˜Ä³Ô8æàãÿ›.
 {	java:S115&"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(™ ¢úÿÿÿÿ8æàãÿ›.
-L
-java:S1068"/Remove this unused "scrollPanel" private field.(ÉÖÉ8”Ôè‘˜.
-E
-java:S1604{"(Make this anonymous inner class a lambda(©£•®8¶šÂƒœ.
-]	java:S110"<This class has 6 parents which is greater than 5 authorized.(áõÔ·şÿÿÿÿ8æàãÿ›.
-p
-java:S1450"TRemove the "title" field and declare it as a local variable in the relevant methods.(Éº~8æàãÿ›.
-J
-java:S1604N"(Make this anonymous inner class a lambda(ÿĞ•“ùÿÿÿÿ8š§´‚œ.
 V
 java:S1948("4Make "searchedExcursions" transient or serializable.(²›Ëúÿÿÿÿ8úø¾œ.
+w
+java:S1450!"URemove the "agency" field and declare it as a local variable in the relevant methods.(’éÃ§ûÿÿÿÿ8¾ëé‘˜.
+p
+java:S1450 "TRemove the "title" field and declare it as a local variable in the relevant methods.(Éº~8æàãÿ›.
+I
+java:S1068$",Remove this unused "bigPanel" private field.(˜Ä³Ô8æàãÿ›.
+]	java:S110"<This class has 6 parents which is greater than 5 authorized.(áõÔ·şÿÿÿÿ8æàãÿ›.
+N
+java:S1481+",Remove this unused "tourist" local variable.(¸Â¹ëüÿÿÿÿ8âÜ­œ.
+w
+java:S1450""ZRemove the "countOrders" field and declare it as a local variable in the relevant methods.(ˆ¦Âã8¾ëé‘˜.
+~
+java:S1450%"\Remove the "joinExcursion" field and declare it as a local variable in the relevant methods.(ĞÇğùÿÿÿÿ8Äş•©œ.
+F
+java:S2387 "*"title" is the name of a field in "Frame".(Éº~8æàãÿ›.
+o
+java:S3776*"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(©Ö‘²8ğÕ²‚œ.
+p
+java:S1450#"SRemove the "date" field and declare it as a local variable in the relevant methods.(´÷ªÉ8¾ëé‘˜.
+~
+java:S1450"\Remove the "templatePanel" field and declare it as a local variable in the relevant methods.(è‰Ìåıÿÿÿÿ8æàãÿ›.
+g
+java:S1124&"EReorder the modifiers to comply with the Java Language Specification.(™ ¢úÿÿÿÿ8æàãÿ›.
+]
+java:S1128"@Remove this unused import 'com.intellij.uiDesigner.core.Spacer'.(­ åÀ8àšóœ.
+L
+java:S1068"/Remove this unused "scrollPanel" private field.(ÉÖÉ8àšóœ.

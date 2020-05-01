@@ -54,4 +54,8 @@ public class Controller {
     public void addNewRestTrip(Long id, String country, Timestamp dateIn, Timestamp dateOut, List<Excursion> joinedExcursions) {
         service.addNewRestTrip(id, country, dateIn, dateOut, joinedExcursions);
     }
+
+    public void clearJoinedExcursion() {
+        service.clearJoinedExcursion();
+    }
 }

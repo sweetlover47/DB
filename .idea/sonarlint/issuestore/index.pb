@@ -9,8 +9,6 @@ W
 'src/main/java/models/entity/Agency.java,c\2\c2284572623f9c0e61cc157ef374ecbcb6eb30a9
 Z
 *src/main/java/models/entity/Excursion.java,3\f\3f9389de62b1619b1c43305db7edaa34ccdb5fd1
-h
-8src/main/java/infrastructure/ui/tourist/PlanNewTrip.java,9\3\93ddb6eaf113cfba885b1df86fb350b3818a7d23
 X
 (src/main/java/repository/Repository.java,6\2\62d6aa69076d50316b827fae3220d921f71dde13
 V
@@ -105,3 +103,17 @@ B
 DBclientserver.iml,f\f\ffae3f1a4acb5fe96a835890a336375f4df58721
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+i
+9src/main/java/infrastructure/ui/tourist/PlanRestTrip.form,8\3\83c855456bfcdd2723c0ac98747ad3518e1ca42d
+i
+9src/main/java/infrastructure/ui/tourist/PlanRestTrip.java,a\6\a6d015373b9a96a0d2eb221d82327e056aa9c998
+X
+(src/main/resources/db/migration/drop.sql,0\b\0b3c7a2f21e9a4547bb12647c48d5ce734afe770
+m
+=src/main/resources/db/migration/V2__Create&Insert_Tourist.sql,5\0\50c46d9d6607dff3bbb2dcd7f1b0f82a8fac7119
+`
+0src/main/resources/db/migration/V17__AlterFK.sql,7\9\7954f7553ca47391f0b9a6a03d082b95c6eb44a9
+t
+Dsrc/main/java/infrastructure/ui/tourist/AdvanceSearchExcursions.form,f\a\fa2d29ff3d1f7bc21e7b6d0cf6a1092671a16b85
+t
+Dsrc/main/java/infrastructure/ui/tourist/AdvanceSearchExcursions.java,7\e\7e5620d58b698515a3a3664d2331c0cab82727f2

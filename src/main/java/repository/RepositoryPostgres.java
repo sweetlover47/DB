@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 public class RepositoryPostgres implements Repository {
     EntityManagerFactory emf;
@@ -127,9 +128,17 @@ public class RepositoryPostgres implements Repository {
             trip.setTourist(tourist);
             trip.setRoom(null);
             trip.setExcursions(new ArrayList<>());
-            trip.getExcursions().addAll(joinedExcursions);
+            List<Long> joinedExcursionsId = new ArrayList<>();
+            joinedExcursions.forEach(e -> joinedExcursionsId.add(e.getId()));
+            List<Excursion> excursionList = entityManager
+                    .createQuery("select e from Excursion e", Excursion.class)
+                    .getResultStream()
+                    .filter(excursion -> joinedExcursionsId.contains(excursion.getId()))
+                    .collect(Collectors.toList());
+            excursionList.forEach(entityManager::merge);
+            trip.getExcursions().addAll(excursionList);
             entityManager.persist(trip);
-            joinedExcursions.forEach(c -> c.getParticipatingTourists().add(trip));
+            excursionList.forEach(e->e.getParticipatingTourists().add(trip));
             entityManager.getTransaction().commit();
             entityManager.close();
         }

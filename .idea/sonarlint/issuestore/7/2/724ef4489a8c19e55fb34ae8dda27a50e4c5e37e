@@ -1,14 +1,8 @@
 
-X	java:S1257"<This block of commented-out lines of code should be removed.(ÉÊÙ­8ÇÚ·ú›.
-v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(áÜÍ÷8ÜÖ£ú›.
+{	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(«Ÿßúÿÿÿÿ8ÜÖ£ú›.
+X	java:S1258"<This block of commented-out lines of code should be removed.(ÉÊÙ­8ÇÚ·ú›.
+v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(áÜÍ÷8ÜÖ£ú›.
 ‰
-java:S1130"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(œû¿Ø8ÆÖºú›.
-v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ß°¸8“Ó¦ú›.
-S
-java:S1128"1Remove this unused import 'java.util.Collection'.(¹ÉĞšùÿÿÿÿ8Ôû­…œ.
-]	java:S125"<This block of commented-out lines of code should be removed.(¬šæìùÿÿÿÿ8ÆÖºú›.
-A
-java:S1481"&Remove this unused "l" local variable.(ºæİ¹8´Å¿…œ.
-P
-java:S1854"5Remove this useless assignment to local variable "l".(ºæİ¹8´Å¿…œ.
-{	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(«Ÿßúÿÿÿÿ8ÜÖ£ú›.
+java:S1130"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(œû¿Ø8î°«œ.
+v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ß°¸8“Ó¦ú›.
+]	java:S125"<This block of commented-out lines of code should be removed.(¶œ’Óÿÿÿÿÿ8•æ¶ªœ.

@@ -1,14 +1,13 @@
 
-X	java:S110"<This class has 6 parents which is greater than 5 authorized.(Ñ†á‘8±ëà—.
-k
-java:S3252"IUse static access with "javax.swing.WindowConstants" for "EXIT_ON_CLOSE".(Õû»öşÿÿÿÿ8±ëà—.
 K
 java:S1172")Remove this unused method parameter "me".(œô°üÿÿÿÿ8±ëà—.
-N
-java:S1602;",Remove useless curly braces around statement(»Ş±ûÿÿÿÿ8±ëà—.
-X
-java:S3252k"<Use static access with "java.awt.Adjustable" for "VERTICAL".(áÕË
-8±ëà—.
+k
+java:S3252"IUse static access with "javax.swing.WindowConstants" for "EXIT_ON_CLOSE".(Õû»öşÿÿÿÿ8±ëà—.
+X	java:S110"<This class has 6 parents which is greater than 5 authorized.(Ñ†á‘8±ëà—.
 w
 java:S3923k"[Remove this conditional structure or edit its code blocks so that they're not all the same.(áÕË
 8±ëà—.
+X
+java:S3252k"<Use static access with "java.awt.Adjustable" for "VERTICAL".(áÕË
+8±ëà—.
+]	java:S125<"<This block of commented-out lines of code should be removed.(ŸÍñòÿÿÿÿÿ8î”ë©œ.

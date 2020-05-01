@@ -88,7 +88,7 @@ public class Profile extends JFrame {
                 int r = controller.updateTourist(
                         id,
                         nameField.getText(),
-                        Integer.parseInt(ageField.getText()),
+                        Integer.parseInt(ageField.getText().trim()),
                         passportField.getText(),
                         sex
                 );

@@ -60,4 +60,8 @@ public class Service {
     public void addNewRestTrip(Long id, String country, Timestamp dateIn, Timestamp dateOut, List<Excursion> joinedExcursions) {
         repository.addNewRestTrip(id, country, dateIn, dateOut, joinedExcursions);
     }
+
+    public void clearJoinedExcursion() {
+        joinedExcursions.clear();
+    }
 }

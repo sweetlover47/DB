@@ -3,6 +3,7 @@ package infrastructure.ui.tourist;
 import api.Controller;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.intellij.uiDesigner.core.Spacer;
 import models.entity.Excursion;
 
 import javax.swing.*;
@@ -88,6 +89,7 @@ public class PlanRestTrip extends JFrame {
             calendarDate = new GregorianCalendar(ey, monthIndexEnd, ed);
             long dateOut = calendarDate.getTimeInMillis();
             controller.addNewRestTrip(id, countryField.getText(), new Timestamp(dateIn), new Timestamp(dateOut), joinedExcursions);
+            controller.clearJoinedExcursion();
         });
     }
 
