@@ -18,7 +18,7 @@ public class Agency {
     @Setter
     @GeneratedValue(generator="agency_id_seq", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name="agency_id_seq",sequenceName="agency_id_seq", allocationSize=1)
-    private int id;
+    private long id;
 
     @Getter
     @Setter

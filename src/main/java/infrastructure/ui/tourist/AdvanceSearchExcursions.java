@@ -4,11 +4,16 @@ import api.Controller;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import models.entity.Agency;
+import models.entity.Excursion;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.function.Predicate;
 
 import static api.Main.SCREEN_HEIGHT;
 import static api.Main.SCREEN_WIDTH;
@@ -21,7 +26,7 @@ public class AdvanceSearchExcursions extends JFrame {
     private JButton ordersMoreButton;
     private JButton sortMoreButton;
     private JButton backToMainFrameButton;
-    private JButton найтиButton;
+    private JButton searchButton;
     private JComboBox<String> agencyComboBox;
     private JScrollPane agencyScrollPanel;
     private JPanel agencyListPanel;
@@ -113,7 +118,7 @@ public class AdvanceSearchExcursions extends JFrame {
             startD.setModel(defaultComboBoxModel1);
             morePanel.add(startD, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
             startM = new JComboBox<>();
-            final DefaultComboBoxModel<String> defaultComboBoxModel2 = new DefaultComboBoxModel<String>();
+            final DefaultComboBoxModel<String> defaultComboBoxModel2 = new DefaultComboBoxModel<>();
             defaultComboBoxModel2.addElement("January");
             defaultComboBoxModel2.addElement("February");
             defaultComboBoxModel2.addElement("March");
@@ -146,9 +151,39 @@ public class AdvanceSearchExcursions extends JFrame {
             endM = new JComboBox<>();
             endM.setModel(defaultComboBoxModel2);
             morePanel.add(endM, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-            agencyRemoveButton = new JButton();
-            agencyRemoveButton.setText("Применить");
-            morePanel.add(agencyRemoveButton, new GridConstraints(2, 0, 1, 4, GridConstraints.ANCHOR_SOUTH, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+            JButton dateApplyButton = new JButton();
+            dateApplyButton.setText("Применить");
+            dateApplyButton.addActionListener(r -> {
+                int sd = Integer.parseInt((String) startD.getSelectedItem());
+                String sm = (String) startM.getSelectedItem();
+                int sy = Integer.parseInt((String) startY.getSelectedItem());
+                int ed = Integer.parseInt((String) endD.getSelectedItem());
+                String em = (String) endM.getSelectedItem();
+                int ey = Integer.parseInt((String) endY.getSelectedItem());
+                if (sm.equals("February") && sd > 28 || em.equals("February") && ed > 28) {
+                    if (sd > 29 && sy % 4 == 0 || ed > 29 && ey % 4 == 0) {
+                        JOptionPane.showMessageDialog(null, "В февраля меньше 30 дней");
+                        return;
+                    }
+                    if (sd == 29 && sy % 4 != 0 || ed == 29 && ey % 4 != 0) {
+                        JOptionPane.showMessageDialog(null, "Это не високосный год, исправьте, пожалуйста");
+                        return;
+                    }
+                }
+                int monthIndexStart = startM.getSelectedIndex();
+                Calendar calendarDate = new GregorianCalendar(sy, monthIndexStart, sd);
+                long dateIn = calendarDate.getTimeInMillis();
+                int monthIndexEnd = endM.getSelectedIndex();
+                calendarDate = new GregorianCalendar(ey, monthIndexEnd, ed);
+                long dateOut = calendarDate.getTimeInMillis();
+                if (dateIn > dateOut) {
+                    JOptionPane.showMessageDialog(null, "Нельзя поставить дату начала поездки позже даты конца");
+                    return;
+                }
+                controller.setToCacheSelectedDate(dateIn, dateOut);
+                morePanel.removeAll();
+            });
+            morePanel.add(dateApplyButton, new GridConstraints(2, 0, 1, 4, GridConstraints.ANCHOR_SOUTH, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
             validate();
             repaint();
         });
@@ -165,10 +200,10 @@ public class AdvanceSearchExcursions extends JFrame {
             label9.setText("По дате");
             morePanel.add(label9, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
             titleAscRadioButton = new JRadioButton();
-            titleAscRadioButton.setText("<html>в алфавитном<br\\>порядке");
+            titleAscRadioButton.setText("<html>в алфавитном<br>порядке");
             morePanel.add(titleAscRadioButton, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
             titleDescRadioButton = new JRadioButton();
-            titleDescRadioButton.setText("<html>в обратном<br\\>порядке");
+            titleDescRadioButton.setText("<html>в обратном<br>порядке");
             morePanel.add(titleDescRadioButton, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
             popularityAscRadioButton = new JRadioButton();
             popularityAscRadioButton.setText("по возрастанию");
@@ -198,7 +233,26 @@ public class AdvanceSearchExcursions extends JFrame {
             buttonGroup = new ButtonGroup();
             buttonGroup.add(earlyDateRadioButton);
             buttonGroup.add(lateDateRadioButton);
-
+            sortApplyButton.addActionListener(r -> {
+                int sortProperties = 0;
+                //title
+                if (titleAscRadioButton.isSelected())
+                    sortProperties += 1;
+                else if (titleDescRadioButton.isSelected())
+                    sortProperties += 2;
+                //popularity
+                if (popularityAscRadioButton.isSelected())
+                    sortProperties += 4;
+                else if (popularityDescRadioButton.isSelected())
+                    sortProperties += 8;
+                //date
+                if (earlyDateRadioButton.isSelected())
+                    sortProperties += 16;
+                else if (lateDateRadioButton.isSelected())
+                    sortProperties += 32;
+                controller.setToCacheSortProperties(sortProperties);
+                morePanel.removeAll();
+            });
             validate();
             repaint();
         });
@@ -225,13 +279,43 @@ public class AdvanceSearchExcursions extends JFrame {
             ordersApplyButton = new JButton();
             ordersApplyButton.setText("Применить");
             morePanel.add(ordersApplyButton, new GridConstraints(2, 0, 1, 2, GridConstraints.ANCHOR_SOUTH, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-
+            ordersApplyButton.addActionListener(r -> {
+                int numOrders;
+                try {
+                    numOrders = Integer.parseInt(numOrdersField.getText());
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Введите целочисленное значение в поле \"Число заказов\".");
+                    return;
+                }
+                String methodName = "";
+                int selectedIndex = operationOrders.getSelectedIndex();
+                if (selectedIndex == 0) {//method names
+                    methodName = "gt";
+                } else if (selectedIndex == 1) {
+                    methodName = "ge";
+                } else if (selectedIndex == 2) {
+                    methodName = "lt";
+                } else if (selectedIndex == 3) {
+                    methodName = "le";
+                } else if (selectedIndex == 4) {
+                    methodName = "equal";
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "Произошла непонятная ошибка. Перезапустите приложение.");
+                    dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+                }
+                controller.setToCacheStatementForOrders(methodName, numOrders);
+            });
             validate();
             repaint();
         });
         backToMainFrameButton.addActionListener(e -> {
             dispose();
             new MainFrame(controller, id);
+        });
+        searchButton.addActionListener(e -> {
+            List<Excursion> excursionsResult = controller.getResultOfAdvancedSearching();
+            dispose();
         });
     }
 

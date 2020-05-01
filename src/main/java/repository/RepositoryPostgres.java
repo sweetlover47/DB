@@ -5,6 +5,9 @@ import models.entity.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.criteria.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -138,13 +141,12 @@ public class RepositoryPostgres implements Repository {
             excursionList.forEach(entityManager::merge);
             trip.getExcursions().addAll(excursionList);
             entityManager.persist(trip);
-            excursionList.forEach(e->e.getParticipatingTourists().add(trip));
+            excursionList.forEach(e -> e.getParticipatingTourists().add(trip));
             entityManager.getTransaction().commit();
             entityManager.close();
-        }
-        catch (Exception e){
-         entityManager.getTransaction().rollback();
-         e.printStackTrace();
+        } catch (Exception e) {
+            entityManager.getTransaction().rollback();
+            e.printStackTrace();
         }
     }
 
@@ -156,6 +158,85 @@ public class RepositoryPostgres implements Repository {
                 .getResultList();
         entityManager.close();
         return agencyList == null ? new ArrayList<>() : agencyList;
+    }
+
+    @Override
+    public List<Excursion> getResultOfAdvancedSearching(List<Agency> selectedAgency, Timestamp selectedDateIn, Timestamp selectedDateOut, int sortProperties, String ordersMethodName, int ordersCount) {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Long> selectedAgencyId = new ArrayList<>();
+        selectedAgency.forEach(e -> selectedAgencyId.add(e.getId()));
+        List<Agency> agencyList = entityManager
+                .createQuery("select a from Agency a", Agency.class)
+                .getResultStream()
+                .filter(agency -> selectedAgencyId.contains(agency.getId()))
+                .collect(Collectors.toList());
+        /*List<Excursion> excursionResultList = new ArrayList<>();
+        String agencyQuery = "";
+        String dateQuery = "";
+        String ordersQuery = "";
+        if (selectedAgency != null && !selectedAgency.isEmpty()) {
+            // List<Long> selectedAgencyId = new ArrayList<>();
+            selectedAgency.forEach(e -> selectedAgencyId.add(e.getId()));
+
+            agencyQuery = "e.agency in :agencies";
+        }
+        if (selectedDateIn != null && selectedDateOut != null) {
+            dateQuery = "e.date between :dateIn and :dateOut";
+        }
+        String query = "select e from Excursion e";
+        if (!agencyQuery.isEmpty() || !dateQuery.isEmpty()) {
+            query += " where ";
+            if (agencyQuery.isEmpty() && !dateQuery.isEmpty() || !agencyQuery.isEmpty() && dateQuery.isEmpty())
+                query += agencyQuery + dateQuery;
+            else
+                query += ("(" + agencyQuery + ") and (" + dateQuery + ")");
+        }*/
+
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Excursion> criteriaQuery = criteriaBuilder.createQuery(Excursion.class);
+        Root<Excursion> excursionRoot = criteriaQuery.from(Excursion.class);
+
+        CriteriaBuilder.In<Agency> inAgency = criteriaBuilder.in(excursionRoot.get("agency"));
+        agencyList.forEach(inAgency::value);
+        Predicate betweenDate = criteriaBuilder.between(excursionRoot.get("date"), selectedDateIn, selectedDateOut);
+        Method ordersMethod = null;
+        Predicate ordersPredicate = null;
+        try {
+            ordersMethod = CriteriaBuilder.class.getMethod(ordersMethodName, Object.class, Object.class);
+            ordersPredicate = (Predicate) ordersMethod.invoke(criteriaBuilder, excursionRoot.get("numOrders"), ordersCount);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        Predicate whereTotalPredicate = criteriaBuilder.and(inAgency, betweenDate, ordersPredicate);
+
+        int titleProperty = sortProperties % 4;
+        Order titleOrder = null;
+        if (titleProperty > 0)
+            titleOrder = (titleProperty == 2) ? criteriaBuilder.desc(excursionRoot.get("title")) : criteriaBuilder.asc(excursionRoot.get("title"));
+        int popularityProperty = (sortProperties / 4) % 16;
+        Order popularityOrder = null;
+        if (popularityProperty > 0)
+            popularityOrder = (popularityProperty == 8) ? criteriaBuilder.desc(excursionRoot.get("numOrders")) : criteriaBuilder.asc(excursionRoot.get("numOrders"));
+        int dateProperty = (sortProperties / 16);
+        Order dateOrder = null;
+        if (dateProperty > 0)
+            dateOrder = (dateProperty == 32) ? criteriaBuilder.desc(excursionRoot.get("date")) : criteriaBuilder.asc(excursionRoot.get("date"));
+        List<Order> orderList = new ArrayList<>();
+        orderList.add(titleOrder);
+        orderList.add(popularityOrder);
+        orderList.add(dateOrder);
+
+        criteriaQuery.select(excursionRoot).where(whereTotalPredicate).orderBy(orderList);
+
+        /*if (ordersStatement != null) {
+
+        }*/
+        entityManager.createQuery("select e from Excursion e where e.");
+        return null;
     }
 
     @Override

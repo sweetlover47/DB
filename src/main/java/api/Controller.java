@@ -8,6 +8,7 @@ import service.Service;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Controller {
     private Service service;
@@ -66,5 +67,21 @@ public class Controller {
 
     public void setToCacheSelectedAgency(List<Agency> selectedAgency) {
         service.setToCacheSelectedAgency(selectedAgency);
+    }
+
+    public void setToCacheSelectedDate(long dateIn, long dateOut) {
+        service.setToCacheSelectedDate(dateIn, dateOut);
+    }
+
+    public void setToCacheSortProperties(int sortProperties) {
+        service.setToCacheSortProperties(sortProperties);
+    }
+
+    public void setToCacheStatementForOrders(String methodName, int numOrders) {
+        service.setToCacheStatementForOrders(methodName, numOrders);
+    }
+
+    public List<Excursion> getResultOfAdvancedSearching() {
+        return service.getResultOfAdvancedSearching();
     }
 }

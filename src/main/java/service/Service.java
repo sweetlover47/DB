@@ -9,11 +9,17 @@ import repository.Repository;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Service {
     private final Repository repository;
     private List<Excursion> joinedExcursions = new ArrayList<>();
     private List<Agency> selectedAgency = new ArrayList<>();
+    private Timestamp selectedDateIn;
+    private Timestamp selectedDateOut;
+    private int sortProperties = 0;
+    private String ordersMethodName = "";
+    private int ordersCount = 0;
 
     public Service(Repository repository) {
         this.repository = repository;
@@ -72,6 +78,25 @@ public class Service {
     }
 
     public void setToCacheSelectedAgency(List<Agency> selectedAgency) {
+        this.selectedAgency.clear();
         this.selectedAgency.addAll(selectedAgency);
+    }
+
+    public void setToCacheSelectedDate(long dateIn, long dateOut) {
+        selectedDateIn = new Timestamp(dateIn);
+        selectedDateOut = new Timestamp(dateOut);
+    }
+
+    public void setToCacheSortProperties(int sortProperties) {
+        this.sortProperties = sortProperties;
+    }
+
+    public void setToCacheStatementForOrders(String methodName, int numOrders) {
+        ordersMethodName = methodName;
+        ordersCount = numOrders;
+    }
+
+    public List<Excursion> getResultOfAdvancedSearching() {
+        return repository.getResultOfAdvancedSearching(selectedAgency, selectedDateIn, selectedDateOut, sortProperties, ordersMethodName, ordersCount);
     }
 }
