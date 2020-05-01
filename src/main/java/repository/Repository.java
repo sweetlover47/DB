@@ -1,5 +1,6 @@
 package repository;
 
+import models.entity.Agency;
 import models.entity.Excursion;
 import models.entity.Tourist;
 import models.entity.Trip;
@@ -25,4 +26,6 @@ public interface Repository {
     Excursion getExcursionById(Long id);
 
     void addNewRestTrip(Long id, String country, Timestamp dateIn, Timestamp dateOut, List<Excursion> joinedExcursions);
+
+    List<Agency> getAgencies();
 }

@@ -3,7 +3,6 @@ package infrastructure.ui.tourist;
 import api.Controller;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.intellij.uiDesigner.core.Spacer;
 import models.entity.Excursion;
 
 import javax.swing.*;
@@ -81,13 +80,17 @@ public class PlanRestTrip extends JFrame {
                     return;
                 }
             }
-            dispose();
             int monthIndexStart = startM.getSelectedIndex();
             Calendar calendarDate = new GregorianCalendar(sy, monthIndexStart, sd);
             long dateIn = calendarDate.getTimeInMillis();
             int monthIndexEnd = endM.getSelectedIndex();
             calendarDate = new GregorianCalendar(ey, monthIndexEnd, ed);
             long dateOut = calendarDate.getTimeInMillis();
+            if (dateIn > dateOut) {
+                JOptionPane.showMessageDialog(null, "Нельзя поставить дату начала поездки позже даты конца");
+                return;
+            }
+            dispose();
             controller.addNewRestTrip(id, countryField.getText(), new Timestamp(dateIn), new Timestamp(dateOut), joinedExcursions);
             controller.clearJoinedExcursion();
         });

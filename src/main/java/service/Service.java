@@ -1,5 +1,6 @@
 package service;
 
+import models.entity.Agency;
 import models.entity.Excursion;
 import models.entity.Tourist;
 import models.entity.Trip;
@@ -12,6 +13,7 @@ import java.util.List;
 public class Service {
     private final Repository repository;
     private List<Excursion> joinedExcursions = new ArrayList<>();
+    private List<Agency> selectedAgency = new ArrayList<>();
 
     public Service(Repository repository) {
         this.repository = repository;
@@ -48,12 +50,12 @@ public class Service {
     public void setToCacheJoinedExcursions(Long id) {
         Excursion excursion = repository.getExcursionById(id);
         for (Excursion ex : joinedExcursions)
-            if(ex.getId().equals(excursion.getId()))
+            if (ex.getId().equals(excursion.getId()))
                 return;
         joinedExcursions.add(excursion);
     }
 
-    public List<Excursion> getFromCacheJoinedExcursions(){
+    public List<Excursion> getFromCacheJoinedExcursions() {
         return joinedExcursions;
     }
 
@@ -63,5 +65,13 @@ public class Service {
 
     public void clearJoinedExcursion() {
         joinedExcursions.clear();
+    }
+
+    public List<Agency> getAgencies() {
+        return repository.getAgencies();
+    }
+
+    public void setToCacheSelectedAgency(List<Agency> selectedAgency) {
+        this.selectedAgency.addAll(selectedAgency);
     }
 }

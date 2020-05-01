@@ -1,13 +1,8 @@
 package infrastructure.ui.tourist;
 
 import api.Controller;
-import com.intellij.uiDesigner.core.GridConstraints;
-import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.intellij.uiDesigner.core.Spacer;
-import models.entity.Tourist;
 
 import javax.swing.*;
-import java.awt.*;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -61,13 +56,17 @@ public class PlanCargoTrip extends JFrame {
                 JOptionPane.showMessageDialog(null, "Заполните все поля");
                 return;
             }
-            dispose();
             int monthIndexStart = startM.getSelectedIndex();
             Calendar calendarDate = new GregorianCalendar(sy, monthIndexStart, sd);
             long dateIn = calendarDate.getTimeInMillis();
             int monthIndexEnd = endM.getSelectedIndex();
             calendarDate = new GregorianCalendar(ey, monthIndexEnd, ed);
             long dateOut = calendarDate.getTimeInMillis();
+            if (dateIn > dateOut) {
+                JOptionPane.showMessageDialog(null, "Нельзя поставить дату начала поездки позже даты конца");
+                return;
+            }
+            dispose();
             controller.addNewCargoTrip(
                     id,
                     statementField.getText(),

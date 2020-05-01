@@ -1,11 +1,17 @@
 
-V	java:S110"<This class has 6 parents which is greater than 5 authorized.(œ” Äûÿÿÿÿ
-h
-java:S3776"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(ŒáÒí
-O
-java:S1128"2Remove this unused import 'models.entity.Tourist'.(€ÜîÚ8ğ–­œ.
+g	java:S116"SRename this field "OKButton" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡ ×q
 I
-java:S1068",Remove this unused "lCountry" private field.(³§¢–8‚ˆÈªœ.
+java:S1068",Remove this unused "lCountry" private field.(³§¢–8‚ˆÈªœ.
+O
+java:S1128"2Remove this unused import 'models.entity.Tourist'.(€ÜîÚ8ğ–­œ.
+h
+java:S3776 "RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(ŒáÒí
 F
-java:S1068")Remove this unused "panel" private field.(›Ã¶‰8‚ˆÈªœ.
-g	java:S116"SRename this field "OKButton" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡ ×q
+java:S1068")Remove this unused "panel" private field.(›Ã¶‰8‚ˆÈªœ.
+V	java:S110"<This class has 6 parents which is greater than 5 authorized.(œ” Äûÿÿÿÿ
+h
+java:S1128"KRemove this unused import 'com.intellij.uiDesigner.core.GridLayoutManager'.(‡ĞºÁ8ÏÎñıœ.
+e
+java:S1128"IRemove this unused import 'com.intellij.uiDesigner.core.GridConstraints'.(ş·ô(8ÏÎñıœ.
+]
+java:S1128"@Remove this unused import 'com.intellij.uiDesigner.core.Spacer'.(­ åÀ8ÏÎñıœ.

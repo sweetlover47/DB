@@ -1,5 +1,6 @@
 package api;
 
+import models.entity.Agency;
 import models.entity.Excursion;
 import models.entity.Tourist;
 import models.entity.Trip;
@@ -57,5 +58,13 @@ public class Controller {
 
     public void clearJoinedExcursion() {
         service.clearJoinedExcursion();
+    }
+
+    public List<Agency> getAgencies() {
+        return service.getAgencies();
+    }
+
+    public void setToCacheSelectedAgency(List<Agency> selectedAgency) {
+        service.setToCacheSelectedAgency(selectedAgency);
     }
 }

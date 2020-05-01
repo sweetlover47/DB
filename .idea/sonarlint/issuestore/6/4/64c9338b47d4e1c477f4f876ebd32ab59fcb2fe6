@@ -1,11 +1,11 @@
 
+]
+java:S1128"@Remove this unused import 'com.intellij.uiDesigner.core.Spacer'.(≠†Â¿8≠•ûÛú.
 Ü	java:S116"kRename this field "—Ä–µ–¥–∞–∫—Ç–∏—Ä–æ–≤–∞—Ç—åButton" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(≤£ès8ù±Î‡ó.
-X	java:S110"<This class has 6 parents which is greater than 5 authorized.(Ωº¥¡8ù±Î‡ó.
 y	java:S116"XRename this field "–ºRadioButton" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ùé∏π˛ˇˇˇˇ8≠˘çèò.
-y	java:S116"XRename this field "–∂RadioButton" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Öÿà™¸ˇˇˇˇ8Ÿãéèò.
+X	java:S110"<This class has 6 parents which is greater than 5 authorized.(Ωº¥¡8ù±Î‡ó.
 h
 java:S1128"KRemove this unused import 'com.intellij.uiDesigner.core.GridLayoutManager'.(á–∫¡8≠•ûÛú.
 e
 java:S1128"IRemove this unused import 'com.intellij.uiDesigner.core.GridConstraints'.(˛∑Ù(8≠•ûÛú.
-]
-java:S1128"@Remove this unused import 'com.intellij.uiDesigner.core.Spacer'.(≠†Â¿8≠•ûÛú.
+y	java:S116"XRename this field "–∂RadioButton" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Öÿà™¸ˇˇˇˇ8Ÿãéèò.

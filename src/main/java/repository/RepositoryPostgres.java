@@ -149,6 +149,16 @@ public class RepositoryPostgres implements Repository {
     }
 
     @Override
+    public List<Agency> getAgencies() {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Agency> agencyList = entityManager
+                .createQuery("select a from Agency a")
+                .getResultList();
+        entityManager.close();
+        return agencyList == null ? new ArrayList<>() : agencyList;
+    }
+
+    @Override
     public List<Trip> getTripList(Long id) {
         EntityManager entityManager = emf.createEntityManager();
         entityManager.getTransaction().begin();
