@@ -3,6 +3,7 @@ package infrastructure.ui.tourist;
 import api.Controller;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.intellij.uiDesigner.core.Spacer;
 import models.entity.Excursion;
 
 import javax.swing.*;

@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.function.Predicate;
 
 import static api.Main.SCREEN_HEIGHT;
 import static api.Main.SCREEN_WIDTH;
@@ -97,8 +96,9 @@ public class AdvanceSearchExcursions extends JFrame {
             agencyApplyButton.addActionListener(r -> {
                 controller.setToCacheSelectedAgency(selectedAgency);
                 morePanel.removeAll();
+                validate();
+                repaint();
             });
-
             validate();
             repaint();
         });
@@ -135,6 +135,8 @@ public class AdvanceSearchExcursions extends JFrame {
             morePanel.add(startM, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
             startY = new JComboBox<>();
             final DefaultComboBoxModel<Integer> defaultComboBoxModel3 = new DefaultComboBoxModel<>();
+            defaultComboBoxModel3.addElement(2018);
+            defaultComboBoxModel3.addElement(2019);
             defaultComboBoxModel3.addElement(2020);
             defaultComboBoxModel3.addElement(2021);
             defaultComboBoxModel3.addElement(2022);
@@ -142,24 +144,48 @@ public class AdvanceSearchExcursions extends JFrame {
             defaultComboBoxModel3.addElement(2024);
             startY.setModel(defaultComboBoxModel3);
             morePanel.add(startY, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+            final DefaultComboBoxModel<Integer> defaultComboBoxModel4 = new DefaultComboBoxModel<>();
+            for (int i = 1; i < 32; i++)
+                defaultComboBoxModel4.addElement(i);
             endD = new JComboBox<>();
-            endD.setModel(defaultComboBoxModel1);
+            endD.setModel(defaultComboBoxModel4);
             morePanel.add(endD, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+            final DefaultComboBoxModel<Integer> defaultComboBoxModel5 = new DefaultComboBoxModel<>();
+            defaultComboBoxModel5.addElement(2018);
+            defaultComboBoxModel5.addElement(2019);
+            defaultComboBoxModel5.addElement(2020);
+            defaultComboBoxModel5.addElement(2021);
+            defaultComboBoxModel5.addElement(2022);
+            defaultComboBoxModel5.addElement(2023);
+            defaultComboBoxModel5.addElement(2024);
             endY = new JComboBox<>();
-            endY.setModel(defaultComboBoxModel3);
+            endY.setModel(defaultComboBoxModel5);
             morePanel.add(endY, new GridConstraints(1, 3, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+            final DefaultComboBoxModel<String> defaultComboBoxModel6 = new DefaultComboBoxModel<>();
+            defaultComboBoxModel6.addElement("January");
+            defaultComboBoxModel6.addElement("February");
+            defaultComboBoxModel6.addElement("March");
+            defaultComboBoxModel6.addElement("April");
+            defaultComboBoxModel6.addElement("May");
+            defaultComboBoxModel6.addElement("June");
+            defaultComboBoxModel6.addElement("July");
+            defaultComboBoxModel6.addElement("August");
+            defaultComboBoxModel6.addElement("September");
+            defaultComboBoxModel6.addElement("October");
+            defaultComboBoxModel6.addElement("November");
+            defaultComboBoxModel6.addElement("December");
             endM = new JComboBox<>();
-            endM.setModel(defaultComboBoxModel2);
+            endM.setModel(defaultComboBoxModel6);
             morePanel.add(endM, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
             JButton dateApplyButton = new JButton();
             dateApplyButton.setText("Применить");
             dateApplyButton.addActionListener(r -> {
-                int sd = Integer.parseInt((String) startD.getSelectedItem());
+                int sd = (int) startD.getSelectedItem();
                 String sm = (String) startM.getSelectedItem();
-                int sy = Integer.parseInt((String) startY.getSelectedItem());
-                int ed = Integer.parseInt((String) endD.getSelectedItem());
+                int sy = (int) startY.getSelectedItem();
+                int ed = (int) endD.getSelectedItem();
                 String em = (String) endM.getSelectedItem();
-                int ey = Integer.parseInt((String) endY.getSelectedItem());
+                int ey = (int) endY.getSelectedItem();
                 if (sm.equals("February") && sd > 28 || em.equals("February") && ed > 28) {
                     if (sd > 29 && sy % 4 == 0 || ed > 29 && ey % 4 == 0) {
                         JOptionPane.showMessageDialog(null, "В февраля меньше 30 дней");
@@ -182,6 +208,8 @@ public class AdvanceSearchExcursions extends JFrame {
                 }
                 controller.setToCacheSelectedDate(dateIn, dateOut);
                 morePanel.removeAll();
+                validate();
+                repaint();
             });
             morePanel.add(dateApplyButton, new GridConstraints(2, 0, 1, 4, GridConstraints.ANCHOR_SOUTH, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
             validate();
@@ -252,6 +280,8 @@ public class AdvanceSearchExcursions extends JFrame {
                     sortProperties += 32;
                 controller.setToCacheSortProperties(sortProperties);
                 morePanel.removeAll();
+                validate();
+                repaint();
             });
             validate();
             repaint();
@@ -299,13 +329,16 @@ public class AdvanceSearchExcursions extends JFrame {
                     methodName = "le";
                 } else if (selectedIndex == 4) {
                     methodName = "equal";
-                }
-                else {
+                } else {
                     JOptionPane.showMessageDialog(null, "Произошла непонятная ошибка. Перезапустите приложение.");
                     dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
                 }
                 controller.setToCacheStatementForOrders(methodName, numOrders);
+                morePanel.removeAll();
+                validate();
+                repaint();
             });
+
             validate();
             repaint();
         });
@@ -316,6 +349,8 @@ public class AdvanceSearchExcursions extends JFrame {
         searchButton.addActionListener(e -> {
             List<Excursion> excursionsResult = controller.getResultOfAdvancedSearching();
             dispose();
+            controller.clearAdvancedSearchDatas();
+            new AdvancedSearchResult(controller, id, excursionsResult);
         });
     }
 

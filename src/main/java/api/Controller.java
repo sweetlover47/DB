@@ -84,4 +84,8 @@ public class Controller {
     public List<Excursion> getResultOfAdvancedSearching() {
         return service.getResultOfAdvancedSearching();
     }
+
+    public void clearAdvancedSearchDatas(){
+        service.clearAdvancedSearchDatas();
+    }
 }

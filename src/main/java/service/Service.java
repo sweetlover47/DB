@@ -99,4 +99,13 @@ public class Service {
     public List<Excursion> getResultOfAdvancedSearching() {
         return repository.getResultOfAdvancedSearching(selectedAgency, selectedDateIn, selectedDateOut, sortProperties, ordersMethodName, ordersCount);
     }
+
+    public void clearAdvancedSearchDatas() {
+        ordersCount = 0;
+        ordersMethodName = "";
+        selectedDateOut = null;
+        selectedDateIn = null;
+        selectedAgency = new ArrayList<>();
+        sortProperties = 0;
+    }
 }
