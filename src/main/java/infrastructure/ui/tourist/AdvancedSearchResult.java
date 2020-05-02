@@ -20,6 +20,9 @@ public class AdvancedSearchResult extends JFrame {
     private JPanel totalPanel;
     private JScrollPane resultScrollPanel;
     private JPanel listPanel;
+    private JButton изменитьРасширенныеНастройкиButton;
+    private JButton предыдущиеButton;
+    private JButton следующиеButton;
     private JLabel title;
     private JLabel agency;
     private JLabel date;
@@ -41,6 +44,7 @@ public class AdvancedSearchResult extends JFrame {
 
         вернутьсяНаГлавныйЭкранButton.addActionListener(e -> {
             dispose();
+            controller.clearAdvancedSearchDatas();
             new MainFrame(controller, id);
         });
     }

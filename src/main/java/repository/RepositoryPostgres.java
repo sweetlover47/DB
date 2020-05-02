@@ -178,8 +178,8 @@ public class RepositoryPostgres implements Repository {
         Root<Excursion> excursionRoot = criteriaQuery.from(Excursion.class);
 
         Predicate whereTotalPredicate = getWherePredicate(selectedAgency, selectedDateIn, selectedDateOut, ordersMethodName, ordersCount, agencyList, criteriaBuilder, excursionRoot);
-
         List<Order> orderList = getOrderList(sortProperties, criteriaBuilder, excursionRoot);
+
         if (orderList.isEmpty())
             criteriaQuery.select(excursionRoot).where(whereTotalPredicate);
         else
@@ -198,14 +198,19 @@ public class RepositoryPostgres implements Repository {
         Order popularityOrder = null;
         if (popularityProperty > 0)
             popularityOrder = (popularityProperty == 2) ? criteriaBuilder.desc(excursionRoot.get("numOrders")) : criteriaBuilder.asc(excursionRoot.get("numOrders"));
-        int dateProperty = (sortProperties / 16);
+        int dateProperty = (sortProperties % 64) / 16;
         Order dateOrder = null;
         if (dateProperty > 0)
             dateOrder = (dateProperty == 2) ? criteriaBuilder.desc(excursionRoot.get("date")) : criteriaBuilder.asc(excursionRoot.get("date"));
+        int agencyProperty = (sortProperties / 64);
+        Order agencyOrder = null;
+        if (agencyProperty > 0)
+            agencyOrder = (agencyProperty == 2) ? criteriaBuilder.desc(excursionRoot.join("agency").get("name")) : criteriaBuilder.asc(excursionRoot.join("agency").get("name"));
         List<Order> orderList = new ArrayList<>();
         orderList.add(titleOrder);
         orderList.add(popularityOrder);
         orderList.add(dateOrder);
+        orderList.add(agencyOrder);
         orderList.removeIf(Objects::isNull);
         return orderList;
     }
@@ -232,7 +237,7 @@ public class RepositoryPostgres implements Repository {
         Predicate whereTotalPredicate = criteriaBuilder.and();
         if (inAgency != null)
             whereTotalPredicate = criteriaBuilder.and(inAgency);
-        if(betweenDate != null)
+        if (betweenDate != null)
             whereTotalPredicate = criteriaBuilder.and(whereTotalPredicate, betweenDate);
         if (ordersPredicate != null)
             whereTotalPredicate = criteriaBuilder.and(whereTotalPredicate, ordersPredicate);

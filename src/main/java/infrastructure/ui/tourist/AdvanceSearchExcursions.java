@@ -217,7 +217,7 @@ public class AdvanceSearchExcursions extends JFrame {
         });
         sortMoreButton.addActionListener(e -> {
             morePanel.removeAll();
-            morePanel.setLayout(new GridLayoutManager(5, 3, new Insets(0, 0, 0, 0), -1, -1));
+            morePanel.setLayout(new GridLayoutManager(6, 3, new Insets(0, 0, 0, 0), -1, -1));
             final JLabel label7 = new JLabel();
             label7.setText("По названию");
             morePanel.add(label7, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -261,6 +261,19 @@ public class AdvanceSearchExcursions extends JFrame {
             buttonGroup = new ButtonGroup();
             buttonGroup.add(earlyDateRadioButton);
             buttonGroup.add(lateDateRadioButton);
+            //Add sort by agency name
+            JLabel label11 = new JLabel("По названию агенства:");
+            morePanel.add(label11, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+            JRadioButton agencyTitleAscRadioButton = new JRadioButton();
+            agencyTitleAscRadioButton.setText("<html>в алфавитном<br>порядке");
+            morePanel.add(agencyTitleAscRadioButton, new GridConstraints(5, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+            JRadioButton agencyTitleDescRadioButton = new JRadioButton();
+            agencyTitleDescRadioButton.setText("<html>в обратном<br>порядке");
+            morePanel.add(agencyTitleDescRadioButton, new GridConstraints(5, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+            buttonGroup = new ButtonGroup();
+            buttonGroup.add(agencyTitleAscRadioButton);
+            buttonGroup.add(agencyTitleDescRadioButton);
+            //
             sortApplyButton.addActionListener(r -> {
                 int sortProperties = 0;
                 //title
@@ -278,6 +291,11 @@ public class AdvanceSearchExcursions extends JFrame {
                     sortProperties += 16;
                 else if (lateDateRadioButton.isSelected())
                     sortProperties += 32;
+                //agency name
+                if (agencyTitleAscRadioButton.isSelected())
+                    sortProperties += 64;
+                else if (agencyTitleDescRadioButton.isSelected())
+                    sortProperties += 128;
                 controller.setToCacheSortProperties(sortProperties);
                 morePanel.removeAll();
                 validate();
@@ -344,12 +362,12 @@ public class AdvanceSearchExcursions extends JFrame {
         });
         backToMainFrameButton.addActionListener(e -> {
             dispose();
+            controller.clearAdvancedSearchDatas();
             new MainFrame(controller, id);
         });
         searchButton.addActionListener(e -> {
             List<Excursion> excursionsResult = controller.getResultOfAdvancedSearching();
             dispose();
-            controller.clearAdvancedSearchDatas();
             new AdvancedSearchResult(controller, id, excursionsResult);
         });
     }
