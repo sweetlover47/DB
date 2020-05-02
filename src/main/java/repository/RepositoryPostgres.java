@@ -161,7 +161,6 @@ public class RepositoryPostgres implements Repository {
         return agencyList == null ? new ArrayList<>() : agencyList;
     }
 
-    //TODO: добавить приоритеты у сортировки
     @Override
     public List<Excursion> getResultOfAdvancedSearching(List<Agency> selectedAgency, Timestamp selectedDateIn, Timestamp selectedDateOut, int sortProperties, String ordersMethodName, int ordersCount) {
         EntityManager entityManager = emf.createEntityManager();

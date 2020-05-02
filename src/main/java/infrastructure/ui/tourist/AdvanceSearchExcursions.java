@@ -247,7 +247,7 @@ public class AdvanceSearchExcursions extends JFrame {
             morePanel.add(lateDateRadioButton, new GridConstraints(3, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
             sortApplyButton = new JButton();
             sortApplyButton.setText("Применить");
-            morePanel.add(sortApplyButton, new GridConstraints(4, 0, 1, 3, GridConstraints.ANCHOR_SOUTH, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+            morePanel.add(sortApplyButton, new GridConstraints(5, 0, 1, 3, GridConstraints.ANCHOR_SOUTH, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
             final JLabel label10 = new JLabel();
             label10.setText("Не обязательно выбирать все пункты");
             morePanel.add(label10, new GridConstraints(0, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -262,14 +262,14 @@ public class AdvanceSearchExcursions extends JFrame {
             buttonGroup.add(earlyDateRadioButton);
             buttonGroup.add(lateDateRadioButton);
             //Add sort by agency name
-            JLabel label11 = new JLabel("По названию агенства:");
-            morePanel.add(label11, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+            JLabel label11 = new JLabel("<html>По названию<br>агенства:");
+            morePanel.add(label11, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
             JRadioButton agencyTitleAscRadioButton = new JRadioButton();
             agencyTitleAscRadioButton.setText("<html>в алфавитном<br>порядке");
-            morePanel.add(agencyTitleAscRadioButton, new GridConstraints(5, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+            morePanel.add(agencyTitleAscRadioButton, new GridConstraints(4, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
             JRadioButton agencyTitleDescRadioButton = new JRadioButton();
             agencyTitleDescRadioButton.setText("<html>в обратном<br>порядке");
-            morePanel.add(agencyTitleDescRadioButton, new GridConstraints(5, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+            morePanel.add(agencyTitleDescRadioButton, new GridConstraints(4, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
             buttonGroup = new ButtonGroup();
             buttonGroup.add(agencyTitleAscRadioButton);
             buttonGroup.add(agencyTitleDescRadioButton);
