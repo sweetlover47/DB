@@ -1,9 +1,6 @@
 package service;
 
-import models.entity.Agency;
-import models.entity.Excursion;
-import models.entity.Tourist;
-import models.entity.Trip;
+import models.entity.*;
 import repository.Repository;
 
 import java.sql.Timestamp;
@@ -107,5 +104,13 @@ public class Service {
         selectedDateIn = null;
         selectedAgency = new ArrayList<>();
         sortProperties = 0;
+    }
+
+    public List<Integer> getGroups() {
+        return repository.getGroups();
+    }
+
+    public List<Cargo> getFreeCargos() {
+        return repository.getFreeCargos();
     }
 }

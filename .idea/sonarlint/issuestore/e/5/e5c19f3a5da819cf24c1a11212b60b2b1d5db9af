@@ -1,17 +1,27 @@
 
-g	java:S116"SRename this field "OKButton" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡ ×q
-I
-java:S1068",Remove this unused "lCountry" private field.(³§¢–8‚ˆÈªœ.
-O
-java:S1128"2Remove this unused import 'models.entity.Tourist'.(€ÜîÚ8ğ–­œ.
-h
-java:S3776 "RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(ŒáÒí
+L
+java:S3740"/Provide the parametrized type for this generic.(õò“©8âïˆ€.
 F
-java:S1068")Remove this unused "panel" private field.(›Ã¶‰8‚ˆÈªœ.
-V	java:S110"<This class has 6 parents which is greater than 5 authorized.(œ” Äûÿÿÿÿ
+java:S1068")Remove this unused "panel" private field.(›Ã¶‰8‚ˆÈªœ.
+L
+java:S3740"/Provide the parametrized type for this generic.(€±õÙ8âïˆ€.
+Q
+java:S3740"/Provide the parametrized type for this generic.(éŠäÄÿÿÿÿÿ8âïˆ€.
+L
+java:S3740"/Provide the parametrized type for this generic.(Ãß·¨8âïˆ€.
+V	java:S110"<This class has 6 parents which is greater than 5 authorized.(œ” Äûÿÿÿÿ
+Q
+java:S3740"/Provide the parametrized type for this generic.(ÀáŒ€úÿÿÿÿ8âïˆ€.
+I
+java:S1068",Remove this unused "lCountry" private field.(³§¢–8‚ˆÈªœ.
+L
+java:S3740"/Provide the parametrized type for this generic.(–©à‰8âïˆ€.
+g	java:S116"SRename this field "OKButton" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡ ×q
 h
-java:S1128"KRemove this unused import 'com.intellij.uiDesigner.core.GridLayoutManager'.(‡ĞºÁ8ÏÎñıœ.
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(ŒáÒí
+h
+java:S1128"KRemove this unused import 'com.intellij.uiDesigner.core.GridLayoutManager'.(‡ĞºÁ8»¶±.
 e
-java:S1128"IRemove this unused import 'com.intellij.uiDesigner.core.GridConstraints'.(ş·ô(8ÏÎñıœ.
+java:S1128"IRemove this unused import 'com.intellij.uiDesigner.core.GridConstraints'.(ş·ô(8»¶±.
 ]
-java:S1128"@Remove this unused import 'com.intellij.uiDesigner.core.Spacer'.(­ åÀ8ÏÎñıœ.
+java:S1128"@Remove this unused import 'com.intellij.uiDesigner.core.Spacer'.(­ åÀ8»¶±.

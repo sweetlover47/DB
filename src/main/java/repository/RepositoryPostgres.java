@@ -188,6 +188,29 @@ public class RepositoryPostgres implements Repository {
         return result;
     }
 
+    @Override
+    public List<Integer> getGroups() {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Integer> list = entityManager
+                .createQuery("select t.group from trip t where t.group <> 0", Integer.class)
+                .getResultStream()
+                .distinct()
+                .sorted()
+                .collect(Collectors.toList());
+        entityManager.close();
+        return list;
+    }
+
+    @Override
+    public List<Cargo> getFreeCargos() {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Cargo> cargoList = entityManager
+                .createQuery("select c from Cargo c where c.statement IS NULL or c.statement.id = 0", Cargo.class)
+                .getResultList();
+        entityManager.close();
+        return cargoList;
+    }
+
     private List<Order> getOrderList(int sortProperties, CriteriaBuilder criteriaBuilder, Root<Excursion> excursionRoot) {
         int titleProperty = sortProperties % 4;
         Order titleOrder = null;

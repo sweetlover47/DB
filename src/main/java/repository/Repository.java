@@ -1,9 +1,6 @@
 package repository;
 
-import models.entity.Agency;
-import models.entity.Excursion;
-import models.entity.Tourist;
-import models.entity.Trip;
+import models.entity.*;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -30,4 +27,8 @@ public interface Repository {
     List<Agency> getAgencies();
 
     List<Excursion> getResultOfAdvancedSearching(List<Agency> selectedAgency, Timestamp selectedDateIn, Timestamp selectedDateOut, int sortProperties, String ordersMethodName, int ordersCount);
+
+    List<Integer> getGroups();
+
+    List<Cargo> getFreeCargos();
 }

@@ -1,9 +1,6 @@
 package api;
 
-import models.entity.Agency;
-import models.entity.Excursion;
-import models.entity.Tourist;
-import models.entity.Trip;
+import models.entity.*;
 import service.Service;
 
 import java.sql.Timestamp;
@@ -87,5 +84,13 @@ public class Controller {
 
     public void clearAdvancedSearchDatas(){
         service.clearAdvancedSearchDatas();
+    }
+
+    public List<Integer> getGroups() {
+        return service.getGroups();
+    }
+
+    public List<Cargo> getFreeCargos() {
+        return service.getFreeCargos();
     }
 }

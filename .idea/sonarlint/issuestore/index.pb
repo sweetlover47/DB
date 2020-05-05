@@ -3,8 +3,6 @@
 out.txt,1\e\1e0e364a22c69340e6f02604520fdeb7674264c0
 8
 out1.txt,7\3\73189fc3c1cd0fd4fd550ba02b648487b7054858
-m
-=src/main/java/Infrastructure/UI/Tourist/TouristMainFrame.java,7\d\7d70ad179d350a20758dba0fb7cdd2ae31626784
 W
 'src/main/java/models/entity/Agency.java,c\2\c2284572623f9c0e61cc157ef374ecbcb6eb30a9
 Z
@@ -35,8 +33,6 @@ Q
 !src/main/java/api/Controller.java,1\3\13506029075894bdb40ec012da9d8e3f9abe07ec
 j
 :src/main/java/infrastructure/ui/tourist/Authorization.java,3\5\35608bf69cc45fe2ab399d3d367d29aa278164a2
-m
-=src/main/java/infrastructure/ui/tourist/TouristMainFrame.java,a\9\a9ec77bb766943a9af1c09dcd7f7b8f55cf9a287
 j
 :src/main/java/infrastructure/ui/tourist/Authorization.form,9\f\9f2d7edcf4c5c52da005f06e68702736d74d81eb
 i
@@ -117,3 +113,15 @@ t
 Dsrc/main/java/infrastructure/ui/tourist/AdvanceSearchExcursions.form,f\a\fa2d29ff3d1f7bc21e7b6d0cf6a1092671a16b85
 t
 Dsrc/main/java/infrastructure/ui/tourist/AdvanceSearchExcursions.java,7\e\7e5620d58b698515a3a3664d2331c0cab82727f2
+q
+Asrc/main/java/infrastructure/ui/tourist/AdvancedSearchResult.form,f\d\fd0ddd3f825579be542ada6f77d9be833f58f19a
+q
+Asrc/main/java/infrastructure/ui/tourist/AdvancedSearchResult.java,a\3\a39c7895facf1ae104e23539ddf859ce7392281a
+m
+=src/main/java/infrastructure/ui/representative/MainFrame.form,6\f\6fb30f7c8c37b7cda7609698462398684f36b962
+s
+Csrc/main/java/infrastructure/ui/representative/CreateStatement.form,c\d\cd6a536179c27476ebc5f39dce6ccd1e37a177be
+s
+Csrc/main/java/infrastructure/ui/representative/CreateStatement.java,f\5\f5a0f468f5fd283a356480e15c8d29d44f2787e5
+m
+=src/main/java/infrastructure/ui/representative/MainFrame.java,7\c\7c8ff66cc76bf88c339c8182df0813b460e3819e
