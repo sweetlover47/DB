@@ -43,5 +43,5 @@ public class Statement {
     @Getter
     @Setter
     @OneToMany(mappedBy = "statement")
-    private List<Cargo> cargo;
+    private List<Cargo> cargos;
 }

@@ -70,19 +70,22 @@ public class EditStatement extends JFrame {
             wrapField.setText(String.valueOf(statement.getCostWrap()));
             insuranceField.setText(String.valueOf(statement.getCostInsurance()));
             freeCargoList = controller.getFreeCargos();
-            Long[] cargos = new Long[freeCargoList.size()];
+            addedCargos = controller.getCargosByStatementId(statement.getId());
+            List<Cargo> boxCargos = new ArrayList<>();
+            boxCargos.addAll(addedCargos);
+            boxCargos.addAll(freeCargoList);
+            Long[] cargos = new Long[boxCargos.size()];
             int j = 0;
-            for (Cargo c : freeCargoList)
+            for (Cargo c : boxCargos)
                 cargos[j++] = c.getId();
             freeCargoBox.setModel(new DefaultComboBoxModel<>(cargos));
 
-            addedCargos = controller.getCargosByStatementId(statement.getId());
             fillListPanel(addedCargos);
             validate();
             repaint();
 
             addButton.addActionListener(r -> {
-                Cargo c = freeCargoList.get(freeCargoBox.getSelectedIndex());
+                Cargo c = boxCargos.get(freeCargoBox.getSelectedIndex());
                 for (Cargo cargo : addedCargos)
                     if (cargo.getId() == c.getId())
                         return;
@@ -94,7 +97,7 @@ public class EditStatement extends JFrame {
             });
         });
         okButton.addActionListener(e -> {
-            if (wrapField.getText().isEmpty() || weightField.getText().isEmpty() || insuranceField.getText().isEmpty() || addedCargos.isEmpty()){
+            if (wrapField.getText().isEmpty() || weightField.getText().isEmpty() || insuranceField.getText().isEmpty() || addedCargos.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "заполните все поля");
                 return;
             }

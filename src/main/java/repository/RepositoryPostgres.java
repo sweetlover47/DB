@@ -286,7 +286,7 @@ public class RepositoryPostgres implements Repository {
             t.setSum(weight + wrap + insurance);
             entityManager.persist(t);
             Statement statement = new Statement();
-            statement.setCargo(cargoList);
+            statement.setCargos(cargoList);
             statement.setCostInsurance(insurance);
             statement.setCostWrap(wrap);
             statement.setWeight(weight);
@@ -384,7 +384,28 @@ public class RepositoryPostgres implements Repository {
                 .getSingleResult();
         try {
             entityManager.getTransaction().begin();
-            ///
+            Transaction t = statement.getTransaction();
+            List<Cargo> cargoList = entityManager
+                    .createQuery("select c from Cargo c where c.statement IS NOT NULL AND c.statement.id = :id", Cargo.class)
+                    .setParameter("id", id)
+                    .getResultList();
+            t.setSum(wrap + weight + insurance);
+            statement.setCargos(addedCargos);
+            statement.setTransaction(t);
+            statement.setCount(addedCargos.size());
+            statement.setWeight(weight);
+            statement.setCostWrap(wrap);
+            statement.setCostInsurance(insurance);
+            entityManager.merge(t);
+            entityManager.merge(statement);
+            for (Cargo c : cargoList) {  //delete statement from each cargo
+                c.setStatement(null);
+                entityManager.merge(c);
+            }
+            for (Cargo c : addedCargos) {   //set statement to new cargos
+                c.setStatement(statement);
+                entityManager.merge(c);
+            }
             entityManager.getTransaction().commit();
         } catch (RollbackException ex) {
             entityManager.getTransaction().rollback();
