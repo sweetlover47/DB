@@ -53,7 +53,6 @@ public class CreateStatement extends JFrame {
         cargoComboBox.setModel(new DefaultComboBoxModel<>(cargos));
         listPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
 
-
         addButton.addActionListener(e -> {
             Cargo c = freeCargoList.get(cargoComboBox.getSelectedIndex());
             for (Cargo cargo : addedCargos)
@@ -95,10 +94,7 @@ public class CreateStatement extends JFrame {
             controller.addNewStatement(addedCargos, weight, wrap, insurance);
             dispose();
         });
-        хочуСоздатьНовыйГрузButton.addActionListener(e -> {
-            new CreateCargo(controller);
-        });
-
+        хочуСоздатьНовыйГрузButton.addActionListener(e -> new CreateCargo(controller));
         cargoComboBox.addPopupMenuListener(new PopupMenuListener() {
             @Override
             public void popupMenuWillBecomeVisible(PopupMenuEvent e) {

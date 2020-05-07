@@ -132,4 +132,13 @@ public class Service {
     public List<Statement> getStatementList() {
         return repository.getStatementList();
     }
+
+    public List<Cargo> getCargosByStatementId(long id) {
+        return repository.getCargosByStatementId(id);
+    }
+
+    public void editStatement(long id, float weight, float wrap, float insurance, List<Cargo> addedCargos) {
+        repository.editStatement(id, weight, wrap, insurance, addedCargos);
+
+    }
 }

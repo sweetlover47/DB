@@ -365,6 +365,35 @@ public class RepositoryPostgres implements Repository {
     }
 
     @Override
+    public List<Cargo> getCargosByStatementId(long id) {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Cargo> cargoList = entityManager
+                .createQuery("select c from Cargo c where c.statement IS NOT NULL AND c.statement.id = :id", Cargo.class)
+                .setParameter("id", id)
+                .getResultList();
+        entityManager.close();
+        return cargoList;
+    }
+
+    @Override
+    public void editStatement(long id, float weight, float wrap, float insurance, List<Cargo> addedCargos) {
+        EntityManager entityManager = emf.createEntityManager();
+        Statement statement = entityManager
+                .createQuery("select s from Statement s where s.id = :id", Statement.class)
+                .setParameter("id",id)
+                .getSingleResult();
+        try{
+            entityManager.getTransaction().begin();
+            ///
+            entityManager.getTransaction().commit();
+        } catch (RollbackException ex){
+            entityManager.getTransaction().rollback();
+            ex.printStackTrace();
+        }
+
+    }
+
+    @Override
     public List<Trip> getTripList(Long id) {
         EntityManager entityManager = emf.createEntityManager();
         entityManager.getTransaction().begin();

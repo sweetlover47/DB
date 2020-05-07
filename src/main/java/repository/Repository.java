@@ -41,4 +41,8 @@ public interface Repository {
     void addNewCargo(Long warehouseId, Long dateIn, Long dateOut, Long flightId, String kind);
 
     List<Statement> getStatementList();
+
+    List<Cargo> getCargosByStatementId(long id);
+
+    void editStatement(long id, float weight, float wrap, float insurance, List<Cargo> addedCargos);
 }

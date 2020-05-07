@@ -112,4 +112,13 @@ public class Controller {
     public List<Statement> getStatementList() {
         return service.getStatementList();
     }
+
+    public List<Cargo> getCargosByStatementId(long id) {
+        return service.getCargosByStatementId(id);
+    }
+
+    public void editStatement(long id, float weight, float wrap, float insurance, List<Cargo> addedCargos) {
+        service.editStatement(id, weight, wrap, insurance, addedCargos);
+
+    }
 }
