@@ -1,11 +1,9 @@
 
 ]	java:S110"<This class has 6 parents which is greater than 5 authorized.(ŒÖ§ßûÿÿÿÿ8æÜê”˜.
 ]	java:S125*"<This block of commented-out lines of code should be removed.(¯”ìúÿÿÿÿ8”òé™.
-L
-java:S1068"/Remove this unused "scrollPanel" private field.(ÉÖÉ8”òé™.
-h
-java:S1128"KRemove this unused import 'com.intellij.uiDesigner.core.GridLayoutManager'.(‡ĞºÁ8¡ß™¯œ.
-e
-java:S1128"IRemove this unused import 'com.intellij.uiDesigner.core.GridConstraints'.(ş·ô(8¡ß™¯œ.
-]
-java:S1128"@Remove this unused import 'com.intellij.uiDesigner.core.Spacer'.(­ åÀ8¡ß™¯œ.
+w
+java:S1450"ZRemove the "scrollPanel" field and declare it as a local variable in the relevant methods.(ÉÖÉ8·îÑ¥.
+{
+java:S11716"YMove the contents of this initializer to a standard constructor or to field initializers.(ÒÌâ–øÿÿÿÿ8·îÑ¥.
+o	java:S100D"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–­Œßúÿÿÿÿ8·îÑ¥.
+o	java:S100\"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘ ¨úúÿÿÿÿ8·îÑ¥.

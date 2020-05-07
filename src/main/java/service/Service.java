@@ -6,7 +6,6 @@ import repository.Repository;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 
 public class Service {
     private final Repository repository;
@@ -112,5 +111,25 @@ public class Service {
 
     public List<Cargo> getFreeCargos() {
         return repository.getFreeCargos();
+    }
+
+    public void addNewStatement(List<Cargo> addedCargos, float weight, float wrap, float insurance) {
+        repository.addNewStatement(addedCargos, weight, wrap, insurance);
+    }
+
+    public List<Warehouse> getWarehouseList() {
+        return repository.getWarehouseList();
+    }
+
+    public List<Flight> getFlightList() {
+        return repository.getFlightList();
+    }
+
+    public void addNewCargo(Long warehouseId, Long dateIn, Long dateOut, Long flightId, String kind) {
+        repository.addNewCargo(warehouseId, dateIn, dateOut, flightId, kind);
+    }
+
+    public List<Statement> getStatementList() {
+        return repository.getStatementList();
     }
 }

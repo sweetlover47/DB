@@ -31,4 +31,14 @@ public interface Repository {
     List<Integer> getGroups();
 
     List<Cargo> getFreeCargos();
+
+    void addNewStatement(List<Cargo> addedCargos, float weight, float wrap, float insurance);
+
+    List<Warehouse> getWarehouseList();
+
+    List<Flight> getFlightList();
+
+    void addNewCargo(Long warehouseId, Long dateIn, Long dateOut, Long flightId, String kind);
+
+    List<Statement> getStatementList();
 }

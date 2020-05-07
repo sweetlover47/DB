@@ -1,17 +1,15 @@
 
-W
-java:S1128":Remove this unused import 'java.awt.event.ActionListener'.(Ìä¹8üòŒ˜.
-I
-java:S1068",Remove this unused "ageField" private field.(Äï©8üòŒ˜.
-N
-java:S1068"1Remove this unused "passportLabel" private field.(ôÌº8üòŒ˜.
 T
 java:S1128
 "7Remove this unused import 'java.awt.event.ActionEvent'.(Úù“‘8üòŒ˜.
+I
+java:S1068",Remove this unused "ageField" private field.(Äï©8üòŒ˜.
+W
+java:S1128":Remove this unused import 'java.awt.event.ActionListener'.(Ìä¹8üòŒ˜.
 ]	java:S110"<This class has 6 parents which is greater than 5 authorized.(¨üö¹ùÿÿÿÿ8üòŒ˜.
-h
-java:S1128"KRemove this unused import 'com.intellij.uiDesigner.core.GridLayoutManager'.(‡ĞºÁ8 ß™¯œ.
-e
-java:S1128"IRemove this unused import 'com.intellij.uiDesigner.core.GridConstraints'.(ş·ô(8 ß™¯œ.
-]
-java:S1128"@Remove this unused import 'com.intellij.uiDesigner.core.Spacer'.(­ åÀ8 ß™¯œ.
+y
+java:S1450"\Remove the "passportLabel" field and declare it as a local variable in the relevant methods.(ôÌº8·îÑ¥.
+{
+java:S1171<"YMove the contents of this initializer to a standard constructor or to field initializers.(ÒÌâ–øÿÿÿÿ8·îÑ¥.
+o	java:S100J"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–­Œßúÿÿÿÿ8·îÑ¥.
+o	java:S100}"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘ ¨úúÿÿÿÿ8·îÑ¥.

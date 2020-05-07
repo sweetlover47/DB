@@ -13,7 +13,7 @@ create table trans
       primary key,
   name VARCHAR,
   is_income boolean,
-  sum int
+  sum double precision
 );
 
 insert into trans values

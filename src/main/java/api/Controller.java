@@ -5,7 +5,6 @@ import service.Service;
 
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.function.Predicate;
 
 public class Controller {
     private Service service;
@@ -82,7 +81,7 @@ public class Controller {
         return service.getResultOfAdvancedSearching();
     }
 
-    public void clearAdvancedSearchDatas(){
+    public void clearAdvancedSearchDatas() {
         service.clearAdvancedSearchDatas();
     }
 
@@ -92,5 +91,25 @@ public class Controller {
 
     public List<Cargo> getFreeCargos() {
         return service.getFreeCargos();
+    }
+
+    public void addNewStatement(List<Cargo> addedCargos, float weight, float wrap, float insurance) {
+        service.addNewStatement(addedCargos, weight, wrap, insurance);
+    }
+
+    public List<Warehouse> getWarehouseList() {
+        return service.getWarehouseList();
+    }
+
+    public List<Flight> getFlightList() {
+        return service.getFlightList();
+    }
+
+    public void addNewCargo(Long warehouseId, Long dateIn, Long dateOut, Long flightId, String kind) {
+        service.addNewCargo(warehouseId, dateIn, dateOut, flightId, kind);
+    }
+
+    public List<Statement> getStatementList() {
+        return service.getStatementList();
     }
 }

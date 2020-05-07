@@ -15,7 +15,7 @@ public class Flight {
     @Setter
     @GeneratedValue(generator="flight_id_seq", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name="flight_id_seq",sequenceName="flight_id_seq", allocationSize=1)
-    int id;
+    long id;
 
     @Getter
     @Setter

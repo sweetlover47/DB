@@ -14,7 +14,7 @@ public class Statement {
     @Setter
     @GeneratedValue(generator="statement_id_seq", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name="statement_id_seq",sequenceName="statement_id_seq", allocationSize=1)
-    private int id;
+    private long id;
 
     @Getter
     @Setter

@@ -18,8 +18,8 @@ public class Main {
     public static final int SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
 
     public static void main(String[] args) throws IOException {
-        Flyway flyway = Flyway.configure().dataSource(url, user, password).load();
-        flyway.migrate();
+       // Flyway flyway = Flyway.configure().dataSource(url, user, password).load();
+       // flyway.migrate();
         new ChooseRole(new Controller(new Service(new RepositoryPostgres())));
 
         //Controller c = new Controller(new Service(new RepositoryPostgres()));//.addNewCargoTrip(26L, "5", "russia", new Timestamp(0), new Timestamp(200));

@@ -8,6 +8,8 @@ import com.intellij.uiDesigner.core.Spacer;
 import javax.swing.*;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import static api.Main.SCREEN_HEIGHT;
 import static api.Main.SCREEN_WIDTH;
@@ -23,7 +25,7 @@ public class MainFrame extends JFrame {
     private JComboBox<Integer> groupsComboBox;
     private JButton расселитьButton;
     private JButton составитьФинОтчетButton;
-    private JButton просмотретьПопулярныеЭкскурсииButton;
+    private JButton просмотретьПопулярныеЭкскурсииButton; 
     private JButton просмотретьКачетсвенныеАгенстваButton;
 
     public MainFrame(Controller controller) {
@@ -43,6 +45,9 @@ public class MainFrame extends JFrame {
         repaint();
         createStatementButton.addActionListener(e -> {
             new CreateStatement(controller);
+        });
+        редактироватьВедомостьButton.addActionListener(e -> {
+            new EditStatement();
         });
     }
 

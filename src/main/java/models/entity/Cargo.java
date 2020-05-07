@@ -15,7 +15,7 @@ public class Cargo {
     @Setter
     @GeneratedValue(generator="cargo_id_seq", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name="cargo_id_seq",sequenceName="cargo_id_seq", allocationSize=1)
-    private int id;
+    private long id;
 
     @Getter
     @Setter

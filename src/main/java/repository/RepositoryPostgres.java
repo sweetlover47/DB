@@ -5,6 +5,7 @@ import models.entity.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.RollbackException;
 import javax.persistence.criteria.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -188,29 +189,6 @@ public class RepositoryPostgres implements Repository {
         return result;
     }
 
-    @Override
-    public List<Integer> getGroups() {
-        EntityManager entityManager = emf.createEntityManager();
-        List<Integer> list = entityManager
-                .createQuery("select t.group from trip t where t.group <> 0", Integer.class)
-                .getResultStream()
-                .distinct()
-                .sorted()
-                .collect(Collectors.toList());
-        entityManager.close();
-        return list;
-    }
-
-    @Override
-    public List<Cargo> getFreeCargos() {
-        EntityManager entityManager = emf.createEntityManager();
-        List<Cargo> cargoList = entityManager
-                .createQuery("select c from Cargo c where c.statement IS NULL or c.statement.id = 0", Cargo.class)
-                .getResultList();
-        entityManager.close();
-        return cargoList;
-    }
-
     private List<Order> getOrderList(int sortProperties, CriteriaBuilder criteriaBuilder, Root<Excursion> excursionRoot) {
         int titleProperty = sortProperties % 4;
         Order titleOrder = null;
@@ -264,6 +242,126 @@ public class RepositoryPostgres implements Repository {
         if (ordersPredicate != null)
             whereTotalPredicate = criteriaBuilder.and(whereTotalPredicate, ordersPredicate);
         return whereTotalPredicate;
+    }
+
+    @Override
+    public List<Integer> getGroups() {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Integer> list = entityManager
+                .createQuery("select t.group from trip t where t.group <> 0", Integer.class)
+                .getResultStream()
+                .distinct()
+                .sorted()
+                .collect(Collectors.toList());
+        entityManager.close();
+        return list;
+    }
+
+    @Override
+    public List<Cargo> getFreeCargos() {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Cargo> cargoList = entityManager
+                .createQuery("select c from Cargo c where c.statement IS NULL or c.statement.id = 0", Cargo.class)
+                .getResultList();
+        entityManager.close();
+        return cargoList;
+    }
+
+    @Override
+    public void addNewStatement(List<Cargo> addedCargos, float weight, float wrap, float insurance) {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Long> addedCargosId = new ArrayList<>();
+        for (Cargo c : addedCargos)
+            addedCargosId.add(c.getId());
+        List<Cargo> cargoList = entityManager
+                .createQuery("select c from Cargo c", Cargo.class)
+                .getResultStream()
+                .filter(c -> addedCargosId.contains(c.getId()))
+                .collect(Collectors.toList());
+        try {
+            entityManager.getTransaction().begin();
+            Transaction t = new Transaction();
+            t.set_income(true);
+            t.setName("Хранение груза");
+            t.setSum(weight + wrap + insurance);
+            entityManager.persist(t);
+            Statement statement = new Statement();
+            statement.setCargo(cargoList);
+            statement.setCostInsurance(insurance);
+            statement.setCostWrap(wrap);
+            statement.setWeight(weight);
+            statement.setCount(addedCargos.size());
+            statement.setTransaction(t);
+            entityManager.persist(statement);
+            for (Cargo c : cargoList) {
+                c.setStatement(statement);
+                entityManager.merge(c);
+            }
+            entityManager.getTransaction().commit();
+        } catch (RollbackException e) {
+            entityManager.getTransaction().rollback();
+            e.printStackTrace();
+        }
+        entityManager.close();
+    }
+
+    @Override
+    public List<Warehouse> getWarehouseList() {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Warehouse> warehouseList = entityManager
+                .createQuery("select w from warehouse w", Warehouse.class)
+                .getResultList();
+        entityManager.close();
+        return warehouseList;
+    }
+
+    @Override
+    public List<Flight> getFlightList() {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Flight> flightList = entityManager
+                .createQuery("select f from Flight f", Flight.class)
+                .getResultList();
+        entityManager.close();
+        return flightList;
+    }
+
+    @Override
+    public void addNewCargo(Long warehouseId, Long dateIn, Long dateOut, Long flightId, String kind) {
+        EntityManager entityManager = emf.createEntityManager();
+        try {
+            Warehouse warehouse = warehouseId == null ? null : entityManager
+                    .createQuery("select w from warehouse w where w.id = :id", Warehouse.class)
+                    .setParameter("id", warehouseId)
+                    .getSingleResult();
+            Flight flight = flightId == null ? null : entityManager
+                    .createQuery("select f from Flight f where f.id = :id", Flight.class)
+                    .setParameter("id", flightId)
+                    .getSingleResult();
+            Cargo c = new Cargo();
+            c.setStatement(null);
+            c.setDate_in(new Timestamp(dateIn));
+            c.setDate_out(dateOut == null ? null : new Timestamp(dateOut));
+            c.setWarehouse(warehouse);
+            c.setKind(kind);
+            c.setFlight(flight);
+            entityManager.getTransaction().begin();
+            entityManager.persist(c);
+            entityManager.getTransaction().commit();
+        } catch (RollbackException e){
+            entityManager.getTransaction().rollback();
+            e.printStackTrace();
+        }
+        entityManager.close();
+    }
+
+    @Override
+    public List<Statement> getStatementList() {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Statement> statementList = entityManager
+                .createQuery("select s from Statement s")
+                .getResultList();
+        entityManager.close();
+        return statementList == null ? new ArrayList<>() : statementList;
     }
 
     @Override

@@ -24,7 +24,7 @@ public class Transaction {
 
     @Getter
     @Setter
-    private int sum;
+    private float sum;
 
 
 }

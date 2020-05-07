@@ -13,7 +13,7 @@ public class Warehouse {
     @Setter
     @GeneratedValue(generator="warehouse_id_seq", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name="warehouse_id_seq",sequenceName="warehouse_id_seq", allocationSize=1)
-    private int id;
+    private long id;
 
     @Column(name = "num_space")
     @Getter
