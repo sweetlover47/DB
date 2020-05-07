@@ -45,4 +45,6 @@ public interface Repository {
     List<Cargo> getCargosByStatementId(long id);
 
     void editStatement(long id, float weight, float wrap, float insurance, List<Cargo> addedCargos);
+
+    void removeStatement(long id);
 }

@@ -35,7 +35,7 @@ public class CreateStatement extends JFrame {
     List<Cargo> freeCargoList;
 
     public CreateStatement(Controller controller) {
-        setTitle("MainFrame");
+        setTitle("Create statement");
         setLocation(
                 (SCREEN_WIDTH - totalPanel.getPreferredSize().width) / 2,
                 (SCREEN_HEIGHT - totalPanel.getPreferredSize().height) / 2

@@ -411,7 +411,33 @@ public class RepositoryPostgres implements Repository {
             entityManager.getTransaction().rollback();
             ex.printStackTrace();
         }
+        entityManager.close();
+    }
 
+    @Override
+    public void removeStatement(long id) {
+        EntityManager entityManager = emf.createEntityManager();
+        Statement statement = entityManager
+                .createQuery("select s from Statement s where s.id = :id", Statement.class)
+                .setParameter("id", id)
+                .getSingleResult();
+        try {
+            entityManager.getTransaction().begin();
+            List<Cargo> cargoList = statement.getCargos();
+            Transaction transaction = statement.getTransaction();
+            for (Cargo c : cargoList) {
+                c.setStatement(null);
+                entityManager.merge(c);
+            }
+            entityManager.remove(transaction);
+            entityManager.remove(statement);
+            entityManager.getTransaction().commit();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+
+        entityManager.close();
     }
 
     @Override
@@ -419,7 +445,7 @@ public class RepositoryPostgres implements Repository {
         EntityManager entityManager = emf.createEntityManager();
         entityManager.getTransaction().begin();
         List<Trip> tripList = entityManager
-                .createQuery("select t from trip t where t.tourist.id = :id")
+                .createQuery("select t from trip t where t.tourist.id = :id", Trip.class)
                 .setParameter("id", id)
                 .getResultList();
         entityManager.getTransaction().commit();

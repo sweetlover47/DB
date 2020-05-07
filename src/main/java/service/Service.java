@@ -141,4 +141,8 @@ public class Service {
         repository.editStatement(id, weight, wrap, insurance, addedCargos);
 
     }
+
+    public void removeStatement(long id) {
+        repository.removeStatement(id);
+    }
 }

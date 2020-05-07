@@ -121,4 +121,8 @@ public class Controller {
         service.editStatement(id, weight, wrap, insurance, addedCargos);
 
     }
+
+    public void removeStatement(long id) {
+        service.removeStatement(id);
+    }
 }

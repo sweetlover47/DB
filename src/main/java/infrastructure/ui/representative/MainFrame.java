@@ -43,12 +43,9 @@ public class MainFrame extends JFrame {
         groupsComboBox.setModel(new DefaultComboBoxModel<>(groupsList));
         validate();
         repaint();
-        createStatementButton.addActionListener(e -> {
-            new CreateStatement(controller);
-        });
-        редактироватьВедомостьButton.addActionListener(e -> {
-            new EditStatement(controller);
-        });
+        createStatementButton.addActionListener(e -> new CreateStatement(controller));
+        редактироватьВедомостьButton.addActionListener(e -> new EditStatement(controller));
+        удалитьВедомостьButton.addActionListener(e -> new DeleteStatement(controller));
     }
 
     {
