@@ -21,17 +21,19 @@
         </constraints>
         <properties>
           <enabled value="true"/>
-          <visible value="true"/>
+          <visible value="false"/>
         </properties>
         <border type="none"/>
         <children>
-          <component id="eb394" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+          <component id="eb394" class="javax.swing.JTextField" binding="weightField">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <text value=""/>
+            </properties>
           </component>
           <component id="4ebe3" class="javax.swing.JLabel">
             <constraints>
@@ -41,7 +43,7 @@
               <text value="Стоимость упаковки:"/>
             </properties>
           </component>
-          <component id="f19b7" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+          <component id="f19b7" class="javax.swing.JTextField" binding="wrapField">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -57,7 +59,7 @@
               <text value="Стоимость страхования:"/>
             </properties>
           </component>
-          <component id="54ad9" class="javax.swing.JTextField" binding="textField3" default-binding="true">
+          <component id="54ad9" class="javax.swing.JTextField" binding="insuranceField">
             <constraints>
               <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -168,7 +170,7 @@
           </component>
         </children>
       </grid>
-      <component id="57972" class="javax.swing.JButton" binding="применитьButton" default-binding="true">
+      <component id="57972" class="javax.swing.JButton" binding="showButton" default-binding="true">
         <constraints>
           <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>

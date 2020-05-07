@@ -47,7 +47,7 @@ public class MainFrame extends JFrame {
             new CreateStatement(controller);
         });
         редактироватьВедомостьButton.addActionListener(e -> {
-            new EditStatement();
+            new EditStatement(controller);
         });
     }
 
