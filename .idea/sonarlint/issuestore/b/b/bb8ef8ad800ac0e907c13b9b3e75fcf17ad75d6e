@@ -1,20 +1,26 @@
 
 F
-java:S1148—"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ßû .
-8
-java:S3626="Remove this redundant jump.(ûÁİ…8ßû .
-e
-java:S1192Ğ"GDefine a constant instead of duplicating this literal "agency" 3 times.(áúÊ¾8ãÅ…Ç.
-F
 java:S1148¯"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Ä¶øÇ.
-F
-java:S1148à"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Øø¨Ò.
-^	java:S107Ú"<Method has 8 parameters, which is greater than 7 authorized.(´Áİğúÿÿÿÿ8ãÅ…Ç.
-h
-java:S1192È"JDefine a constant instead of duplicating this literal "numOrders" 3 times.(ëÕñ 8ãÅ…Ç.
-T
-java:S1135@"2Complete the task associated to this TODO comment.(Ï±ÿ ùÿÿÿÿ8ßû .
-F
-java:S1148ê"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ãÅ…Ç.
 
 java:S1488¼"^Immediately return this expression instead of assigning it to the temporary variable "result".(ã ì¥ıÿÿÿÿ8ßû .
+T
+java:S1135@"2Complete the task associated to this TODO comment.(Ï±ÿ ùÿÿÿÿ8ßû .
+L
+java:S1481ı".Remove this unused "statement" local variable.(ÁÆæÛ8æÕô.
+^	java:S107Ú"<Method has 8 parameters, which is greater than 7 authorized.(´Áİğúÿÿÿÿ8ãÅ…Ç.
+8
+java:S3626="Remove this redundant jump.(ûÁİ…8ßû .
+A
+java:S1148‡"#Use a logger to log this exception.(Ç’Çê8ßóÙô.
+F
+java:S1148—"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ßû .
+h
+java:S1192È"JDefine a constant instead of duplicating this literal "numOrders" 3 times.(ëÕñ 8ãÅ…Ç.
+F
+java:S1148à"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Øø¨Ò.
+[
+java:S1854ı"=Remove this useless assignment to local variable "statement".(ÁÆæÛ8æÕô.
+F
+java:S1148ê"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ãÅ…Ç.
+e
+java:S1192Ğ"GDefine a constant instead of duplicating this literal "agency" 3 times.(áúÊ¾8ãÅ…Ç.

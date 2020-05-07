@@ -347,7 +347,7 @@ public class RepositoryPostgres implements Repository {
             entityManager.getTransaction().begin();
             entityManager.persist(c);
             entityManager.getTransaction().commit();
-        } catch (RollbackException e){
+        } catch (RollbackException e) {
             entityManager.getTransaction().rollback();
             e.printStackTrace();
         }
@@ -380,13 +380,13 @@ public class RepositoryPostgres implements Repository {
         EntityManager entityManager = emf.createEntityManager();
         Statement statement = entityManager
                 .createQuery("select s from Statement s where s.id = :id", Statement.class)
-                .setParameter("id",id)
+                .setParameter("id", id)
                 .getSingleResult();
-        try{
+        try {
             entityManager.getTransaction().begin();
             ///
             entityManager.getTransaction().commit();
-        } catch (RollbackException ex){
+        } catch (RollbackException ex) {
             entityManager.getTransaction().rollback();
             ex.printStackTrace();
         }

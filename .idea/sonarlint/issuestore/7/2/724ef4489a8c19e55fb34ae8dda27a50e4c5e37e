@@ -1,15 +1,15 @@
 
 v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ß°¸8“Ó¦ú›.
-{	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(«Ÿßúÿÿÿÿ8ÜÖ£ú›.
-v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(áÜÍ÷8ÜÖ£ú›.
-X	java:S1258"<This block of commented-out lines of code should be removed.(ÉÊÙ­8ÇÚ·ú›.
-‰
-java:S1130"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(œû¿Ø8î°«œ.
-]	java:S125"<This block of commented-out lines of code should be removed.(¶œ’Óÿÿÿÿÿ8•æ¶ªœ.
-D
-java:S1068"'Remove this unused "url" private field.(áÜÍ÷8¶ŸÿÇ.
-J
-java:S1068"(Remove this unused "user" private field.(«Ÿßúÿÿÿÿ8¶ŸÿÇ.
 I
 java:S1068",Remove this unused "password" private field.(ß°¸8¶ŸÿÇ.
+J
+java:S1068"(Remove this unused "user" private field.(«Ÿßúÿÿÿÿ8¶ŸÿÇ.
 ]	java:S125"<This block of commented-out lines of code should be removed.(Œ¦½÷ùÿÿÿÿ8¶ŸÿÇ.
+D
+java:S1068"'Remove this unused "url" private field.(áÜÍ÷8¶ŸÿÇ.
+]	java:S125"<This block of commented-out lines of code should be removed.(¶œ’Óÿÿÿÿÿ8•æ¶ªœ.
+‰
+java:S1130"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(œû¿Ø8î°«œ.
+X	java:S1258"<This block of commented-out lines of code should be removed.(ÉÊÙ­8ÇÚ·ú›.
+v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(áÜÍ÷8ÜÖ£ú›.
+{	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(«Ÿßúÿÿÿÿ8ÜÖ£ú›.

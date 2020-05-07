@@ -131,3 +131,5 @@ o
 ?src/main/java/infrastructure/ui/representative/CreateCargo.form,8\5\85b6e20b31d80d41f679fa83214a8f18433afb00
 o
 ?src/main/java/infrastructure/ui/representative/CreateCargo.java,0\a\0a0169b481a999ca1e24424abb57b77fbb569a28
+r
+Bsrc/main/resources/db/migration/V15__Create&Insert_Transaction.sql,b\0\b079d780da8d42b91df11972519eb0627abce439
