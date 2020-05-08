@@ -47,6 +47,7 @@ public class MainFrame extends JFrame {
         удалитьВедомостьButton.addActionListener(e -> new DeleteStatement(controller));
         привязатьГрузКСкладуButton.addActionListener(e -> new AddCargoToWarehouse(controller));
         редактироватьСвязьГрузаКButton.addActionListener(e -> new EditCargoToWarehouse(controller));
+        расселитьButton.addActionListener(e -> new SettleGroup(controller, (Integer) groupsComboBox.getSelectedItem()));
     }
 
     {

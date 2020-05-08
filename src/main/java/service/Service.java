@@ -161,4 +161,16 @@ public class Service {
     public void editCargoToWarehouse(Cargo cargo, Warehouse warehouse) {
         repository.editCargoToWarehouse(cargo, warehouse);
     }
+
+    public List<Tourist> getTouristByGroup(Integer group) {
+        return repository.getTouristByGroup(group);
+    }
+
+    public List<Hotel> getHotelList() {
+        return repository.getHotelList();
+    }
+
+    public List<Room> getFreeRoomsByHotel(Hotel hotel, Tourist t) {
+        return repository.getFreeRoomsByHotel(hotel, t);
+    }
 }

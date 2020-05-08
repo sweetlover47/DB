@@ -141,4 +141,16 @@ public class Controller {
     public void editCargoToWarehouse(Cargo cargo, Warehouse warehouse) {
         service.editCargoToWarehouse(cargo, warehouse);
     }
+
+    public List<Tourist> getTouristListByGroup(Integer group) {
+        return service.getTouristByGroup(group);
+    }
+
+    public List<Hotel> getHotelList() {
+        return service.getHotelList();
+    }
+
+    public List<Room> getFreeRoomsByHotel(Hotel hotel, Tourist t) {
+        return service.getFreeRoomsByHotel(hotel, t);
+    }
 }

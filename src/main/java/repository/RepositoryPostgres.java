@@ -491,6 +491,34 @@ public class RepositoryPostgres implements Repository {
     }
 
     @Override
+    public List<Tourist> getTouristByGroup(Integer group) {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Tourist> touristList = entityManager
+                .createQuery("select t.tourist from trip t where t.group = :group", Tourist.class)
+                .setParameter("group", group)
+                .getResultList();
+        entityManager.close();
+        return touristList;
+    }
+
+    @Override
+    public List<Hotel> getHotelList() {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Hotel> tripList = entityManager
+                .createQuery("select h from Hotel h", Hotel.class)
+                .getResultList();
+        entityManager.close();
+        return tripList;
+    }
+
+    @Override
+    public List<Room> getFreeRoomsByHotel(Hotel hotel, Tourist t) {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Room> rooms = entityManager
+                .createQuery("select r from Room r join trip t on  r = t.room")
+    }
+
+    @Override
     public List<Trip> getTripList(Long id) {
         EntityManager entityManager = emf.createEntityManager();
         entityManager.getTransaction().begin();

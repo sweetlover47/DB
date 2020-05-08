@@ -55,4 +55,10 @@ public interface Repository {
     List<Cargo> getCargosWithWarehouse();
 
     void editCargoToWarehouse(Cargo cargo, Warehouse warehouse);
+
+    List<Tourist> getTouristByGroup(Integer group);
+
+    List<Hotel> getHotelList();
+
+    List<Room> getFreeRoomsByHotel(Hotel hotel, Tourist t);
 }
