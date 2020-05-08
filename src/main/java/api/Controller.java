@@ -125,4 +125,20 @@ public class Controller {
     public void removeStatement(long id) {
         service.removeStatement(id);
     }
+
+    public List<Cargo> getCargosWithoutWarehouse() {
+        return service.getCargosWithoutWarehouse();
+    }
+
+    public void addCargoToWarehouse(Cargo cargo, Warehouse warehouse) {
+        service.addCargoToWarehouse(cargo, warehouse);
+    }
+
+    public List<Cargo> getCargosWithWarehouse() {
+        return service.getCargosWithWarehouse();
+    }
+
+    public void editCargoToWarehouse(Cargo cargo, Warehouse warehouse) {
+        service.editCargoToWarehouse(cargo, warehouse);
+    }
 }

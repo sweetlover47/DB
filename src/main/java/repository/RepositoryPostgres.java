@@ -441,6 +441,56 @@ public class RepositoryPostgres implements Repository {
     }
 
     @Override
+    public List<Cargo> getCargosWithoutWarehouse() {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Cargo> cargoList = entityManager
+                .createQuery("select c from Cargo c where c.warehouse IS NULL")
+                .getResultList();
+        entityManager.close();
+        return cargoList;
+    }
+
+    @Override
+    public void addCargoToWarehouse(Cargo cargo, Warehouse warehouse) {
+        EntityManager entityManager = emf.createEntityManager();
+        try{
+            entityManager.getTransaction().begin();
+            cargo.setWarehouse(warehouse);
+            entityManager.merge(cargo);
+            entityManager.getTransaction().commit();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+        entityManager.close();
+    }
+
+    @Override
+    public List<Cargo> getCargosWithWarehouse() {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Cargo> cargoList = entityManager
+                .createQuery("select c from Cargo c where c.warehouse IS NOT NULL")
+                .getResultList();
+        entityManager.close();
+        return cargoList;
+    }
+
+    @Override
+    public void editCargoToWarehouse(Cargo cargo, Warehouse warehouse) {
+        EntityManager entityManager = emf.createEntityManager();
+        try{
+            entityManager.getTransaction().begin();
+            cargo.setWarehouse(warehouse);
+            entityManager.merge(cargo);
+            entityManager.getTransaction().commit();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+        entityManager.close();
+    }
+
+    @Override
     public List<Trip> getTripList(Long id) {
         EntityManager entityManager = emf.createEntityManager();
         entityManager.getTransaction().begin();

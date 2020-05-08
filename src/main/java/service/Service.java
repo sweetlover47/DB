@@ -145,4 +145,20 @@ public class Service {
     public void removeStatement(long id) {
         repository.removeStatement(id);
     }
+
+    public List<Cargo> getCargosWithoutWarehouse() {
+        return repository.getCargosWithoutWarehouse();
+    }
+
+    public void addCargoToWarehouse(Cargo cargo, Warehouse warehouse) {
+        repository.addCargoToWarehouse(cargo, warehouse);
+    }
+
+    public List<Cargo> getCargosWithWarehouse() {
+        return repository.getCargosWithWarehouse();
+    }
+
+    public void editCargoToWarehouse(Cargo cargo, Warehouse warehouse) {
+        repository.editCargoToWarehouse(cargo, warehouse);
+    }
 }

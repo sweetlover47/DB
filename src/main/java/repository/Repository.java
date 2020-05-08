@@ -47,4 +47,12 @@ public interface Repository {
     void editStatement(long id, float weight, float wrap, float insurance, List<Cargo> addedCargos);
 
     void removeStatement(long id);
+
+    List<Cargo> getCargosWithoutWarehouse();
+
+    void addCargoToWarehouse(Cargo cargo, Warehouse warehouse);
+
+    List<Cargo> getCargosWithWarehouse();
+
+    void editCargoToWarehouse(Cargo cargo, Warehouse warehouse);
 }

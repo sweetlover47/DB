@@ -52,26 +52,10 @@
       </component>
       <component id="a1ee6" class="javax.swing.JButton" binding="привязатьГрузКСкладуButton" default-binding="true">
         <constraints>
-          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Привязать груз к складу"/>
-        </properties>
-      </component>
-      <component id="3a034" class="javax.swing.JButton" binding="отвязатьГрузОтСкладаButton" default-binding="true">
-        <constraints>
-          <grid row="5" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Отвязать груз от склада"/>
-        </properties>
-      </component>
-      <component id="ba6bb" class="javax.swing.JButton" binding="редактироватьСвязьГрузаКButton" default-binding="true">
-        <constraints>
-          <grid row="5" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Редактировать связь груза к складу"/>
         </properties>
       </component>
       <component id="ccbc6" class="javax.swing.JLabel">
@@ -196,6 +180,14 @@
         </constraints>
         <properties>
           <requestFocusEnabled value="true"/>
+        </properties>
+      </component>
+      <component id="ba6bb" class="javax.swing.JButton" binding="редактироватьСвязьГрузаКButton" default-binding="true">
+        <constraints>
+          <grid row="5" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Редактировать связь груза к складу"/>
         </properties>
       </component>
     </children>

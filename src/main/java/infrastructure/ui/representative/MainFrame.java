@@ -20,12 +20,11 @@ public class MainFrame extends JFrame {
     private JButton редактироватьВедомостьButton;
     private JButton удалитьВедомостьButton;
     private JButton привязатьГрузКСкладуButton;
-    private JButton отвязатьГрузОтСкладаButton;
     private JButton редактироватьСвязьГрузаКButton;
     private JComboBox<Integer> groupsComboBox;
     private JButton расселитьButton;
     private JButton составитьФинОтчетButton;
-    private JButton просмотретьПопулярныеЭкскурсииButton; 
+    private JButton просмотретьПопулярныеЭкскурсииButton;
     private JButton просмотретьКачетсвенныеАгенстваButton;
 
     public MainFrame(Controller controller) {
@@ -46,6 +45,8 @@ public class MainFrame extends JFrame {
         createStatementButton.addActionListener(e -> new CreateStatement(controller));
         редактироватьВедомостьButton.addActionListener(e -> new EditStatement(controller));
         удалитьВедомостьButton.addActionListener(e -> new DeleteStatement(controller));
+        привязатьГрузКСкладуButton.addActionListener(e -> new AddCargoToWarehouse(controller));
+        редактироватьСвязьГрузаКButton.addActionListener(e -> new EditCargoToWarehouse(controller));
     }
 
     {
@@ -83,13 +84,7 @@ public class MainFrame extends JFrame {
         totalPanel.add(label2, new GridConstraints(4, 1, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         привязатьГрузКСкладуButton = new JButton();
         привязатьГрузКСкладуButton.setText("Привязать груз к складу");
-        totalPanel.add(привязатьГрузКСкладуButton, new GridConstraints(5, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        отвязатьГрузОтСкладаButton = new JButton();
-        отвязатьГрузОтСкладаButton.setText("Отвязать груз от склада");
-        totalPanel.add(отвязатьГрузОтСкладаButton, new GridConstraints(5, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        редактироватьСвязьГрузаКButton = new JButton();
-        редактироватьСвязьГрузаКButton.setText("Редактировать связь груза к складу");
-        totalPanel.add(редактироватьСвязьГрузаКButton, new GridConstraints(5, 2, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        totalPanel.add(привязатьГрузКСкладуButton, new GridConstraints(5, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label3 = new JLabel();
         label3.setText("Расселить группу по гостиницам");
         totalPanel.add(label3, new GridConstraints(7, 1, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -133,6 +128,9 @@ public class MainFrame extends JFrame {
         final JSeparator separator4 = new JSeparator();
         separator4.setRequestFocusEnabled(true);
         totalPanel.add(separator4, new GridConstraints(3, 1, 1, 5, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        редактироватьСвязьГрузаКButton = new JButton();
+        редактироватьСвязьГрузаКButton.setText("Редактировать связь груза к складу");
+        totalPanel.add(редактироватьСвязьГрузаКButton, new GridConstraints(5, 3, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**
@@ -141,4 +139,5 @@ public class MainFrame extends JFrame {
     public JComponent $$$getRootComponent$$$() {
         return totalPanel;
     }
+
 }
