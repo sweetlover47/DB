@@ -29,8 +29,8 @@ public class Room {
 
     @Getter
     @Setter
-    @OneToOne(mappedBy = "room")
-    private Trip trip;
+    @OneToMany(mappedBy = "room")
+    private List<Trip> tripList;
 
     @Getter
     @Setter

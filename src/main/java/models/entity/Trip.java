@@ -31,8 +31,8 @@ public class Trip {
 
     @Getter
     @Setter
-    @OneToOne
-    @JoinColumn(name = "hotel_room_id")
+    @ManyToOne
+    @JoinColumn(name = "hotel_room_id", referencedColumnName = "id")
     private Room room;
 
     @Getter

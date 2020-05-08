@@ -150,7 +150,7 @@ public class Controller {
         return service.getHotelList();
     }
 
-    public List<Room> getFreeRoomsByHotel(Hotel hotel, Tourist t) {
-        return service.getFreeRoomsByHotel(hotel, t);
+    public List<Room> getFreeRoomsByHotel(Hotel hotel, Tourist t, int group) {
+        return service.getFreeRoomsByHotel(hotel, t, group);
     }
 }

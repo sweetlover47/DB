@@ -170,7 +170,7 @@ public class Service {
         return repository.getHotelList();
     }
 
-    public List<Room> getFreeRoomsByHotel(Hotel hotel, Tourist t) {
-        return repository.getFreeRoomsByHotel(hotel, t);
+    public List<Room> getFreeRoomsByHotel(Hotel hotel, Tourist t, int group) {
+        return repository.getFreeRoomsByHotel(hotel, t, group);
     }
 }

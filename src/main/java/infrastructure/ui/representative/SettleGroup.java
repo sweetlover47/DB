@@ -10,6 +10,7 @@ import models.entity.Tourist;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ItemEvent;
 import java.util.List;
 
 import static api.Main.SCREEN_HEIGHT;
@@ -17,13 +18,15 @@ import static api.Main.SCREEN_WIDTH;
 
 public class SettleGroup extends JFrame {
     private JPanel totalPanel;
-    private JComboBox hotelBox;
-    private JComboBox roomBox;
-    private JPanel template;
+    /*  private JComboBox hotelBox;
+      private JComboBox roomBox;
+      private JPanel template;*/
     private JPanel listPanel;
     private JButton okButton;
+    private int group;
 
     public SettleGroup(Controller controller, Integer group) {
+        this.group = group;
         setTitle("MainFrame");
         setLocation(
                 (SCREEN_WIDTH - totalPanel.getPreferredSize().width) / 2,
@@ -58,13 +61,23 @@ public class SettleGroup extends JFrame {
     }
 
     private JPanel getCargoPanelTemplate(Tourist t, String[] hotels, Controller controller, List<Hotel> hotelList) {
-        template = new JPanel();
+        JPanel template = new JPanel();
         template.setLayout(new GridLayoutManager(3, 2, new Insets(0, 0, 0, 0), -1, -1));
         listPanel.add(template, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        hotelBox = new JComboBox(new DefaultComboBoxModel(hotels));
-        roomBox = new JComboBox();
-        hotelBox.addActionListener(e -> {
-            List<Room> freeRooms = controller.getFreeRoomsByHotel(hotelList.get(hotelBox.getSelectedIndex()), t);
+        JComboBox hotelBox = new JComboBox(new DefaultComboBoxModel(hotels));
+        JComboBox roomBox = new JComboBox();
+        hotelBox.addItemListener(e -> {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                hotelBox.setSelectedItem(e.getItem());
+                List<Room> freeRooms = controller.getFreeRoomsByHotel(hotelList.get(hotelBox.getSelectedIndex()), t, group);
+                int j = 0;
+                Integer[] roomNums = new Integer[freeRooms.size()];
+                for (Room r : freeRooms)
+                    roomNums[j++] = r.getRoomNumber();
+                roomBox.setModel(new DefaultComboBoxModel(roomNums));
+                validate();
+                repaint();
+            }
         });
         template.add(hotelBox, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label1 = new JLabel();
@@ -96,7 +109,7 @@ public class SettleGroup extends JFrame {
      */
     private void $$$setupUI$$$() {
         totalPanel = new JPanel();
-        totalPanel.setLayout(new GridLayoutManager(3, 3, new Insets(0, 0, 0, 0), -1, -1));
+        totalPanel.setLayout(new GridLayoutManager(4, 3, new Insets(0, 0, 0, 0), -1, -1));
         totalPanel.setOpaque(true);
         totalPanel.setPreferredSize(new Dimension(300, 220));
         final JPanel panel1 = new JPanel();
@@ -105,34 +118,20 @@ public class SettleGroup extends JFrame {
         final JScrollPane scrollPane1 = new JScrollPane();
         panel1.add(scrollPane1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         listPanel = new JPanel();
+        listPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         scrollPane1.setViewportView(listPanel);
-        listPanel.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
-        template = new JPanel();
-        template.setLayout(new GridLayoutManager(3, 2, new Insets(0, 0, 0, 0), -1, -1));
-        listPanel.add(template, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        hotelBox = new JComboBox();
-        template.add(hotelBox, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JLabel label1 = new JLabel();
-        label1.setText("Гостиница");
-        template.add(label1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JLabel label2 = new JLabel();
-        label2.setText("ФИО туриста");
-        template.add(label2, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JLabel label3 = new JLabel();
-        label3.setText("Комната");
-        template.add(label3, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        roomBox = new JComboBox();
-        template.add(roomBox, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer1 = new Spacer();
-        listPanel.add(spacer1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        totalPanel.add(spacer1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, 1, null, new Dimension(10, -1), null, 0, false));
         final Spacer spacer2 = new Spacer();
-        totalPanel.add(spacer2, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, 1, null, new Dimension(10, -1), null, 0, false));
+        totalPanel.add(spacer2, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, 1, null, new Dimension(10, -1), null, 0, false));
         final Spacer spacer3 = new Spacer();
-        totalPanel.add(spacer3, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, 1, null, new Dimension(10, -1), null, 0, false));
+        totalPanel.add(spacer3, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(-1, 10), null, 0, false));
         final Spacer spacer4 = new Spacer();
-        totalPanel.add(spacer4, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(-1, 10), null, 0, false));
-        final Spacer spacer5 = new Spacer();
-        totalPanel.add(spacer5, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(-1, 10), null, 0, false));
+        totalPanel.add(spacer4, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(-1, 10), null, 0, false));
+        okButton = new JButton();
+        okButton.setEnabled(false);
+        okButton.setText("Сохранить");
+        totalPanel.add(okButton, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

@@ -60,5 +60,5 @@ public interface Repository {
 
     List<Hotel> getHotelList();
 
-    List<Room> getFreeRoomsByHotel(Hotel hotel, Tourist t);
+    List<Room> getFreeRoomsByHotel(Hotel hotel, Tourist t, int group);
 }

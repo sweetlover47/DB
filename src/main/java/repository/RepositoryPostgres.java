@@ -453,7 +453,7 @@ public class RepositoryPostgres implements Repository {
     @Override
     public void addCargoToWarehouse(Cargo cargo, Warehouse warehouse) {
         EntityManager entityManager = emf.createEntityManager();
-        try{
+        try {
             entityManager.getTransaction().begin();
             cargo.setWarehouse(warehouse);
             entityManager.merge(cargo);
@@ -478,7 +478,7 @@ public class RepositoryPostgres implements Repository {
     @Override
     public void editCargoToWarehouse(Cargo cargo, Warehouse warehouse) {
         EntityManager entityManager = emf.createEntityManager();
-        try{
+        try {
             entityManager.getTransaction().begin();
             cargo.setWarehouse(warehouse);
             entityManager.merge(cargo);
@@ -512,10 +512,38 @@ public class RepositoryPostgres implements Repository {
     }
 
     @Override
-    public List<Room> getFreeRoomsByHotel(Hotel hotel, Tourist t) {
+    public List<Room> getFreeRoomsByHotel(Hotel hotel, Tourist t, int group) {
         EntityManager entityManager = emf.createEntityManager();
         List<Room> rooms = entityManager
-                .createQuery("select r from Room r join trip t on  r = t.room")
+                .createQuery("select r from Room r join Hotel h on r.hotel = :hotel", Room.class)
+                .setParameter("hotel", hotel)
+                .getResultList();
+        Trip trip = entityManager
+                .createQuery("select t from trip t where t.tourist.id = :id AND t.group = :group", Trip.class)
+                .setParameter("id", t.getId())
+                .setParameter("group", group)
+                .getSingleResult();
+        try {
+            entityManager.getTransaction().begin();
+            Timestamp in = trip.getDate_in();
+            Timestamp out = trip.getDate_out();
+            List<Room> removedRooms = new ArrayList<>();
+            for (Room r : rooms) {
+                for (Trip roomTrip : r.getTripList()) {
+                    if (roomTrip.getDate_in().getTime() < out.getTime() && roomTrip.getDate_out().getTime() > in.getTime() || roomTrip.getDate_out().getTime() > in.getTime() && roomTrip.getDate_in().getTime() < out.getTime()) {
+                        removedRooms.add(r);
+                        break;
+                    }
+                }
+            }
+            rooms.removeAll(removedRooms);
+            entityManager.getTransaction().commit();
+        } catch (RollbackException e) {
+            entityManager.getTransaction().rollback();
+            e.printStackTrace();
+        }
+        entityManager.close();
+        return rooms;
     }
 
     @Override
