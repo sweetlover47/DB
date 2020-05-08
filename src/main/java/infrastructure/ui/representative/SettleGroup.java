@@ -10,7 +10,10 @@ import models.entity.Tourist;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 import static api.Main.SCREEN_HEIGHT;
@@ -24,6 +27,7 @@ public class SettleGroup extends JFrame {
     private JPanel listPanel;
     private JButton okButton;
     private int group;
+    private List<Room> chosenRoomList = new ArrayList<>();
 
     public SettleGroup(Controller controller, Integer group) {
         this.group = group;
@@ -45,6 +49,25 @@ public class SettleGroup extends JFrame {
         for (Hotel h : hotelList)
             hotels[i++] = h.getTitle();
         fillListPanel(touristList, hotels, controller, hotelList);
+        okButton.addActionListener(e -> {
+            chosenRoomList.clear();
+            Component[] components = listPanel.getComponents();
+            for (int i1 = 0; i1 < components.length; ++i1) {
+                JComboBox box = (JComboBox) ((JPanel) components[i1]).getComponent(4);
+                JComboBox h = (JComboBox) ((JPanel) components[i1]).getComponent(0);
+                Tourist t = controller.getTouristListByGroup(group).get(i1);
+                Room chosenRoom;
+                try {
+                    chosenRoom = controller.getFreeRoomsByHotel(hotelList.get(h.getSelectedIndex()), t, group).get(box.getSelectedIndex());
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Вы не для всех туристов выбрали комнату!");
+                    return;
+                }
+                chosenRoomList.add(chosenRoom);
+            }
+            dispose();
+            controller.setTouristsToHotels(group, chosenRoomList);
+        });
     }
 
     private void fillListPanel(List<Tourist> tourists, String[] hotels, Controller controller, List<Hotel> hotelList) {
@@ -129,7 +152,7 @@ public class SettleGroup extends JFrame {
         final Spacer spacer4 = new Spacer();
         totalPanel.add(spacer4, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(-1, 10), null, 0, false));
         okButton = new JButton();
-        okButton.setEnabled(false);
+        okButton.setEnabled(true);
         okButton.setText("Сохранить");
         totalPanel.add(okButton, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }

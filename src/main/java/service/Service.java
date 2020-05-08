@@ -173,4 +173,8 @@ public class Service {
     public List<Room> getFreeRoomsByHotel(Hotel hotel, Tourist t, int group) {
         return repository.getFreeRoomsByHotel(hotel, t, group);
     }
+
+    public void setTouristsToHotels(Integer group, List<Room> chosenRoomList) {
+        repository.setTouristsToHotels(group, chosenRoomList);
+    }
 }

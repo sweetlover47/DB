@@ -61,4 +61,6 @@ public interface Repository {
     List<Hotel> getHotelList();
 
     List<Room> getFreeRoomsByHotel(Hotel hotel, Tourist t, int group);
+
+    void setTouristsToHotels(Integer group, List<Room> chosenRoomList);
 }

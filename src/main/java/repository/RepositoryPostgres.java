@@ -515,7 +515,7 @@ public class RepositoryPostgres implements Repository {
     public List<Room> getFreeRoomsByHotel(Hotel hotel, Tourist t, int group) {
         EntityManager entityManager = emf.createEntityManager();
         List<Room> rooms = entityManager
-                .createQuery("select r from Room r join Hotel h on r.hotel = :hotel", Room.class)
+                .createQuery("select r from Room r where r.hotel = :hotel", Room.class)
                 .setParameter("hotel", hotel)
                 .getResultList();
         Trip trip = entityManager
@@ -544,6 +544,29 @@ public class RepositoryPostgres implements Repository {
         }
         entityManager.close();
         return rooms;
+    }
+
+    @Override
+    public void setTouristsToHotels(Integer group, List<Room> chosenRoomList) {
+        List<Tourist> touristList = getTouristByGroup(group);
+        EntityManager entityManager = emf.createEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            for (int i = 0; i < chosenRoomList.size(); ++i) {
+                Trip t = entityManager
+                        .createQuery("select t from trip t where t.group = :group AND t.tourist = :tourist", Trip.class)
+                        .setParameter("group", group)
+                        .setParameter("tourist", touristList.get(i))
+                        .getSingleResult();
+                t.setRoom(chosenRoomList.get(i));
+                entityManager.merge(t);
+            }
+            entityManager.getTransaction().commit();
+        } catch (RollbackException ex) {
+            ex.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+        entityManager.close();
     }
 
     @Override

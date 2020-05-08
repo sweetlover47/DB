@@ -153,4 +153,8 @@ public class Controller {
     public List<Room> getFreeRoomsByHotel(Hotel hotel, Tourist t, int group) {
         return service.getFreeRoomsByHotel(hotel, t, group);
     }
+
+    public void setTouristsToHotels(Integer group, List<Room> chosenRoomList) {
+        service.setTouristsToHotels(group, chosenRoomList);
+    }
 }
