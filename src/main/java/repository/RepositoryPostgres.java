@@ -2,18 +2,12 @@ package repository;
 
 import models.entity.*;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.RollbackException;
+import javax.persistence.*;
 import javax.persistence.criteria.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class RepositoryPostgres implements Repository {
@@ -232,7 +226,7 @@ public class RepositoryPostgres implements Repository {
             Method ordersMethod = null;
             try {
                 ordersMethod = CriteriaBuilder.class.getMethod(ordersMethodName, Expression.class, (ordersMethodName.equals("equal")) ? Object.class : Number.class);
-                ordersPredicate = (Predicate) ordersMethod.invoke(criteriaBuilder, (Expression) excursionRoot.get("numOrders"), ordersCount);
+                ordersPredicate = (Predicate) ordersMethod.invoke(criteriaBuilder, excursionRoot.get("numOrders"), ordersCount);
             } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
                 e.printStackTrace();
             }
@@ -671,6 +665,24 @@ public class RepositoryPostgres implements Repository {
         List<Excursion> excursionList = entityManager.createQuery(query).getResultList();
         entityManager.close();
         return excursionList;
+    }
+
+    @Override
+    public Map<Agency, Integer> getQualityAgencies() {
+        EntityManager entityManager = emf.createEntityManager();
+        Map<Agency, Integer> agencyFloatMap = entityManager
+                .createQuery("select agency as a, coalesce(sum(e.numOrders)/count(e), 0) as qual from Agency agency left join Excursion e on e.agency=agency group by a order by qual desc , agency.name asc ", Tuple.class)
+                .getResultStream()
+                .collect(Collectors.toMap(
+                        tuple -> ((Agency) tuple.get("a")),
+                        tuple -> Math.toIntExact((Long) tuple.get("qual"))
+                ))
+                .entrySet()
+                .stream()
+                .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1,e2)-> e2, LinkedHashMap::new));
+        entityManager.close();
+        return agencyFloatMap;
     }
 
     @Override

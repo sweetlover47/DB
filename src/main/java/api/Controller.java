@@ -5,6 +5,7 @@ import service.Service;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 public class Controller {
     private Service service;
@@ -169,5 +170,9 @@ public class Controller {
 
     public List<Excursion> getPopularExcursions() {
         return service.getPopularExcursions();
+    }
+
+    public Map<Agency, Integer> getQualityAgencies() {
+        return service.getQualityAgencies();
     }
 }

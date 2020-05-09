@@ -4,6 +4,7 @@ import models.entity.*;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 public interface Repository {
     List<Excursion> getExcursions();
@@ -69,4 +70,6 @@ public interface Repository {
     List<Float> getFinancialReportForPeriod(long dateIn, long dateOut);
 
     List<Excursion> getPopularExcursions();
+
+    Map<Agency, Integer> getQualityAgencies();
 }

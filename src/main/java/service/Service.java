@@ -6,6 +6,7 @@ import repository.Repository;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Service {
     private final Repository repository;
@@ -189,5 +190,9 @@ public class Service {
 
     public List<Excursion> getPopularExcursions() {
         return repository.getPopularExcursions();
+    }
+
+    public Map<Agency, Integer> getQualityAgencies() {
+        return repository.getQualityAgencies();
     }
 }

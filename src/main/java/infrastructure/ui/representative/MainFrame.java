@@ -4,12 +4,14 @@ import api.Controller;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import models.entity.Excursion;
 
 import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import static api.Main.SCREEN_HEIGHT;
 import static api.Main.SCREEN_WIDTH;
@@ -28,7 +30,7 @@ public class MainFrame extends JFrame {
     private JButton просмотретьКачетсвенныеАгенстваButton;
 
     public MainFrame(Controller controller) {
-        setTitle("MainFrame");
+        setTitle("Popular excursions");
         setLocation(
                 (SCREEN_WIDTH - totalPanel.getPreferredSize().width) / 2,
                 (SCREEN_HEIGHT - totalPanel.getPreferredSize().height) / 2
@@ -50,6 +52,7 @@ public class MainFrame extends JFrame {
         расселитьButton.addActionListener(e -> new SettleGroup(controller, (Integer) groupsComboBox.getSelectedItem()));
         составитьФинОтчетButton.addActionListener(e -> new ViewFinReport(controller));
         просмотретьПопулярныеЭкскурсииButton.addActionListener(e -> new PopularExcursions(controller));
+        просмотретьКачетсвенныеАгенстваButton.addActionListener(e -> new QualityAgencies(controller));
     }
 
     {
