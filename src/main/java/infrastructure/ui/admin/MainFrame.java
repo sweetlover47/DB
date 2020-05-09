@@ -5,6 +5,8 @@ import models.entity.Flight;
 import models.entity.Tourist;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 import static api.Main.SCREEN_HEIGHT;
@@ -48,5 +50,17 @@ public class MainFrame extends JFrame {
         comboBox2.setModel(new DefaultComboBoxModel(flightIds));
 
         получитьСписокТуристовЗаButton.addActionListener(e -> new TouristListInCountry(controller));
+        рентабельностьButton.addActionListener(e -> {
+            List<Float> floatList = controller.getFinancialReportForAllPeriod();
+            float income = 0.0f, expense = 0.0f;
+            for (Float f : floatList) {
+                if (f >= 0) {
+                    income += f;
+                } else {
+                    expense += f;
+                }
+            }
+            JOptionPane.showMessageDialog(null, "Рентабельность (д/р): " + Math.abs(income/expense));
+        });
     }
 }
