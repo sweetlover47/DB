@@ -166,4 +166,8 @@ public class Controller {
         return service.getFinancialReportForPeriod(dateIn, dateOut);
 
     }
+
+    public List<Excursion> getPopularExcursions() {
+        return service.getPopularExcursions();
+    }
 }

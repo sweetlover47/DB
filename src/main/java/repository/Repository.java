@@ -67,4 +67,6 @@ public interface Repository {
     List<Float> getFinancialReportForAllPeriod();
 
     List<Float> getFinancialReportForPeriod(long dateIn, long dateOut);
+
+    List<Excursion> getPopularExcursions();
 }

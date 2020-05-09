@@ -186,4 +186,8 @@ public class Service {
         return repository.getFinancialReportForPeriod(dateIn, dateOut);
 
     }
+
+    public List<Excursion> getPopularExcursions() {
+        return repository.getPopularExcursions();
+    }
 }

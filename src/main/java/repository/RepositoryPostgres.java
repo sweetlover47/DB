@@ -140,7 +140,10 @@ public class RepositoryPostgres implements Repository {
                     .getResultStream()
                     .filter(excursion -> joinedExcursionsId.contains(excursion.getId()))
                     .collect(Collectors.toList());
-            excursionList.forEach(entityManager::merge);
+            excursionList.forEach(e -> {
+                e.setNumOrders(e.getParticipatingTourists().size());
+                entityManager.merge(e);
+            });
             trip.getExcursions().addAll(excursionList);
             entityManager.persist(trip);
             excursionList.forEach(e -> e.getParticipatingTourists().add(trip));
@@ -653,6 +656,21 @@ public class RepositoryPostgres implements Repository {
                 .setParameter("out", new Timestamp(dateOut))
                 .getResultList();
         return getResultList(entityManager, excursionTransactions, livingTransactions, cargosTransactions, flyTransactions);
+    }
+
+    @Override
+    public List<Excursion> getPopularExcursions() {
+        EntityManager entityManager = emf.createEntityManager();
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Excursion> query = criteriaBuilder.createQuery(Excursion.class);
+        Root<Excursion> excursionRoot = query.from(Excursion.class);
+        List<Order> orderList = new ArrayList<>();
+        orderList.add(criteriaBuilder.desc(excursionRoot.get("numOrders")));
+        orderList.add(criteriaBuilder.asc(excursionRoot.get("title")));
+        query.select(excursionRoot).orderBy(orderList);
+        List<Excursion> excursionList = entityManager.createQuery(query).getResultList();
+        entityManager.close();
+        return excursionList;
     }
 
     @Override
