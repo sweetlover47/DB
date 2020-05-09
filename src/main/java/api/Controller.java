@@ -175,4 +175,28 @@ public class Controller {
     public Map<Agency, Integer> getQualityAgencies() {
         return service.getQualityAgencies();
     }
+
+    public List<Tourist> getTouristList() {
+        return service.getTouristList();
+    }
+
+    public List<Tourist> getRestTouristListAllTime(String country) {
+        return service.getRestTouristListAllTime(country);
+    }
+
+    public List<Tourist> getCargoTouristListAllTime(String country) {
+        return service.getCargoTouristListAllTime(country);
+    }
+
+    public List<String> getCountries() {
+        return service.getCountries();
+    }
+
+    public List<Tourist> getRestTouristListPeriod(String country, long dateIn, long dateOut) {
+        return service.getRestTouristListPeriod(country, dateIn, dateOut);
+    }
+
+    public List<Tourist> getCargoTouristListPeriod(String country, long dateIn, long dateOut) {
+        return service.getCargoTouristListPeriod(country, dateIn, dateOut);
+    }
 }

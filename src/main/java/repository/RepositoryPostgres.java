@@ -680,20 +680,99 @@ public class RepositoryPostgres implements Repository {
                 .entrySet()
                 .stream()
                 .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1,e2)-> e2, LinkedHashMap::new));
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
         entityManager.close();
         return agencyFloatMap;
     }
 
     @Override
+    public List<Tourist> getTouristList() {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Tourist> touristList = entityManager
+                .createQuery("select t from tourist t", Tourist.class)
+                .getResultList();
+        entityManager.close();
+        return touristList;
+    }
+
+    @Override
+    public List<Tourist> getRestTouristListAllTime(String country) {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Tourist> touristList = entityManager
+                .createQuery("select t.tourist as ts from trip t where t.excursions is not empty and t.excursions.size > 0 and t.country = :country", Tourist.class)
+                .setParameter("country", country)
+                .getResultStream()
+                .distinct()
+                .collect(Collectors.toList());
+        entityManager.close();
+        return touristList;
+    }
+
+    @Override
+    public List<Tourist> getCargoTouristListAllTime(String country) {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Tourist> touristList = entityManager
+                .createQuery("select t.tourist as ts from trip t where t.cargos is not empty and t.cargos.size > 0 and t.country = :country", Tourist.class)
+                .setParameter("country", country)
+                .getResultStream()
+                .distinct()
+                .collect(Collectors.toList());
+        entityManager.close();
+        return touristList;
+    }
+
+    @Override
+    public List<String> getCountries() {
+        EntityManager entityManager = emf.createEntityManager();
+        List<String> countryList = entityManager
+                .createQuery("select t.country as country from trip t group by country", String.class)
+                .getResultList();
+        entityManager.close();
+        return countryList;
+    }
+
+    @Override
+    public List<Tourist> getRestTouristListPeriod(String country, long dateIn, long dateOut) {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Tourist> touristList = entityManager
+                .createQuery("select t.tourist " +
+                        "from trip t " +
+                        "where (t.excursions is not empty and t.excursions.size > 0 and t.country = :country) " +
+                        "AND (t.date_in between :in and :out) " +
+                        "AND (t.date_out between :in and :out)", Tourist.class)
+                .setParameter("country", country)
+                .setParameter("in", new Timestamp(dateIn))
+                .setParameter("out", new Timestamp(dateOut))
+                .getResultStream()
+                .distinct()
+                .collect(Collectors.toList());
+        entityManager.close();
+        return touristList;
+    }
+
+    @Override
+    public List<Tourist> getCargoTouristListPeriod(String country, long dateIn, long dateOut) {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Tourist> touristList = entityManager
+                .createQuery("select t.tourist as ts from trip t where (t.cargos is not empty and t.cargos.size > 0 and t.country = :country) AND t.date_in between :in and :out AND t.date_out between :in and :out", Tourist.class)
+                .setParameter("country", country)
+                .setParameter("in", new Timestamp(dateIn))
+                .setParameter("out", new Timestamp(dateOut))
+                .getResultStream()
+                .distinct()
+                .collect(Collectors.toList());
+        entityManager.close();
+        return touristList;
+    }
+
+    @Override
     public List<Trip> getTripList(Long id) {
         EntityManager entityManager = emf.createEntityManager();
-        entityManager.getTransaction().begin();
         List<Trip> tripList = entityManager
                 .createQuery("select t from trip t where t.tourist.id = :id", Trip.class)
                 .setParameter("id", id)
                 .getResultList();
-        entityManager.getTransaction().commit();
+        entityManager.close();
         return tripList;
     }
 

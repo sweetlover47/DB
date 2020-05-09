@@ -195,4 +195,28 @@ public class Service {
     public Map<Agency, Integer> getQualityAgencies() {
         return repository.getQualityAgencies();
     }
+
+    public List<Tourist> getTouristList() {
+        return repository.getTouristList();
+    }
+
+    public List<Tourist> getRestTouristListAllTime(String country) {
+        return repository.getRestTouristListAllTime(country);
+    }
+
+    public List<Tourist> getCargoTouristListAllTime(String country) {
+        return repository.getCargoTouristListAllTime(country);
+    }
+
+    public List<String> getCountries() {
+        return repository.getCountries();
+    }
+
+    public List<Tourist> getRestTouristListPeriod(String country, long dateIn, long dateOut) {
+        return repository.getRestTouristListPeriod(country, dateIn, dateOut);
+    }
+
+    public List<Tourist> getCargoTouristListPeriod(String country, long dateIn, long dateOut) {
+        return repository.getCargoTouristListPeriod(country, dateIn, dateOut);
+    }
 }
