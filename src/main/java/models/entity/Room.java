@@ -34,7 +34,7 @@ public class Room {
 
     @Getter
     @Setter
-    @OneToMany
+    @OneToOne
     @JoinColumn(name = "id_transaction")
-    private List<Transaction> transactionList;
+    private Transaction transaction;
 }

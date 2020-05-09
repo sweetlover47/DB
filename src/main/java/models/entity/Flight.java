@@ -20,6 +20,7 @@ public class Flight {
     @Getter
     @Setter
     @OneToOne
+    @JoinColumn(name = "id_transaction")
     private Transaction transaction;
 
     @Getter

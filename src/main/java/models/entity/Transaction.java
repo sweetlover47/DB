@@ -2,6 +2,7 @@ package models.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.JoinColumnOrFormula;
 
 import javax.persistence.*;
 
@@ -26,5 +27,24 @@ public class Transaction {
     @Setter
     private float sum;
 
+    @Getter
+    @Setter
+    @OneToOne(mappedBy = "transaction")
+    private Excursion excursion;
+
+    @Getter
+    @Setter
+    @OneToOne(mappedBy = "transaction")
+    private Room room;
+
+    @Getter
+    @Setter
+    @OneToOne(mappedBy = "transaction")
+    private Flight flight;
+
+    @Getter
+    @Setter
+    @OneToOne(mappedBy = "transaction")
+    private Statement statement;
 
 }

@@ -177,4 +177,13 @@ public class Service {
     public void setTouristsToHotels(Integer group, List<Room> chosenRoomList) {
         repository.setTouristsToHotels(group, chosenRoomList);
     }
+
+    public List<Float> getFinancialReportForAllPeriod() {
+        return repository.getFinancialReportForAllPeriod();
+    }
+
+    public List<Float> getFinancialReportForPeriod(long dateIn, long dateOut) {
+        return repository.getFinancialReportForPeriod(dateIn, dateOut);
+
+    }
 }

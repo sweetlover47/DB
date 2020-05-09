@@ -157,4 +157,13 @@ public class Controller {
     public void setTouristsToHotels(Integer group, List<Room> chosenRoomList) {
         service.setTouristsToHotels(group, chosenRoomList);
     }
+
+    public List<Float> getFinancialReportForAllPeriod() {
+        return service.getFinancialReportForAllPeriod();
+    }
+
+    public List<Float> getFinancialReportForPeriod(long dateIn, long dateOut) {
+        return service.getFinancialReportForPeriod(dateIn, dateOut);
+
+    }
 }

@@ -570,6 +570,92 @@ public class RepositoryPostgres implements Repository {
     }
 
     @Override
+    public List<Float> getFinancialReportForAllPeriod() {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Transaction> excursions = entityManager
+                .createQuery("select t from trans t where t.name = 'Экскурсия'", Transaction.class)
+                .getResultList();
+        List<Transaction> living = entityManager
+                .createQuery("select t from trans t where t.name = 'Проживание'", Transaction.class)
+                .getResultList();
+        List<Transaction> cargos = entityManager
+                .createQuery("select t from trans t where t.name = 'Хранение груза'", Transaction.class)
+                .getResultList();
+        List<Transaction> fly = entityManager
+                .createQuery("select t from trans t where t.name = 'Перелет'", Transaction.class)
+                .getResultList();
+        return getResultList(entityManager, excursions, living, cargos, fly);
+    }
+
+    private List<Float> getResultList(EntityManager entityManager, List<Transaction> excursions, List<Transaction> living, List<Transaction> cargos, List<Transaction> fly) {
+        boolean e, l, c, f;
+        try {
+            entityManager.getTransaction().begin();
+            e = false;
+            l = true;
+            c = true;
+            f = true;
+            List<Float> list = new ArrayList<>();
+            float sum = 0.0f;
+            for (Transaction t : excursions)
+                sum += t.getSum();
+            if (!e) sum *= -1;
+            list.add(sum);
+            sum = 0.0f;
+            for (Transaction t : living)
+                sum += t.getSum();
+            if (!l) sum *= -1;
+            list.add(sum);
+            sum = 0.0f;
+            for (Transaction t : cargos)
+                sum += t.getSum();
+            if (!c) sum *= -1;
+            list.add(sum);
+            sum = 0.0f;
+            for (Transaction t : fly)
+                sum += t.getSum();
+            if (!f) sum *= -1;
+            list.add(sum);
+            entityManager.getTransaction().commit();
+            entityManager.close();
+            return list;
+        } catch (RollbackException ex) {
+            ex.printStackTrace();
+            entityManager.getTransaction().rollback();
+            entityManager.close();
+            return null;
+        }
+    }
+
+    @Override
+    public List<Float> getFinancialReportForPeriod(long dateIn, long dateOut) {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Transaction> excursionTransactions = entityManager
+                .createQuery("select t from trans t join Excursion e on t = e.transaction where e.date BETWEEN  :in AND :out", Transaction.class)
+                .setParameter("in", new Timestamp(dateIn))
+                .setParameter("out", new Timestamp(dateOut))
+                .getResultList();
+        List<Transaction> livingTransactions = entityManager
+                .createQuery("select t from trans t join Room r on t.room = r join trip tr on tr.room = r where (tr.date_in between :in and :out) and (tr.date_out between :in and :out)", Transaction.class)
+                .setParameter("in", new Timestamp(dateIn))
+                .setParameter("out", new Timestamp(dateOut))
+                .getResultList();
+        entityManager.getTransaction().begin();
+        List<Transaction> cargosTransactions = entityManager
+                .createQuery("select t from trans t join Statement s on s.transaction = t join Cargo c on c.statement = s where (c.date_in BETWEEN  :in AND :out) and (c.date_out between :in and :out)", Transaction.class)
+                .setParameter("in", new Timestamp(dateIn))
+                .setParameter("out", new Timestamp(dateOut))
+                .getResultList();
+        entityManager.getTransaction().commit();
+        List<Transaction> flyTransactions = entityManager
+                .createQuery("select t from trans t join Flight f on f.transaction = t where f.date BETWEEN  :in AND :out", Transaction.class)
+                .setParameter("in", new Timestamp(dateIn))
+                .setParameter("out", new Timestamp(dateOut))
+                .getResultList();
+        return getResultList(entityManager, excursionTransactions, livingTransactions, cargosTransactions, flyTransactions);
+    }
+
+    @Override
     public List<Trip> getTripList(Long id) {
         EntityManager entityManager = emf.createEntityManager();
         entityManager.getTransaction().begin();

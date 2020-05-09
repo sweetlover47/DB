@@ -33,13 +33,12 @@ public class Excursion {
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
-    /*
     @Getter
     @Setter
     @OneToOne
-
+    @JoinColumn(name = "id_transaction")
     private Transaction transaction;
-*/
+
     @Getter
     @Setter
     private String title;

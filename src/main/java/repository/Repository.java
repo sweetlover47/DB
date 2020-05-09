@@ -63,4 +63,8 @@ public interface Repository {
     List<Room> getFreeRoomsByHotel(Hotel hotel, Tourist t, int group);
 
     void setTouristsToHotels(Integer group, List<Room> chosenRoomList);
+
+    List<Float> getFinancialReportForAllPeriod();
+
+    List<Float> getFinancialReportForPeriod(long dateIn, long dateOut);
 }
