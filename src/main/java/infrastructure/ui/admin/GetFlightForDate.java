@@ -14,7 +14,7 @@ import java.util.List;
 import static api.Main.SCREEN_HEIGHT;
 import static api.Main.SCREEN_WIDTH;
 
-public class GetFlightForDate extends JFrame{
+public class GetFlightForDate extends JFrame {
     private JComboBox startD;
     private JComboBox startM;
     private JComboBox startY;
@@ -43,6 +43,11 @@ public class GetFlightForDate extends JFrame{
 
     private void fillListPanel(List<Flight> flights) {
         listPanel.removeAll();
+        if (flights.isEmpty()) {
+            validate();
+            repaint();
+            return;
+        }
         listPanel.setLayout(new GridLayoutManager(flights.size(), 1, new Insets(0, 0, 0, 0), -1, -1));
         int i = 0;
         for (Flight t : flights) {

@@ -762,6 +762,44 @@ public class RepositoryPostgres implements Repository {
     }
 
     @Override
+    public List<Object[]> getPassengersInfo(Flight flight) {
+        return null;
+    }
+
+    @Override
+    public List<Tourist> getPassengersList(Flight flight) {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Tourist> touristList = entityManager
+                .createQuery("select t from Passenger p JOIN tourist t on p.tourist = t where p.flight = :flight", Tourist.class)
+                .setParameter("flight", flight)
+                .getResultList();
+        entityManager.close();
+        return touristList;
+    }
+
+    @Override
+    public List<Cargo> getPassengerCargos(Flight flight) {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Cargo> touristList = entityManager
+                .createQuery("select distinct c from Passenger p join Cargo c on c.flight = p.flight where p.flight = :flight", Cargo.class)
+                .setParameter("flight", flight)
+                .getResultList();
+        entityManager.close();
+        return touristList;
+    }
+
+    @Override
+    public List<Hotel> getPassengerHotels(Flight flight) {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Hotel> touristList = entityManager
+                .createQuery("select distinct t.room.hotel as h from Passenger p join trip t on t.tourist = p.tourist where p.flight.date = t.date_out and p.flight = :flight", Hotel.class)
+                .setParameter("flight", flight)
+                .getResultList();
+        entityManager.close();
+        return touristList;
+    }
+
+    @Override
     public List<Tourist> getCargoTouristListPeriod(String country, long dateIn, long dateOut) {
         EntityManager entityManager = emf.createEntityManager();
         List<Tourist> touristList = entityManager

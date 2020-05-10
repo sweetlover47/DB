@@ -223,4 +223,16 @@ public class Service {
     public List<Flight> getFlightListForDate(long dateIn) {
         return repository.getFlightListForDate(dateIn);
     }
+
+    public List<Hotel> getPassengerHotels(Flight flight) {
+        return repository.getPassengerHotels(flight);
+    }
+
+    public List<Tourist> getPassengersList(Flight flight) {
+        return repository.getPassengersList(flight);
+    }
+
+    public List<Cargo> getPassengerCargos(Flight flight) {
+        return repository.getPassengerCargos(flight);
+    }
 }

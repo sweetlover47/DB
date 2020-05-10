@@ -203,4 +203,15 @@ public class Controller {
     public List<Flight> getFlightListForDate(long dateIn) {
         return service.getFlightListForDate(dateIn);
     }
+
+    public List<Tourist> getPassengersList(Flight flight) {
+        return service.getPassengersList(flight);
+    }
+    public List<Hotel> getPassengerHotels(Flight flight) {
+        return service.getPassengerHotels(flight);
+    }
+
+    public List<Cargo> getPassengerCargos(Flight flight) {
+        return service.getPassengerCargos(flight);
+    }
 }
