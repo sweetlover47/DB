@@ -94,4 +94,6 @@ public interface Repository {
     List<Tourist> getPassengersList(Flight flight);
 
     List<Cargo> getPassengerCargos(Flight flight);
+
+    Map<String, Float> getSpecificKinds();
 }

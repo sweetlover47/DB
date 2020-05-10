@@ -789,6 +789,28 @@ public class RepositoryPostgres implements Repository {
     }
 
     @Override
+    public Map<String, Float> getSpecificKinds() {
+        EntityManager entityManager = emf.createEntityManager();
+        Map<String, Float> agencyFloatMap = entityManager
+                .createQuery("select c.kind as kind, count(c) as ct, (select count(c1) from Cargo c1) as total from Cargo c group by c.kind", Tuple.class)
+                .getResultStream()
+                .collect(Collectors.toMap(
+                        tuple -> ((String) tuple.get("kind")),
+                        tuple -> {
+                            long count = (Long)tuple.get("ct");
+                            long total = (Long)tuple.get("total");
+                            return (float)count/total;
+                        }
+                ))
+                .entrySet()
+                .stream()
+                .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+        entityManager.close();
+        return agencyFloatMap;
+    }
+
+    @Override
     public List<Hotel> getPassengerHotels(Flight flight) {
         EntityManager entityManager = emf.createEntityManager();
         List<Hotel> touristList = entityManager

@@ -214,4 +214,8 @@ public class Controller {
     public List<Cargo> getPassengerCargos(Flight flight) {
         return service.getPassengerCargos(flight);
     }
+
+    public Map<String, Float> getSpecificKinds() {
+        return service.getSpecificKinds();
+    }
 }

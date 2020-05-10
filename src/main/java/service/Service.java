@@ -235,4 +235,8 @@ public class Service {
     public List<Cargo> getPassengerCargos(Flight flight) {
         return repository.getPassengerCargos(flight);
     }
+
+    public Map<String, Float> getSpecificKinds() {
+        return repository.getSpecificKinds();
+    }
 }
