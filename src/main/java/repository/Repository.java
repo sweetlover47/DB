@@ -100,4 +100,8 @@ public interface Repository {
     List<String> getCountries(Tourist t);
 
     List<Object[]> getDatesForTouristByCountry(Tourist t, String country);
+
+    List<Cargo> getCargosForTourist(Tourist t, String country);
+
+    List<Excursion> getExcursionsForTourist(Tourist t, String country);
 }

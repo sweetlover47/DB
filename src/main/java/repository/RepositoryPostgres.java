@@ -834,6 +834,40 @@ public class RepositoryPostgres implements Repository {
     }
 
     @Override
+    public List<Cargo> getCargosForTourist(Tourist t, String country) {
+        EntityManager entityManager = emf.createEntityManager();
+        Query q = entityManager
+                .createQuery("select t from trip t where t.tourist = :t and t.country = :c")
+                .setParameter("t", t)
+                .setParameter("c", country);
+        List<Trip> trip = q.getResultList();
+        List<Cargo> cargoList = new ArrayList<>();
+        entityManager.getTransaction().begin();
+        for (Trip tr : trip)
+            cargoList.addAll(tr.getCargos());
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        return cargoList;
+    }
+
+    @Override
+    public List<Excursion> getExcursionsForTourist(Tourist t, String country) {
+        EntityManager entityManager = emf.createEntityManager();
+        Query q = entityManager
+                .createQuery("select t from trip t where t.tourist = :t and t.country = :c")
+                .setParameter("t", t)
+                .setParameter("c", country);
+        List<Trip> trip = q.getResultList();
+        List<Excursion> cargoList = new ArrayList<>();
+        entityManager.getTransaction().begin();
+        for (Trip tr : trip)
+            cargoList.addAll(tr.getExcursions());
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        return cargoList;
+    }
+
+    @Override
     public List<Hotel> getPassengerHotels(Flight flight) {
         EntityManager entityManager = emf.createEntityManager();
         List<Hotel> touristList = entityManager

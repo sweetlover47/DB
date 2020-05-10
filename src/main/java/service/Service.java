@@ -247,4 +247,13 @@ public class Service {
     public List<Object[]> getDatesForTouristByCountry(Tourist t, String country) {
         return repository.getDatesForTouristByCountry(t,country);
     }
+
+    public List<Cargo> getCargosForTourist(Tourist t, String country) {
+        return repository.getCargosForTourist(t,country);
+    }
+
+
+    public List<Excursion> getExcursionsForTourist(Tourist t, String country) {
+        return repository.getExcursionsForTourist(t,country);
+    }
 }

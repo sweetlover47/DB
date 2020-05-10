@@ -226,4 +226,12 @@ public class Controller {
     public List<Object[]> getDatesHotelForTouristByCountry(Tourist t, String country) {
         return service.getDatesForTouristByCountry(t,country);
     }
+
+    public List<Cargo> getCargosForTourist(Tourist t, String country) {
+        return service.getCargosForTourist(t,country);
+    }
+
+    public List<Excursion> getExcursionsForTourist(Tourist t, String country) {
+        return service.getExcursionsForTourist(t,country);
+    }
 }
