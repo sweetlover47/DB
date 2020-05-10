@@ -811,6 +811,29 @@ public class RepositoryPostgres implements Repository {
     }
 
     @Override
+    public List<String> getCountries(Tourist t) {
+        EntityManager entityManager = emf.createEntityManager();
+        List<String> touristList = entityManager
+                .createQuery("select distinct t.country from trip t  where t.tourist = :tourist", String.class)
+                .setParameter("tourist", t)
+                .getResultList();
+        entityManager.close();
+        return touristList;
+    }
+
+    @Override
+    public List<Object[]> getDatesForTouristByCountry(Tourist t, String country) {
+        EntityManager entityManager = emf.createEntityManager();
+        Query q = entityManager
+                .createQuery("select t.date_in, t.date_out, t.room.hotel.title  from trip t join tourist to on t.tourist = to where to = :t and t.country = :country")
+                .setParameter("t", t)
+                .setParameter("country", country);
+        List<Object[]> touristList = q.getResultList();
+        entityManager.close();
+        return touristList;
+    }
+
+    @Override
     public List<Hotel> getPassengerHotels(Flight flight) {
         EntityManager entityManager = emf.createEntityManager();
         List<Hotel> touristList = entityManager

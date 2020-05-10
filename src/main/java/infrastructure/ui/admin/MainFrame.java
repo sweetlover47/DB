@@ -5,6 +5,8 @@ import models.entity.Flight;
 import models.entity.Tourist;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 import static api.Main.SCREEN_HEIGHT;
@@ -63,6 +65,6 @@ public class MainFrame extends JFrame {
         посмотретьРейсСамолетаНаButton.addActionListener(e -> new GetFlightForDate(controller));
         сведениеОПассажирахРейсаButton.addActionListener(e -> new PassengersInfo(controller, flightList.get(comboBox2.getSelectedIndex())));
         статистикаПоВидамГрузаButton.addActionListener(e -> new CargoKindStatistic(controller));
-
+        получитьСведенияОКонкретномButton.addActionListener(e -> new TouristStatistic(controller, touristList.get(comboBox1.getSelectedIndex())));
     }
 }

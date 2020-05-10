@@ -96,4 +96,8 @@ public interface Repository {
     List<Cargo> getPassengerCargos(Flight flight);
 
     Map<String, Float> getSpecificKinds();
+
+    List<String> getCountries(Tourist t);
+
+    List<Object[]> getDatesForTouristByCountry(Tourist t, String country);
 }

@@ -218,4 +218,12 @@ public class Controller {
     public Map<String, Float> getSpecificKinds() {
         return service.getSpecificKinds();
     }
+
+    public List<String> getCountries(Tourist t) {
+        return service.getCountries(t);
+    }
+
+    public List<Object[]> getDatesHotelForTouristByCountry(Tourist t, String country) {
+        return service.getDatesForTouristByCountry(t,country);
+    }
 }

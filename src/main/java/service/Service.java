@@ -239,4 +239,12 @@ public class Service {
     public Map<String, Float> getSpecificKinds() {
         return repository.getSpecificKinds();
     }
+
+    public List<String> getCountries(Tourist t) {
+        return repository.getCountries(t);
+    }
+
+    public List<Object[]> getDatesForTouristByCountry(Tourist t, String country) {
+        return repository.getDatesForTouristByCountry(t,country);
+    }
 }
