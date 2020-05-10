@@ -199,4 +199,8 @@ public class Controller {
     public List<Tourist> getCargoTouristListPeriod(String country, long dateIn, long dateOut) {
         return service.getCargoTouristListPeriod(country, dateIn, dateOut);
     }
+
+    public List<Flight> getFlightListForDate(long dateIn) {
+        return service.getFlightListForDate(dateIn);
+    }
 }

@@ -219,4 +219,8 @@ public class Service {
     public List<Tourist> getCargoTouristListPeriod(String country, long dateIn, long dateOut) {
         return repository.getCargoTouristListPeriod(country, dateIn, dateOut);
     }
+
+    public List<Flight> getFlightListForDate(long dateIn) {
+        return repository.getFlightListForDate(dateIn);
+    }
 }

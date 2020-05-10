@@ -584,6 +584,34 @@ public class RepositoryPostgres implements Repository {
         return getResultList(entityManager, excursions, living, cargos, fly);
     }
 
+    @Override
+    public List<Float> getFinancialReportForPeriod(long dateIn, long dateOut) {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Transaction> excursionTransactions = entityManager
+                .createQuery("select t from trans t join Excursion e on t = e.transaction where e.date BETWEEN  :in AND :out", Transaction.class)
+                .setParameter("in", new Timestamp(dateIn))
+                .setParameter("out", new Timestamp(dateOut))
+                .getResultList();
+        List<Transaction> livingTransactions = entityManager
+                .createQuery("select t from trans t join Room r on t.room = r join trip tr on tr.room = r where (tr.date_in between :in and :out) and (tr.date_out between :in and :out)", Transaction.class)
+                .setParameter("in", new Timestamp(dateIn))
+                .setParameter("out", new Timestamp(dateOut))
+                .getResultList();
+        entityManager.getTransaction().begin();
+        List<Transaction> cargosTransactions = entityManager
+                .createQuery("select t from trans t join Statement s on s.transaction = t join Cargo c on c.statement = s where (c.date_in BETWEEN  :in AND :out) and (c.date_out between :in and :out)", Transaction.class)
+                .setParameter("in", new Timestamp(dateIn))
+                .setParameter("out", new Timestamp(dateOut))
+                .getResultList();
+        entityManager.getTransaction().commit();
+        List<Transaction> flyTransactions = entityManager
+                .createQuery("select t from trans t join Flight f on f.transaction = t where f.date BETWEEN  :in AND :out", Transaction.class)
+                .setParameter("in", new Timestamp(dateIn))
+                .setParameter("out", new Timestamp(dateOut))
+                .getResultList();
+        return getResultList(entityManager, excursionTransactions, livingTransactions, cargosTransactions, flyTransactions);
+    }
+
     private List<Float> getResultList(EntityManager entityManager, List<Transaction> excursions, List<Transaction> living, List<Transaction> cargos, List<Transaction> fly) {
         boolean e, l, c, f;
         try {
@@ -622,34 +650,6 @@ public class RepositoryPostgres implements Repository {
             entityManager.close();
             return null;
         }
-    }
-
-    @Override
-    public List<Float> getFinancialReportForPeriod(long dateIn, long dateOut) {
-        EntityManager entityManager = emf.createEntityManager();
-        List<Transaction> excursionTransactions = entityManager
-                .createQuery("select t from trans t join Excursion e on t = e.transaction where e.date BETWEEN  :in AND :out", Transaction.class)
-                .setParameter("in", new Timestamp(dateIn))
-                .setParameter("out", new Timestamp(dateOut))
-                .getResultList();
-        List<Transaction> livingTransactions = entityManager
-                .createQuery("select t from trans t join Room r on t.room = r join trip tr on tr.room = r where (tr.date_in between :in and :out) and (tr.date_out between :in and :out)", Transaction.class)
-                .setParameter("in", new Timestamp(dateIn))
-                .setParameter("out", new Timestamp(dateOut))
-                .getResultList();
-        entityManager.getTransaction().begin();
-        List<Transaction> cargosTransactions = entityManager
-                .createQuery("select t from trans t join Statement s on s.transaction = t join Cargo c on c.statement = s where (c.date_in BETWEEN  :in AND :out) and (c.date_out between :in and :out)", Transaction.class)
-                .setParameter("in", new Timestamp(dateIn))
-                .setParameter("out", new Timestamp(dateOut))
-                .getResultList();
-        entityManager.getTransaction().commit();
-        List<Transaction> flyTransactions = entityManager
-                .createQuery("select t from trans t join Flight f on f.transaction = t where f.date BETWEEN  :in AND :out", Transaction.class)
-                .setParameter("in", new Timestamp(dateIn))
-                .setParameter("out", new Timestamp(dateOut))
-                .getResultList();
-        return getResultList(entityManager, excursionTransactions, livingTransactions, cargosTransactions, flyTransactions);
     }
 
     @Override
@@ -748,6 +748,17 @@ public class RepositoryPostgres implements Repository {
                 .collect(Collectors.toList());
         entityManager.close();
         return touristList;
+    }
+
+    @Override
+    public List<Flight> getFlightListForDate(long dateIn) {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Flight> flightList = entityManager
+                .createQuery("select f from Flight f where DATE(f.date) = DATE(:date)", Flight.class)
+                .setParameter("date", new Timestamp(dateIn))
+                .getResultList();
+        entityManager.close();
+        return flightList;
     }
 
     @Override

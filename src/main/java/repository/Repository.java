@@ -84,4 +84,6 @@ public interface Repository {
     List<String> getCountries();
 
     List<Tourist> getRestTouristListPeriod(String country, long dateIn, long dateOut);
+
+    List<Flight> getFlightListForDate(long dateIn);
 }

@@ -62,5 +62,7 @@ public class MainFrame extends JFrame {
             }
             JOptionPane.showMessageDialog(null, "Рентабельность (д/р): " + Math.abs(income/expense));
         });
+        посмотретьРейсСамолетаНаButton.addActionListener(e -> new GetFlightForDate(controller));
+        сведениеОПассажирахРейсаButton.addActionListener(e -> new PassengersInfo(controller, flightList.get(comboBox2.getSelectedIndex())));
     }
 }
