@@ -256,4 +256,8 @@ public class Service {
     public List<Excursion> getExcursionsForTourist(Tourist t, String country) {
         return repository.getExcursionsForTourist(t,country);
     }
+
+    public Map<Hotel, Integer> getHotelTookRooms(long dateIn, long dateOut) {
+        return repository.getHotelTookRooms(dateIn, dateOut);
+    }
 }

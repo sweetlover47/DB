@@ -66,5 +66,6 @@ public class MainFrame extends JFrame {
         сведениеОПассажирахРейсаButton.addActionListener(e -> new PassengersInfo(controller, flightList.get(comboBox2.getSelectedIndex())));
         статистикаПоВидамГрузаButton.addActionListener(e -> new CargoKindStatistic(controller));
         получитьСведенияОКонкретномButton.addActionListener(e -> new TouristStatistic(controller, touristList.get(comboBox1.getSelectedIndex())));
+        получитьСписокГостиницСButton.addActionListener(e -> new HotelTookRooms(controller));
     }
 }

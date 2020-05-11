@@ -234,4 +234,8 @@ public class Controller {
     public List<Excursion> getExcursionsForTourist(Tourist t, String country) {
         return service.getExcursionsForTourist(t,country);
     }
+
+    public Map<Hotel, Integer> getHotelTookRooms(long dateIn, long dateOut) {
+        return service.getHotelTookRooms(dateIn, dateOut);
+    }
 }

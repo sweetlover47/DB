@@ -19,6 +19,8 @@ public interface Repository {
 
     void addNewCargoTrip(Long id, String statement, String country, Timestamp dateIn, Timestamp dateOut);
 
+    Map<Hotel, Integer> getHotelTookRooms(long dateIn, long dateOut);
+
     List<Hotel> getPassengerHotels(Flight f);
 
     List<Tourist> getCargoTouristListPeriod(String country, long dateIn, long dateOut);
@@ -104,4 +106,5 @@ public interface Repository {
     List<Cargo> getCargosForTourist(Tourist t, String country);
 
     List<Excursion> getExcursionsForTourist(Tourist t, String country);
+
 }

@@ -797,9 +797,9 @@ public class RepositoryPostgres implements Repository {
                 .collect(Collectors.toMap(
                         tuple -> ((String) tuple.get("kind")),
                         tuple -> {
-                            long count = (Long)tuple.get("ct");
-                            long total = (Long)tuple.get("total");
-                            return (float)count/total;
+                            long count = (Long) tuple.get("ct");
+                            long total = (Long) tuple.get("total");
+                            return (float) count / total;
                         }
                 ))
                 .entrySet()
@@ -865,6 +865,26 @@ public class RepositoryPostgres implements Repository {
         entityManager.getTransaction().commit();
         entityManager.close();
         return cargoList;
+    }
+
+    @Override
+    public Map<Hotel, Integer> getHotelTookRooms(long dateIn, long dateOut) {
+        EntityManager entityManager = emf.createEntityManager();
+        Map<Hotel, Integer> agencyFloatMap = entityManager
+                .createQuery("select ho as hot, count(r) as c from Room r join trip t on t.room=r join Hotel ho on r.hotel = ho where (t.date_in between :in and :out) AND (t.date_out between :in and :out) group by ho", Tuple.class)
+                .setParameter("in", new Timestamp(dateIn))
+                .setParameter("out", new Timestamp(dateOut))
+                .getResultStream()
+                .collect(Collectors.toMap(
+                        tuple -> ((Hotel) tuple.get("hot")),
+                        tuple -> ((Math.toIntExact((Long) tuple.get("c"))))
+                ))
+                .entrySet()
+                .stream()
+                .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+        entityManager.close();
+        return agencyFloatMap;
     }
 
     @Override
