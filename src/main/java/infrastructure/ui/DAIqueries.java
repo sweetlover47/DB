@@ -48,6 +48,43 @@ public class DAIqueries extends JFrame {
     private JComboBox comboBox14;
     private JComboBox comboBox15;
     private JComboBox comboBox16;
+    private JComboBox comboBox17;
+    private JComboBox comboBox18;
+    private JComboBox comboBox19;
+    private JComboBox comboBox20;
+    private JTextField textField12;
+    private JButton изменитьГрузButton;
+    private JComboBox comboBox21;
+    private JTextField textField13;
+    private JComboBox comboBox22;
+    private JComboBox comboBox23;
+    private JComboBox comboBox24;
+    private JButton изменитьЭкскурсиюButton;
+    private JComboBox comboBox25;
+    private JComboBox comboBox26;
+    private JComboBox comboBox27;
+    private JComboBox comboBox28;
+    private JButton изменитьРейсButton;
+    private JTextField textField14;
+    private JButton изменитьОтельButton;
+    private JComboBox comboBox29;
+    private JComboBox comboBox30;
+    private JComboBox comboBox31;
+    private JButton изменитьПассажираButton;
+    private JComboBox comboBox32;
+    private JComboBox comboBox33;
+    private JComboBox comboBox34;
+    private JButton изменитьКомнатуButton;
+    private JComboBox comboBox35;
+    private JTextField textField15;
+    private JComboBox comboBox36;
+    private JComboBox comboBox37;
+    private JComboBox comboBox38;
+    private JComboBox comboBox39;
+    private JComboBox comboBox40;
+    private JComboBox comboBox41;
+    private JComboBox comboBox42;
+    private JComboBox comboBox43;
 
     public DAIqueries(Controller controller) {
 
