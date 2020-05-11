@@ -207,6 +207,7 @@ public class Controller {
     public List<Tourist> getPassengersList(Flight flight) {
         return service.getPassengersList(flight);
     }
+
     public List<Hotel> getPassengerHotels(Flight flight) {
         return service.getPassengerHotels(flight);
     }
@@ -224,18 +225,26 @@ public class Controller {
     }
 
     public List<Object[]> getDatesHotelForTouristByCountry(Tourist t, String country) {
-        return service.getDatesForTouristByCountry(t,country);
+        return service.getDatesForTouristByCountry(t, country);
     }
 
     public List<Cargo> getCargosForTourist(Tourist t, String country) {
-        return service.getCargosForTourist(t,country);
+        return service.getCargosForTourist(t, country);
     }
 
     public List<Excursion> getExcursionsForTourist(Tourist t, String country) {
-        return service.getExcursionsForTourist(t,country);
+        return service.getExcursionsForTourist(t, country);
     }
 
     public Map<Hotel, Integer> getHotelTookRooms(long dateIn, long dateOut) {
         return service.getHotelTookRooms(dateIn, dateOut);
+    }
+
+    public Map<Flight, Integer> getWarehouseStatistic(long dateIn, long dateOut, long warehouseId) {
+        return service.getWarehouseStatistic(dateIn, dateOut, warehouseId);
+    }
+
+    public float getCargosWeight(Flight f) {
+        return service.getCargosWeight(f);
     }
 }

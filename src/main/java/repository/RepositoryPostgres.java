@@ -868,6 +868,39 @@ public class RepositoryPostgres implements Repository {
     }
 
     @Override
+    public Map<Flight, Integer> getWarehouseStatistic(long dateIn, long dateOut, long warehouseId) {
+        EntityManager entityManager = emf.createEntityManager();
+        Map<Flight, Integer> agencyFloatMap = entityManager
+                .createQuery("select f as fli, count(c) as ct from Cargo c join warehouse w on c.warehouse = w join Flight f on c.flight = f  " +
+                        "where (w.id = :w) and (c.date_in between :in and :out) AND (c.date_out between :in and :out) group by f", Tuple.class)
+                .setParameter("w", warehouseId)
+                .setParameter("in", new Timestamp(dateIn))
+                .setParameter("out", new Timestamp(dateOut))
+                .getResultStream()
+                .collect(Collectors.toMap(
+                        tuple -> ((Flight) tuple.get("fli")),
+                        tuple -> ((Math.toIntExact((Long) tuple.get("ct"))))
+                ))
+                .entrySet()
+                .stream()
+                .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+        entityManager.close();
+        return agencyFloatMap;
+    }
+
+    @Override
+    public float getCargosWeight(Flight f) {
+        EntityManager entityManager = emf.createEntityManager();
+        double sum = entityManager
+                .createQuery("select sum(c.statement.weight) from Cargo c where c.flight = :f group by c.flight", Double.class)
+                .setParameter("f", f)
+                .getSingleResult();
+        entityManager.close();
+        return (float) sum;
+    }
+
+    @Override
     public Map<Hotel, Integer> getHotelTookRooms(long dateIn, long dateOut) {
         EntityManager entityManager = emf.createEntityManager();
         Map<Hotel, Integer> agencyFloatMap = entityManager

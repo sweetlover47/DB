@@ -107,4 +107,7 @@ public interface Repository {
 
     List<Excursion> getExcursionsForTourist(Tourist t, String country);
 
+    Map<Flight, Integer> getWarehouseStatistic(long dateIn, long dateOut, long warehouseId);
+
+    float getCargosWeight(Flight f);
 }

@@ -260,4 +260,12 @@ public class Service {
     public Map<Hotel, Integer> getHotelTookRooms(long dateIn, long dateOut) {
         return repository.getHotelTookRooms(dateIn, dateOut);
     }
+
+    public Map<Flight, Integer> getWarehouseStatistic(long dateIn, long dateOut, long warehouseId) {
+        return repository.getWarehouseStatistic(dateIn, dateOut, warehouseId);
+    }
+
+    public float getCargosWeight(Flight f) {
+        return repository.getCargosWeight(f);
+    }
 }
