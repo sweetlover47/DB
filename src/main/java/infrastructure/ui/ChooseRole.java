@@ -17,6 +17,7 @@ public class ChooseRole extends JFrame {
     private JButton туристButton;
     private JButton туристическаяФирмаButton;
     private JButton администраторButton;
+    private JButton dieButton;
 
     public ChooseRole(Controller controller) {
         setLocation(
@@ -36,11 +37,15 @@ public class ChooseRole extends JFrame {
             dispose();
             new MainFrame(controller);
         });
-        администраторButton.addActionListener(new ActionListener() {
+        администраторButton.addActionListener(e -> {
+            dispose();
+            new infrastructure.ui.admin.MainFrame(controller);
+        });
+        dieButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                new infrastructure.ui.admin.MainFrame(controller);
+                new DAIqueries(controller);
             }
         });
     }
