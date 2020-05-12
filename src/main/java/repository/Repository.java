@@ -126,4 +126,6 @@ public interface Repository {
     void addPassenger(Flight flight, Tourist tourist);
 
     void addRoom(Hotel hotel, String num);
+
+    void alterAgency(Agency agency, String newTitle);
 }

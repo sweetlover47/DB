@@ -114,6 +114,7 @@ public class DAIqueries extends JFrame {
     private JButton удалитьКомнатуButton;
     private JComboBox comboBox55;
     private JButton удалитьПоездкуButton;
+    private JButton изменитьПоездкуButton;
 
     private Long dateIn, dateOut;
 
@@ -128,6 +129,22 @@ public class DAIqueries extends JFrame {
         pack();
         setVisible(true);
         создатьАгенствоButton.addActionListener(e -> repository.addAgency(textField1.getText()));
+
+        tabbedPane1.addChangeListener(e -> {
+            if (e.getSource() instanceof JTabbedPane) {
+                JTabbedPane pane = (JTabbedPane) e.getSource();
+                if (pane.getSelectedIndex() == 0) {
+                    addTabPane.setSelectedIndex(0);
+                } else if (pane.getSelectedIndex() == 1) {
+                    alterTabPane.setSelectedIndex(0);
+                    List<Agency> agencyList = repository.getAgencies();
+                    comboBox12.setModel(getAgenciesModel(agencyList));
+                    изменитьАгенствоButton.addActionListener(r -> repository.alterAgency(agencyList.get(comboBox12.getSelectedIndex()), textField8.getText()));
+                } else if (pane.getSelectedIndex() == 2) {
+
+                }
+            }
+        });
 
         addTabPane.addChangeListener(r -> {
             if (r.getSource() instanceof JTabbedPane) {
@@ -149,6 +166,59 @@ public class DAIqueries extends JFrame {
                                 JOptionPane.showMessageDialog(null, "Введите данные корректно");
                             }
                         });
+                        break;
+                    case 2://excursion
+                        List<Agency> agencyList = repository.getAgencies();
+                        comboBox1.setModel(getAgenciesModel(agencyList));
+                        создатьЭкскурсиюButton.addActionListener(e -> {
+                            if (parseDate(comboBox2, comboBox3, comboBox4, null, null, null)) return;
+                            repository.addExcursion(agencyList.get(comboBox1.getSelectedIndex()), dateIn, textField5.getText());
+                        });
+                        break;
+                    case 3://flight
+                        List<Airplane> airplaneList = repository.getAirplaneList();
+                        comboBox8.setModel(getAirplanesModel(airplaneList));
+                        создатьРейсButton.addActionListener(e -> {
+                            if (parseDate(comboBox5, comboBox6, comboBox7, null, null, null)) return;
+                            repository.addFlight(airplaneList.get(comboBox8.getSelectedIndex()), dateIn);
+                        });
+                        break;
+                    case 4://hotel
+                        создатьОтельButton.addActionListener(e -> {
+                            repository.addHotel(textField6.getText());
+                        });
+                        break;
+                    case 5://passenger
+                        List<Flight> flightList = repository.getFlightList();
+                        List<Tourist> touristList = repository.getTouristList();
+                        comboBox9.setModel(getFlightModel(flightList));
+                        comboBox10.setModel(getTouristModel(touristList));
+                        создатьПассажираButton.addActionListener(e -> {
+                            repository.addPassenger(flightList.get(comboBox9.getSelectedIndex()), touristList.get(comboBox10.getSelectedIndex()));
+                        });
+                        break;
+                    case 6://room
+                        List<Hotel> hotelList = repository.getHotelList();
+                        comboBox11.setModel(getHotelModel(hotelList));
+                        создатьКомнатуButton.addActionListener(e -> {
+                            repository.addRoom(hotelList.get(comboBox11.getSelectedIndex()), textField7.getText());
+                        });
+                        break;
+                }
+            }
+        });
+
+        alterTabPane.addChangeListener(r -> {
+            if (r.getSource() instanceof JTabbedPane) {
+                JTabbedPane pane = (JTabbedPane) r.getSource();
+                switch (pane.getSelectedIndex()) {
+                    case 0://agency
+                        List<Agency> agencyList = repository.getAgencies();
+                        comboBox12.setModel(getAgenciesModel(agencyList));
+                        изменитьАгенствоButton.addActionListener(e -> repository.alterAgency(agencyList.get(comboBox12.getSelectedIndex()), textField8.getText()));
+                        break;
+                    case 1://airplane
+
                         break;
                     case 2://excursion
                         List<Agency> agencyList = repository.getAgencies();

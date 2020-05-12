@@ -1037,6 +1037,21 @@ public class RepositoryPostgres implements Repository {
     }
 
     @Override
+    public void alterAgency(Agency agency, String newTitle) {
+        EntityManager entityManager = emf.createEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            agency.setName(newTitle);
+            entityManager.merge(agency);
+            entityManager.getTransaction().commit();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+        entityManager.close();
+    }
+
+    @Override
     public Map<Hotel, Integer> getHotelTookRooms(long dateIn, long dateOut) {
         EntityManager entityManager = emf.createEntityManager();
         Map<Hotel, Integer> agencyFloatMap = entityManager
