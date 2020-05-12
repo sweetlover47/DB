@@ -268,4 +268,7 @@ public class Service {
     public float getCargosWeight(Flight f) {
         return repository.getCargosWeight(f);
     }
+    public Repository getRepository(){
+        return repository;
+    }
 }

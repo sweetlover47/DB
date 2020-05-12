@@ -247,4 +247,8 @@ public class Controller {
     public float getCargosWeight(Flight f) {
         return service.getCargosWeight(f);
     }
+
+    public Service getService(){
+        return service;
+    }
 }

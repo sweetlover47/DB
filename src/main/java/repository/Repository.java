@@ -110,4 +110,10 @@ public interface Repository {
     Map<Flight, Integer> getWarehouseStatistic(long dateIn, long dateOut, long warehouseId);
 
     float getCargosWeight(Flight f);
+
+    List<Airplane> getAirplaneList();
+
+    void addAgency(String text);
+
+    void addAirplane(String countSpace, String cargoWeight, String volumeWeight, boolean isCargoplane);
 }

@@ -901,6 +901,54 @@ public class RepositoryPostgres implements Repository {
     }
 
     @Override
+    public List<Airplane> getAirplaneList() {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Airplane> touristList = entityManager
+                .createQuery("select a from Airplane a", Airplane.class)
+                .getResultList();
+        entityManager.close();
+        return touristList;
+    }
+
+    @Override
+    public void addAgency(String title) {
+        EntityManager entityManager = emf.createEntityManager();
+        Agency a = new Agency();
+        a.setExcursions(new ArrayList<>());
+        a.setName(title);
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(a);
+            entityManager.getTransaction().commit();
+        } catch (RollbackException ex) {
+            ex.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+    }
+
+    @Override
+    public void addAirplane(String countSpace, String cargoWeight, String volumeWeight, boolean isCargoplane) throws NumberFormatException {
+        EntityManager entityManager = emf.createEntityManager();
+        Airplane a = new Airplane();
+        int space = Integer.parseInt(countSpace);
+        float cw = Float.parseFloat(cargoWeight);
+        float vw = Float.parseFloat(volumeWeight);
+        a.setSeat_count(space);
+        a.setCargo_weight(cw);
+        a.setVolume_weight(vw);
+        a.set_cargoplane(isCargoplane);
+        a.setFlightList(new ArrayList<>());
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(a);
+            entityManager.getTransaction().commit();
+        } catch (RollbackException ex) {
+            ex.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+    }
+
+    @Override
     public Map<Hotel, Integer> getHotelTookRooms(long dateIn, long dateOut) {
         EntityManager entityManager = emf.createEntityManager();
         Map<Hotel, Integer> agencyFloatMap = entityManager

@@ -12,9 +12,9 @@ public class Airplane {
     @Id
     @Getter
     @Setter
-    @GeneratedValue(generator="airplane_id_seq", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name="airplane_id_seq",sequenceName="airplane_id_seq", allocationSize=1)
-    private int id;
+    @GeneratedValue(generator = "airplane_id_seq", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "airplane_id_seq", sequenceName = "airplane_id_seq", allocationSize = 1)
+    private long id;
 
     @Getter
     @Setter

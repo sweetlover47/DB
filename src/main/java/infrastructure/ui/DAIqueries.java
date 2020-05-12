@@ -1,12 +1,17 @@
 package infrastructure.ui;
 
-import api.Controller;
+import models.entity.Airplane;
+import repository.Repository;
 
 import javax.swing.*;
+import java.util.List;
+
+import static api.Main.SCREEN_HEIGHT;
+import static api.Main.SCREEN_WIDTH;
 
 public class DAIqueries extends JFrame {
     private JTabbedPane tabbedPane1;
-    private JPanel panel1;
+    private JPanel totalPanel;
     private JTabbedPane deleteTabPane;
     private JTabbedPane addTabPane;
     private JTabbedPane alterTabPane;
@@ -85,8 +90,86 @@ public class DAIqueries extends JFrame {
     private JComboBox comboBox41;
     private JComboBox comboBox42;
     private JComboBox comboBox43;
+    private JComboBox comboBox44;
+    private JButton удалитьАгенствоButton;
+    private JComboBox comboBox45;
+    private JButton удалитьСамолетButton;
+    private JComboBox comboBox46;
+    private JButton удалитьТуристаButton;
+    private JComboBox comboBox47;
+    private JButton удалитьГрузButton;
+    private JComboBox comboBox48;
+    private JButton удалитьЭкскурсиюButton;
+    private JComboBox comboBox49;
+    private JButton удалитьРейсButton;
+    private JComboBox comboBox50;
+    private JButton удалитьОтельButton;
+    private JButton удалитьПассажираButton;
+    private JComboBox comboBox51;
+    private JComboBox comboBox52;
+    private JComboBox comboBox53;
+    private JComboBox comboBox54;
+    private JButton удалитьКомнатуButton;
+    private JComboBox comboBox55;
+    private JButton удалитьПоездкуButton;
 
-    public DAIqueries(Controller controller) {
+    public DAIqueries(Repository repository) {  //for good it will be controller
+        setTitle("MainFrame");
+        setLocation(
+                (SCREEN_WIDTH - totalPanel.getPreferredSize().width) / 2,
+                (SCREEN_HEIGHT - totalPanel.getPreferredSize().height) / 2
+        );
+        setContentPane(totalPanel);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        pack();
+        setVisible(true);
 
+        addTabPane.addChangeListener(r -> {
+            if (r.getSource() instanceof JTabbedPane) {
+                JTabbedPane pane = (JTabbedPane) r.getSource();
+                switch (pane.getSelectedIndex()) {
+                    case 0://agency
+                        создатьАгенствоButton.addActionListener(e -> repository.addAgency(textField1.getText()));
+                        break;
+                    case 1://airplane
+                        создатьСамолетButton.addActionListener(e -> {
+                            try {
+                                repository.addAirplane(
+                                        textField2.getText(),
+                                        textField3.getText(),
+                                        textField4.getText(),
+                                        грузовойCheckBox1.isSelected()
+                                        );
+                            } catch (Exception ex) {
+                                JOptionPane.showMessageDialog(null, "Введите данные корректно");
+                            }
+                        });
+                        break;
+                    case 2://excursion
+                        break;
+                    case 3://flight
+                        List<Airplane> airplaneList = repository.getAirplaneList();
+                        comboBox8.setModel(getAirplanesModel(airplaneList));
+                        break;
+                    case 4://hotel
+
+                        break;
+                    case 5://passenger
+
+                        break;
+                    case 6://room
+
+
+                }
+            }
+        });
+    }
+
+    private DefaultComboBoxModel getAirplanesModel(List<Airplane> airplanes) {
+        Long[] ids = new Long[airplanes.size()];
+        int i = 0;
+        for (Airplane a : airplanes)
+            ids[i++] = a.getId();
+        return new DefaultComboBoxModel(ids);
     }
 }

@@ -45,7 +45,7 @@ public class ChooseRole extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                new DAIqueries(controller);
+                new DAIqueries(controller.getService().getRepository());
             }
         });
     }
