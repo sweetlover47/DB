@@ -949,6 +949,64 @@ public class RepositoryPostgres implements Repository {
     }
 
     @Override
+    public void addExcursion(Agency agency, Long date, String title) {
+        EntityManager entityManager = emf.createEntityManager();
+        Excursion e = new Excursion();
+        e.setNumOrders(0);
+        e.setParticipatingTourists(new ArrayList<>());
+        e.setAgency(agency);
+        e.setDate(new Timestamp(date));
+        e.setTitle(title);
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(e);
+            agency.getExcursions().add(e);
+            entityManager.merge(agency);
+            entityManager.getTransaction().commit();
+        } catch (RollbackException ex) {
+            ex.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+    }
+
+    @Override
+    public void addFlight(Airplane airplane, Long date) {
+        EntityManager entityManager = emf.createEntityManager();
+        Flight f = new Flight();
+        f.setAirplane(airplane);
+        f.setCargoList(new ArrayList<>());
+        f.setDate(new Timestamp(date));
+        f.setId_group(0);
+        f.setPassengerList(new ArrayList<>());
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(f);
+            airplane.getFlightList().add(f);
+            entityManager.merge(airplane);
+            entityManager.getTransaction().commit();
+        } catch (RollbackException ex) {
+            ex.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+    }
+
+    @Override
+    public void addHotel(String title) {
+        EntityManager entityManager = emf.createEntityManager();
+        Hotel h = new Hotel();
+        h.setTitle(title);
+        h.setRooms(new ArrayList<>());
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(h);
+            entityManager.getTransaction().commit();
+        } catch (RollbackException ex) {
+            ex.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+    }
+
+    @Override
     public Map<Hotel, Integer> getHotelTookRooms(long dateIn, long dateOut) {
         EntityManager entityManager = emf.createEntityManager();
         Map<Hotel, Integer> agencyFloatMap = entityManager

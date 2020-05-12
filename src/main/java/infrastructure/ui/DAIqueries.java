@@ -1,9 +1,12 @@
 package infrastructure.ui;
 
+import models.entity.Agency;
 import models.entity.Airplane;
 import repository.Repository;
 
 import javax.swing.*;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import static api.Main.SCREEN_HEIGHT;
@@ -113,6 +116,8 @@ public class DAIqueries extends JFrame {
     private JComboBox comboBox55;
     private JButton удалитьПоездкуButton;
 
+    private Long dateIn, dateOut;
+
     public DAIqueries(Repository repository) {  //for good it will be controller
         setTitle("MainFrame");
         setLocation(
@@ -139,20 +144,32 @@ public class DAIqueries extends JFrame {
                                         textField3.getText(),
                                         textField4.getText(),
                                         грузовойCheckBox1.isSelected()
-                                        );
+                                );
                             } catch (Exception ex) {
                                 JOptionPane.showMessageDialog(null, "Введите данные корректно");
                             }
                         });
                         break;
                     case 2://excursion
+                        List<Agency> agencyList = repository.getAgencies();
+                        comboBox1.setModel(getAgenciesModel(agencyList));
+                        создатьЭкскурсиюButton.addActionListener(e -> {
+                            if (parseDate(comboBox2, comboBox3, comboBox4, null, null, null)) return;
+                            repository.addExcursion(agencyList.get(comboBox1.getSelectedIndex()), dateIn, textField5.getText());
+                        });
                         break;
                     case 3://flight
                         List<Airplane> airplaneList = repository.getAirplaneList();
                         comboBox8.setModel(getAirplanesModel(airplaneList));
+                        создатьРейсButton.addActionListener(e -> {
+                            if (parseDate(comboBox5, comboBox6, comboBox7, null, null, null)) return;
+                            repository.addFlight(airplaneList.get(comboBox8.getSelectedIndex()), dateIn);
+                        });
                         break;
                     case 4://hotel
-
+                        создатьОтельButton.addActionListener(e -> {
+                            repository.addHotel(textField6.getText());
+                        });
                         break;
                     case 5://passenger
 
@@ -172,4 +189,60 @@ public class DAIqueries extends JFrame {
             ids[i++] = a.getId();
         return new DefaultComboBoxModel(ids);
     }
+
+    private DefaultComboBoxModel getAgenciesModel(List<Agency> agencies) {
+        String[] ids = new String[agencies.size()];
+        int i = 0;
+        for (Agency a : agencies)
+            ids[i++] = a.getName();
+        return new DefaultComboBoxModel(ids);
+    }
+
+    private boolean parseDate(JComboBox startD, JComboBox startM, JComboBox startY, JComboBox endD, JComboBox endM, JComboBox endY) {
+        dateIn = null;
+        dateOut = null;
+        int sd = Integer.parseInt(String.valueOf(startD.getSelectedItem()));
+        String sm = (String) startM.getSelectedItem();
+        int sy = Integer.parseInt((String) startY.getSelectedItem());
+        if (sm.equals("February") && sd > 28) {
+            if (sd > 29 && sy % 4 == 0) {
+                JOptionPane.showMessageDialog(null, "В февраля меньше 30 дней");
+                return true;
+            }
+            if (sd == 29 && sy % 4 != 0) {
+                JOptionPane.showMessageDialog(null, "Это не високосный год, исправьте, пожалуйста");
+                return true;
+            }
+        }
+        int monthIndexStart = startM.getSelectedIndex();
+        Calendar calendarDate = new GregorianCalendar(sy, monthIndexStart, sd);
+        dateIn = calendarDate.getTimeInMillis();
+        dateOut = null;
+        try {
+            int ed = Integer.parseInt(String.valueOf(endD.getSelectedItem()));
+            String em = (String) endM.getSelectedItem();
+            int ey = Integer.parseInt((String) endY.getSelectedItem());
+            if (em.equals("February") && ed > 28) {
+                if (ed > 29 && ey % 4 == 0) {
+                    JOptionPane.showMessageDialog(null, "В февраля меньше 30 дней");
+                    return true;
+                }
+                if (ed == 29 && ey % 4 != 0) {
+                    JOptionPane.showMessageDialog(null, "Это не високосный год, исправьте, пожалуйста");
+                    return true;
+                }
+            }
+            int monthIndexEnd = endM.getSelectedIndex();
+            calendarDate = new GregorianCalendar(ey, monthIndexEnd, ed);
+            dateOut = calendarDate.getTimeInMillis();
+            if (dateIn > dateOut) {
+                JOptionPane.showMessageDialog(null, "Нельзя поставить дату начала поездки позже даты конца");
+                return false;
+            }
+        } catch (NumberFormatException ignored) {
+
+        }
+        return true;
+    }
+
 }

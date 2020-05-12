@@ -116,4 +116,10 @@ public interface Repository {
     void addAgency(String text);
 
     void addAirplane(String countSpace, String cargoWeight, String volumeWeight, boolean isCargoplane);
+
+    void addExcursion(Agency agency, Long date, String title);
+
+    void addFlight(Airplane airplane, Long date);
+
+    void addHotel(String title);
 }
