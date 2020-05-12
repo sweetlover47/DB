@@ -122,4 +122,8 @@ public interface Repository {
     void addFlight(Airplane airplane, Long date);
 
     void addHotel(String title);
+
+    void addPassenger(Flight flight, Tourist tourist);
+
+    void addRoom(Hotel hotel, String num);
 }

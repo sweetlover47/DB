@@ -1007,6 +1007,46 @@ public class RepositoryPostgres implements Repository {
     }
 
     @Override
+    public void addPassenger(Flight flight, Tourist tourist) {
+        EntityManager entityManager = emf.createEntityManager();
+        Passenger a = new Passenger();
+        a.setTourist(tourist);
+        a.setFlight(flight);
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(a);
+            flight.getPassengerList().add(a);
+            tourist.getPassengerList().add(a);
+            entityManager.merge(flight);
+            entityManager.merge(tourist);
+            entityManager.getTransaction().commit();
+        } catch (RollbackException ex) {
+            ex.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+    }
+
+    @Override
+    public void addRoom(Hotel hotel, String num) {
+        EntityManager entityManager = emf.createEntityManager();
+        Integer roomNumver = Integer.parseInt(num);
+        Room a = new Room();
+        a.setHotel(hotel);
+        a.setTripList(new ArrayList<>());
+        a.setRoomNumber(roomNumver);
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(a);
+            hotel.getRooms().add(a);
+            entityManager.merge(hotel);
+            entityManager.getTransaction().commit();
+        } catch (RollbackException ex) {
+            ex.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+    }
+
+    @Override
     public Map<Hotel, Integer> getHotelTookRooms(long dateIn, long dateOut) {
         EntityManager entityManager = emf.createEntityManager();
         Map<Hotel, Integer> agencyFloatMap = entityManager

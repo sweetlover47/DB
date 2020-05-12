@@ -1,7 +1,6 @@
 package infrastructure.ui;
 
-import models.entity.Agency;
-import models.entity.Airplane;
+import models.entity.*;
 import repository.Repository;
 
 import javax.swing.*;
@@ -172,11 +171,21 @@ public class DAIqueries extends JFrame {
                         });
                         break;
                     case 5://passenger
-
+                        List<Flight> flightList = repository.getFlightList();
+                        List<Tourist> touristList = repository.getTouristList();
+                        comboBox9.setModel(getFlightModel(flightList));
+                        comboBox10.setModel(getTouristModel(touristList));
+                        создатьПассажираButton.addActionListener(e -> {
+                            repository.addPassenger(flightList.get(comboBox9.getSelectedIndex()), touristList.get(comboBox10.getSelectedIndex()));
+                        });
                         break;
                     case 6://room
-
-
+                        List<Hotel> hotelList = repository.getHotelList();
+                        comboBox11.setModel(getHotelModel(hotelList));
+                        создатьКомнатуButton.addActionListener(e -> {
+                            repository.addRoom(hotelList.get(comboBox11.getSelectedIndex()), textField7.getText());
+                        });
+                        break;
                 }
             }
         });
@@ -195,6 +204,30 @@ public class DAIqueries extends JFrame {
         int i = 0;
         for (Agency a : agencies)
             ids[i++] = a.getName();
+        return new DefaultComboBoxModel(ids);
+    }
+
+    private DefaultComboBoxModel getTouristModel(List<Tourist> tourists) {
+        String[] ids = new String[tourists.size()];
+        int i = 0;
+        for (Tourist a : tourists)
+            ids[i++] = a.getName();
+        return new DefaultComboBoxModel(ids);
+    }
+
+    private DefaultComboBoxModel getFlightModel(List<Flight> flights) {
+        Long[] ids = new Long[flights.size()];
+        int i = 0;
+        for (Flight a : flights)
+            ids[i++] = a.getId();
+        return new DefaultComboBoxModel(ids);
+    }
+
+    private DefaultComboBoxModel getHotelModel(List<Hotel> flights) {
+        String[] ids = new String[flights.size()];
+        int i = 0;
+        for (Hotel a : flights)
+            ids[i++] = a.getTitle();
         return new DefaultComboBoxModel(ids);
     }
 
