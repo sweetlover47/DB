@@ -3,13 +3,13 @@ package infrastructure.ui.tourist;
 import api.Controller;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.intellij.uiDesigner.core.Spacer;
 import models.entity.Agency;
 import models.entity.Excursion;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -33,6 +33,10 @@ public class AdvanceSearchExcursions extends JFrame {
     private JButton agencyApplyButton;
     private JButton agencyRemoveButton;
     private JPanel morePanel;
+    private JLabel agenciesFilter;
+    private JLabel dateFilter;
+    private JLabel sortFilter;
+    private JLabel orderFilter;
     private JComboBox<String> operationOrders;
     private JTextField numOrdersField;
     private JButton ordersApplyButton;
@@ -97,6 +101,10 @@ public class AdvanceSearchExcursions extends JFrame {
             agencyApplyButton.addActionListener(r -> {
                 controller.setToCacheSelectedAgency(selectedAgency);
                 morePanel.removeAll();
+                String filter = "";
+                for (Agency a : selectedAgency)
+                    filter += (a.getName() + "; ");
+                    agenciesFilter.setText(filter);
                 validate();
                 repaint();
             });
@@ -209,6 +217,8 @@ public class AdvanceSearchExcursions extends JFrame {
                 }
                 controller.setToCacheSelectedDate(dateIn, dateOut);
                 morePanel.removeAll();
+                String filter = "С " + (new Timestamp(dateIn)).toString() + ", по " + (new Timestamp(dateOut)).toString();
+                dateFilter.setText(filter);
                 validate();
                 repaint();
             });
@@ -276,29 +286,47 @@ public class AdvanceSearchExcursions extends JFrame {
             buttonGroup.add(agencyTitleDescRadioButton);
             //
             sortApplyButton.addActionListener(r -> {
+                String filter = "";
                 int sortProperties = 0;
                 //title
-                if (titleAscRadioButton.isSelected())
+                if (titleAscRadioButton.isSelected()) {
                     sortProperties += 1;
-                else if (titleDescRadioButton.isSelected())
+                    filter += ("название asc; ");
+                }
+                else if (titleDescRadioButton.isSelected()) {
                     sortProperties += 2;
+                    filter += ("название desc; ");
+                }
                 //popularity
-                if (popularityAscRadioButton.isSelected())
+                if (popularityAscRadioButton.isSelected()) {
                     sortProperties += 4;
-                else if (popularityDescRadioButton.isSelected())
+                    filter += ("популярность asc; ");
+                }
+                else if (popularityDescRadioButton.isSelected()) {
                     sortProperties += 8;
+                    filter += ("популярность desc; ");
+                }
                 //date
-                if (earlyDateRadioButton.isSelected())
+                if (earlyDateRadioButton.isSelected()) {
                     sortProperties += 16;
-                else if (lateDateRadioButton.isSelected())
+                    filter += ("дата asc; ");
+                }
+                else if (lateDateRadioButton.isSelected()) {
                     sortProperties += 32;
+                    filter += ("дата desc; ");
+                }
                 //agency name
-                if (agencyTitleAscRadioButton.isSelected())
+                if (agencyTitleAscRadioButton.isSelected()) {
                     sortProperties += 64;
-                else if (agencyTitleDescRadioButton.isSelected())
+                    filter += ("название агенства asc; ");
+                }
+                else if (agencyTitleDescRadioButton.isSelected()) {
                     sortProperties += 128;
+                    filter += ("название агенства desc; ");
+                }
                 controller.setToCacheSortProperties(sortProperties);
                 morePanel.removeAll();
+                sortFilter.setText(filter);
                 validate();
                 repaint();
             });
@@ -354,6 +382,7 @@ public class AdvanceSearchExcursions extends JFrame {
                 }
                 controller.setToCacheStatementForOrders(methodName, numOrders);
                 morePanel.removeAll();
+                orderFilter.setText(String.valueOf(operationOrders.getSelectedItem()) + numOrders);
                 validate();
                 repaint();
             });
