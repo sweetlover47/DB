@@ -4,6 +4,7 @@ import models.entity.*;
 import repository.Repository;
 
 import javax.swing.*;
+import java.awt.event.ItemEvent;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -53,7 +54,6 @@ public class DAIqueries extends JFrame {
     private JTextField textField10;
     private JTextField textField11;
     private JComboBox comboBox14;
-    private JComboBox comboBox15;
     private JComboBox comboBox16;
     private JComboBox comboBox17;
     private JComboBox comboBox18;
@@ -115,6 +115,12 @@ public class DAIqueries extends JFrame {
     private JComboBox comboBox55;
     private JButton удалитьПоездкуButton;
     private JButton изменитьПоездкуButton;
+    private JComboBox comboBox15;
+    private JComboBox comboBox56;
+    private JComboBox comboBox57;
+    private JComboBox comboBox58;
+    private JComboBox comboBox59;
+    private JComboBox comboBox60;
 
     private Long dateIn, dateOut;
 
@@ -212,51 +218,114 @@ public class DAIqueries extends JFrame {
             if (r.getSource() instanceof JTabbedPane) {
                 JTabbedPane pane = (JTabbedPane) r.getSource();
                 switch (pane.getSelectedIndex()) {
-                    case 0://agency
+                    case 0: {//agency
                         List<Agency> agencyList = repository.getAgencies();
                         comboBox12.setModel(getAgenciesModel(agencyList));
                         изменитьАгенствоButton.addActionListener(e -> repository.alterAgency(agencyList.get(comboBox12.getSelectedIndex()), textField8.getText()));
                         break;
-                    case 1://airplane
-
-                        break;
-                    case 2://excursion
-                        List<Agency> agencyList = repository.getAgencies();
-                        comboBox1.setModel(getAgenciesModel(agencyList));
-                        создатьЭкскурсиюButton.addActionListener(e -> {
-                            if (parseDate(comboBox2, comboBox3, comboBox4, null, null, null)) return;
-                            repository.addExcursion(agencyList.get(comboBox1.getSelectedIndex()), dateIn, textField5.getText());
-                        });
-                        break;
-                    case 3://flight
+                    }
+                    case 1: { //airplane
                         List<Airplane> airplaneList = repository.getAirplaneList();
-                        comboBox8.setModel(getAirplanesModel(airplaneList));
+                        comboBox13.setModel(getAirplanesModel(airplaneList));
+                        изменитьСамолетButton.addActionListener(e -> {
+                            try {
+                                repository.alterAirplane(
+                                        airplaneList.get(comboBox13.getSelectedIndex()),
+                                        textField2.getText(),
+                                        textField3.getText(),
+                                        textField4.getText(),
+                                        грузовойCheckBox1.isSelected()
+                                );
+                            } catch (Exception ex) {
+                                JOptionPane.showMessageDialog(null, "Введите данные корректно");
+                            }
+                        });
+                        break;
+                    }
+                    case 2: { //cargo
+                        List<Cargo> cargoList = repository.getCargoList();
+                        comboBox14.setModel(getCargoModel(cargoList));
+                        comboBox14.addItemListener(e -> {
+                            if (e.getStateChange() == ItemEvent.SELECTED) {
+                                List<Warehouse> warehouseList = repository.getWarehouseList();
+                                comboBox16.setModel(getWarehouseModel(warehouseList));
+                                List<Flight> flightList = repository.getFlightList();
+                                comboBox17.setModel(getFlightModel(flightList));
+                            }
+                        });
+                        изменитьГрузButton.addActionListener(e -> {
+                            if (textField12.getText().isEmpty()) {
+                                JOptionPane.showMessageDialog(null, "Заполните все поля");
+                                return;
+                            }
+                            if (parseDate(comboBox18, comboBox19, comboBox20, comboBox15, comboBox56, comboBox57))
+                                return;
+                            repository.alterCargo(
+                                    cargoList.get(comboBox14.getSelectedIndex()),
+                                    repository.getWarehouseList().get(comboBox16.getSelectedIndex()), //так делать плохо, но слишком много лишнего кода для нормального способа
+                                    repository.getFlightList().get(comboBox17.getSelectedIndex()),
+                                    dateIn,
+                                    dateOut,
+                                    textField12.getText()
+                            );
+                        });
+                        break;
+                    }
+                    case 3: {//excursion
+                        List<Excursion> excursionList = repository.getExcursions();
+                        comboBox58.setModel(getExcursionModel(excursionList));
+                        List<Agency> agencyList = repository.getAgencies();
+                        comboBox21.setModel(getAgenciesModel(agencyList));
+                        if (parseDate(comboBox23, comboBox24, comboBox25, null, null, null)) return;
+                        изменитьЭкскурсиюButton.addActionListener(e -> {
+                            repository.alterExcursion(
+                                    excursionList.get(comboBox58.getSelectedIndex()),
+                                    agencyList.get(comboBox21.getSelectedIndex()),
+                                    dateIn,
+                                    textField13.getText()
+                            );
+                        });
+                        break;
+                    }
+                    case 4: {//flight
+                        List<Airplane> airplaneList = repository.getAirplaneList();
+                        comboBox28.setModel(getAirplanesModel(airplaneList));
+                        List<Flight> flightList = repository.getFlightList();
+                        comboBox59.setModel(getFlightModel(flightList));
                         создатьРейсButton.addActionListener(e -> {
-                            if (parseDate(comboBox5, comboBox6, comboBox7, null, null, null)) return;
-                            repository.addFlight(airplaneList.get(comboBox8.getSelectedIndex()), dateIn);
+                            if (parseDate(comboBox25, comboBox26, comboBox27, null, null, null)) return;
+                            repository.alterFlight(flightList.get(comboBox59.getSelectedIndex()), airplaneList.get(comboBox28.getSelectedIndex()), dateIn);
                         });
                         break;
-                    case 4://hotel
+                    }
+                    case 5: {//hotel
+                        List<Hotel> hotelList = repository.getHotelList();
+                        comboBox60.setModel(getHotelModel(hotelList));
                         создатьОтельButton.addActionListener(e -> {
-                            repository.addHotel(textField6.getText());
+                            repository.alterHotel(hotelList.get(comboBox60.getSelectedIndex()), textField14.getText());
                         });
                         break;
-                    case 5://passenger
+                    }
+                    case 6: {//passenger
+                        List<Passenger> passengerList = repository.getPassengerList();
                         List<Flight> flightList = repository.getFlightList();
                         List<Tourist> touristList = repository.getTouristList();
-                        comboBox9.setModel(getFlightModel(flightList));
-                        comboBox10.setModel(getTouristModel(touristList));
+                        comboBox30.setModel();
+                        comboBox31.setModel(getFlightModel(flightList));
+                        comboBox29.setModel(getTouristModel(touristList));
                         создатьПассажираButton.addActionListener(e -> {
                             repository.addPassenger(flightList.get(comboBox9.getSelectedIndex()), touristList.get(comboBox10.getSelectedIndex()));
                         });
                         break;
-                    case 6://room
+                    }
+                    case 7: {//room
                         List<Hotel> hotelList = repository.getHotelList();
                         comboBox11.setModel(getHotelModel(hotelList));
                         создатьКомнатуButton.addActionListener(e -> {
                             repository.addRoom(hotelList.get(comboBox11.getSelectedIndex()), textField7.getText());
                         });
                         break;
+                    }
                 }
             }
         });
@@ -302,6 +371,37 @@ public class DAIqueries extends JFrame {
         return new DefaultComboBoxModel(ids);
     }
 
+    private DefaultComboBoxModel getCargoModel(List<Cargo> flights) {
+        Long[] ids = new Long[flights.size()];
+        int i = 0;
+        for (Cargo a : flights)
+            ids[i++] = a.getId();
+        return new DefaultComboBoxModel(ids);
+    }
+
+    private DefaultComboBoxModel getWarehouseModel(List<Warehouse> flights) {
+        Long[] ids = new Long[flights.size()];
+        int i = 0;
+        for (Warehouse a : flights)
+            ids[i++] = a.getId();
+        return new DefaultComboBoxModel(ids);
+    }
+
+    private DefaultComboBoxModel getExcursionModel(List<Excursion> flights) {
+        String[] ids = new String[flights.size()];
+        int i = 0;
+        for (Excursion a : flights)
+            ids[i++] = a.getTitle();
+        return new DefaultComboBoxModel(ids);
+    }
+
+    private DefaultComboBoxModel getPassengerModel(List<Passenger> flights) {
+        Long[] ids = new Long[flights.size()];
+        int i = 0;
+        for (Passenger a : flights)
+            ids[i++] = a.getId();
+        return new DefaultComboBoxModel(ids);
+    }
     private boolean parseDate(JComboBox startD, JComboBox startM, JComboBox startY, JComboBox endD, JComboBox endM, JComboBox endY) {
         dateIn = null;
         dateOut = null;

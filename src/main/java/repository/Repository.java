@@ -128,4 +128,18 @@ public interface Repository {
     void addRoom(Hotel hotel, String num);
 
     void alterAgency(Agency agency, String newTitle);
+
+    void alterAirplane(Airplane airplane, String seats, String cargo, String volume, boolean isCargoplane);
+
+    List<Cargo> getCargoList();
+
+    void alterCargo(Cargo cargo, Warehouse warehouse, Flight flight, Long dateIn, Long dateOut, String kind);
+
+    void alterExcursion(Excursion excursion, Agency agency, Long date, String title);
+
+    void alterFlight(Flight flight, Airplane airplane, Long date);
+
+    void alterHotel(Hotel hotel, String title);
+
+    List<Passenger> getPassengerList();
 }

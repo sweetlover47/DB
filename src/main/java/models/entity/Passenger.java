@@ -13,7 +13,7 @@ public class Passenger {
     @Setter
     @GeneratedValue(generator="passengers_id_seq", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name="passengers_id_seq",sequenceName="passengers_id_seq", allocationSize=1)
-    private int id;
+    private long id;
 
     @Getter
     @Setter

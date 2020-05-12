@@ -1052,6 +1052,114 @@ public class RepositoryPostgres implements Repository {
     }
 
     @Override
+    public void alterAirplane(Airplane airplane, String seats, String cargo, String volume, boolean isCargoplane) throws NumberFormatException {
+        EntityManager entityManager = emf.createEntityManager();
+        int seatsCount = Integer.parseInt(seats);
+        float cargoWeight = Float.parseFloat(cargo);
+        float volumeWeight = Float.parseFloat(volume);
+        try {
+            entityManager.getTransaction().begin();
+            airplane.setSeat_count(seatsCount);
+            airplane.setCargo_weight(cargoWeight);
+            airplane.setVolume_weight(volumeWeight);
+            airplane.set_cargoplane(isCargoplane);
+            entityManager.merge(airplane);
+            entityManager.getTransaction().commit();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+        entityManager.close();
+    }
+
+    @Override
+    public List<Cargo> getCargoList() {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Cargo> cargoList = entityManager
+                .createQuery("select c from Cargo c")
+                .getResultList();
+        entityManager.close();
+        return cargoList;
+    }
+
+    @Override
+    public void alterCargo(Cargo cargo, Warehouse warehouse, Flight flight, Long dateIn, Long dateOut, String kind) {
+        EntityManager entityManager = emf.createEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            cargo.setWarehouse(warehouse);
+            cargo.setFlight(flight);
+            cargo.setDate_in(new Timestamp(dateIn));
+            cargo.setDate_out(new Timestamp(dateOut));
+            cargo.setKind(kind);
+            entityManager.merge(cargo);
+            entityManager.getTransaction().commit();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+        entityManager.close();
+    }
+
+    @Override
+    public void alterExcursion(Excursion excursion, Agency agency, Long date, String title) {
+        EntityManager entityManager = emf.createEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            excursion.setAgency(agency);
+            excursion.setDate(new Timestamp(date));
+            excursion.setTitle(title);
+            entityManager.merge(excursion);
+            entityManager.getTransaction().commit();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+        entityManager.close();
+    }
+
+    @Override
+    public void alterFlight(Flight flight, Airplane airplane, Long date) {
+        EntityManager entityManager = emf.createEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            flight.setAirplane(airplane);
+            flight.setDate(new Timestamp(date));
+            entityManager.merge(flight);
+            entityManager.getTransaction().commit();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+        entityManager.close();
+    }
+
+    @Override
+    public void alterHotel(Hotel hotel, String title) {
+        EntityManager entityManager = emf.createEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            hotel.setTitle(title);
+            entityManager.merge(hotel);
+            entityManager.getTransaction().commit();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+        entityManager.close();
+    }
+
+    @Override
+    public List<Passenger> getPassengerList() {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Passenger> passengers = entityManager
+                .createQuery("select p from Passenger p")
+                .getResultList();
+        entityManager.close();
+        return passengers;
+    }
+
+    @Override
     public Map<Hotel, Integer> getHotelTookRooms(long dateIn, long dateOut) {
         EntityManager entityManager = emf.createEntityManager();
         Map<Hotel, Integer> agencyFloatMap = entityManager
