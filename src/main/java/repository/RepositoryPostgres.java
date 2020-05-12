@@ -1249,14 +1249,20 @@ public class RepositoryPostgres implements Repository {
     @Override
     public void deleteAgency(Agency agency) {
         EntityManager entityManager = emf.createEntityManager();
+        entityManager.getTransaction().begin();
+        agency = entityManager.merge(agency);
         entityManager.remove(agency);
+        entityManager.getTransaction().commit();
         entityManager.close();
     }
 
     @Override
     public void deleteAirplane(Airplane airplane) {
         EntityManager entityManager = emf.createEntityManager();
+        entityManager.getTransaction().begin();
+        airplane = entityManager.merge(airplane);
         entityManager.remove(airplane);
+        entityManager.getTransaction().commit();
         entityManager.close();
     }
 
@@ -1315,8 +1321,8 @@ public class RepositoryPostgres implements Repository {
                 .setParameter("h", hotel)
                 .getResultStream()
                 .collect(Collectors.toMap(
-                        tuple -> ((Room)tuple.get("room")),
-                        tuple -> ((Integer)tuple.get("num"))
+                        tuple -> ((Room) tuple.get("room")),
+                        tuple -> ((Integer) tuple.get("num"))
                 ));
         entityManager.close();
         return roomsAndNums;
