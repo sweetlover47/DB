@@ -5,10 +5,7 @@ import repository.Repository;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static api.Main.SCREEN_HEIGHT;
 import static api.Main.SCREEN_WIDTH;
@@ -141,20 +138,23 @@ public class DAIqueries extends JFrame {
                 JTabbedPane pane = (JTabbedPane) e.getSource();
                 if (pane.getSelectedIndex() == 0) {
                     addTabPane.setSelectedIndex(0);
-                    if (создатьАгенствоButton.getActionListeners().length < 1)
-                        создатьАгенствоButton.addActionListener(r -> repository.addAgency(textField1.getText()));
+                    if (создатьАгенствоButton.getActionListeners().length >= 1)
+                        Arrays.stream(создатьАгенствоButton.getActionListeners()).forEach(a -> создатьАгенствоButton.removeActionListener(a));
+                    создатьАгенствоButton.addActionListener(r -> repository.addAgency(textField1.getText()));
                 } else if (pane.getSelectedIndex() == 1) {
                     alterTabPane.setSelectedIndex(0);
                     List<Agency> agencyList = repository.getAgencies();
                     comboBox12.setModel(getAgenciesModel(agencyList));
-                    if (изменитьАгенствоButton.getActionListeners().length < 1)
-                        изменитьАгенствоButton.addActionListener(r -> repository.alterAgency(agencyList.get(comboBox12.getSelectedIndex()), textField8.getText()));
+                    if (изменитьАгенствоButton.getActionListeners().length >= 1)
+                        Arrays.stream(изменитьАгенствоButton.getActionListeners()).forEach(a -> изменитьАгенствоButton.removeActionListener(a));
+                    изменитьАгенствоButton.addActionListener(r -> repository.alterAgency(agencyList.get(comboBox12.getSelectedIndex()), textField8.getText()));
                 } else if (pane.getSelectedIndex() == 2) {
                     deleteTabPane.setSelectedIndex(0);
                     List<Agency> agencyList = repository.getAgencies();
                     comboBox44.setModel(getAgenciesModel(agencyList));
-                    if (удалитьАгенствоButton.getActionListeners().length < 1)
-                        удалитьАгенствоButton.addActionListener(r -> repository.deleteAgency(agencyList.get(comboBox44.getSelectedIndex())));
+                    if (удалитьАгенствоButton.getActionListeners().length >= 1)
+                        Arrays.stream(удалитьАгенствоButton.getActionListeners()).forEach(a -> удалитьАгенствоButton.removeActionListener(a));
+                    удалитьАгенствоButton.addActionListener(r -> repository.deleteAgency(agencyList.get(comboBox44.getSelectedIndex())));
                 }
             }
         });
@@ -164,65 +164,66 @@ public class DAIqueries extends JFrame {
                 JTabbedPane pane = (JTabbedPane) r.getSource();
                 switch (pane.getSelectedIndex()) {
                     case 0://agency
-                        if (создатьАгенствоButton.getActionListeners().length < 1)
-                            создатьАгенствоButton.addActionListener(e -> repository.addAgency(textField1.getText()));
+                        if (создатьАгенствоButton.getActionListeners().length >= 1)
+                            Arrays.stream(создатьАгенствоButton.getActionListeners()).forEach(a -> создатьАгенствоButton.removeActionListener(a));
+                        создатьАгенствоButton.addActionListener(e -> repository.addAgency(textField1.getText()));
                         break;
                     case 1://airplane
-                        if (создатьСамолетButton.getActionListeners().length < 1)
-                            создатьСамолетButton.addActionListener(e -> {
-                                try {
-                                    repository.addAirplane(
-                                            textField2.getText(),
-                                            textField3.getText(),
-                                            textField4.getText(),
-                                            грузовойCheckBox1.isSelected()
-                                    );
-                                } catch (Exception ex) {
-                                    JOptionPane.showMessageDialog(null, "Введите данные корректно");
-                                }
-                            });
+                        if (создатьСамолетButton.getActionListeners().length >= 1)
+                            Arrays.stream(создатьСамолетButton.getActionListeners()).forEach(a -> создатьСамолетButton.removeActionListener(a));
+                        создатьСамолетButton.addActionListener(e -> {
+                            try {
+                                repository.addAirplane(
+                                        textField2.getText(),
+                                        textField3.getText(),
+                                        textField4.getText(),
+                                        грузовойCheckBox1.isSelected()
+                                );
+                            } catch (Exception ex) {
+                                JOptionPane.showMessageDialog(null, "Введите данные корректно");
+                            }
+                        });
                         break;
                     case 2://excursion
                         List<Agency> agencyList = repository.getAgencies();
                         comboBox1.setModel(getAgenciesModel(agencyList));
-                        if (создатьЭкскурсиюButton.getActionListeners().length < 1)
-                            создатьЭкскурсиюButton.addActionListener(e -> {
-                                if (parseDate(comboBox2, comboBox3, comboBox4, null, null, null)) return;
-                                repository.addExcursion(agencyList.get(comboBox1.getSelectedIndex()), dateIn, textField5.getText());
-                            });
+                        if (создатьЭкскурсиюButton.getActionListeners().length >= 1)
+                            Arrays.stream(создатьЭкскурсиюButton.getActionListeners()).forEach(a -> создатьЭкскурсиюButton.removeActionListener(a));
+                        создатьЭкскурсиюButton.addActionListener(e -> {
+                            if (parseDate(comboBox2, comboBox3, comboBox4, null, null, null)) return;
+                            repository.addExcursion(agencyList.get(comboBox1.getSelectedIndex()), dateIn, textField5.getText());
+                        });
                         break;
                     case 3://flight
                         List<Airplane> airplaneList = repository.getAirplaneList();
                         comboBox8.setModel(getAirplanesModel(airplaneList));
-                        if (создатьРейсButton.getActionListeners().length < 1)
-                            создатьРейсButton.addActionListener(e -> {
-                                if (parseDate(comboBox5, comboBox6, comboBox7, null, null, null)) return;
-                                repository.addFlight(airplaneList.get(comboBox8.getSelectedIndex()), dateIn);
-                            });
+                        if (создатьРейсButton.getActionListeners().length >= 1)
+                            Arrays.stream(создатьРейсButton.getActionListeners()).forEach(a -> создатьРейсButton.removeActionListener(a));
+                        создатьРейсButton.addActionListener(e -> {
+                            if (parseDate(comboBox5, comboBox6, comboBox7, null, null, null)) return;
+                            repository.addFlight(airplaneList.get(comboBox8.getSelectedIndex()), dateIn);
+                        });
                         break;
                     case 4://hotel
-                        if (создатьОтельButton.getActionListeners().length < 1)
-                            создатьОтельButton.addActionListener(e -> {
-                                repository.addHotel(textField6.getText());
-                            });
+                        if (создатьОтельButton.getActionListeners().length >= 1)
+                            Arrays.stream(создатьОтельButton.getActionListeners()).forEach(a -> создатьОтельButton.removeActionListener(a));
+                        создатьОтельButton.addActionListener(e -> repository.addHotel(textField6.getText()));
                         break;
                     case 5://passenger
                         List<Flight> flightList = repository.getFlightList();
                         List<Tourist> touristList = repository.getTouristList();
                         comboBox9.setModel(getFlightModel(flightList));
                         comboBox10.setModel(getTouristModel(touristList));
-                        if (создатьПассажираButton.getActionListeners().length < 1)
-                            создатьПассажираButton.addActionListener(e -> {
-                                repository.addPassenger(flightList.get(comboBox9.getSelectedIndex()), touristList.get(comboBox10.getSelectedIndex()));
-                            });
+                        if (создатьПассажираButton.getActionListeners().length >= 1)
+                            Arrays.stream(создатьПассажираButton.getActionListeners()).forEach(a -> создатьПассажираButton.removeActionListener(a));
+                        создатьПассажираButton.addActionListener(e -> repository.addPassenger(flightList.get(comboBox9.getSelectedIndex()), touristList.get(comboBox10.getSelectedIndex())));
                         break;
                     case 6://room
                         List<Hotel> hotelList = repository.getHotelList();
                         comboBox11.setModel(getHotelModel(hotelList));
-                        if (создатьКомнатуButton.getActionListeners().length < 1)
-                            создатьКомнатуButton.addActionListener(e -> {
-                                repository.addRoom(hotelList.get(comboBox11.getSelectedIndex()), textField7.getText());
-                            });
+                        if (создатьКомнатуButton.getActionListeners().length >= 1)
+                            Arrays.stream(создатьКомнатуButton.getActionListeners()).forEach(a -> создатьКомнатуButton.removeActionListener(a));
+                        создатьКомнатуButton.addActionListener(e -> repository.addRoom(hotelList.get(comboBox11.getSelectedIndex()), textField7.getText()));
                         break;
                 }
             }
@@ -235,15 +236,17 @@ public class DAIqueries extends JFrame {
                     case 0: {//agency
                         List<Agency> agencyList = repository.getAgencies();
                         comboBox12.setModel(getAgenciesModel(agencyList));
-                        if (изменитьАгенствоButton.getActionListeners().length < 1)
-                            изменитьАгенствоButton.addActionListener(e -> repository.alterAgency(agencyList.get(comboBox12.getSelectedIndex()), textField8.getText()));
+                        if (изменитьАгенствоButton.getActionListeners().length >= 1)
+                            Arrays.stream(изменитьАгенствоButton.getActionListeners()).forEach(a -> изменитьАгенствоButton.removeActionListener(a));
+                        изменитьАгенствоButton.addActionListener(e -> repository.alterAgency(agencyList.get(comboBox12.getSelectedIndex()), textField8.getText()));
                         break;
                     }
                     case 1: { //airplane
                         List<Airplane> airplaneList = repository.getAirplaneList();
                         comboBox13.setModel(getAirplanesModel(airplaneList));
-                        if (изменитьСамолетButton.getActionListeners().length < 1)
-                            изменитьСамолетButton.addActionListener(e -> {
+                        if (изменитьСамолетButton.getActionListeners().length >= 1)
+                            Arrays.stream(изменитьСамолетButton.getActionListeners()).forEach(a -> изменитьСамолетButton.removeActionListener(a));
+                        изменитьСамолетButton.addActionListener(e -> {
                                 try {
                                     repository.alterAirplane(
                                             airplaneList.get(comboBox13.getSelectedIndex()),
@@ -269,8 +272,9 @@ public class DAIqueries extends JFrame {
                                 comboBox17.setModel(getFlightModel(flightList));
                             }
                         });
-                        if (изменитьГрузButton.getActionListeners().length < 1)
-                            изменитьГрузButton.addActionListener(e -> {
+                        if (изменитьГрузButton.getActionListeners().length >= 1)
+                            Arrays.stream(изменитьГрузButton.getActionListeners()).forEach(a -> изменитьГрузButton.removeActionListener(a));
+                        изменитьГрузButton.addActionListener(e -> {
                                 if (textField12.getText().isEmpty()) {
                                     JOptionPane.showMessageDialog(null, "Заполните все поля");
                                     return;
@@ -293,8 +297,9 @@ public class DAIqueries extends JFrame {
                         comboBox58.setModel(getExcursionModel(excursionList));
                         List<Agency> agencyList = repository.getAgencies();
                         comboBox21.setModel(getAgenciesModel(agencyList));
-                        if (изменитьЭкскурсиюButton.getActionListeners().length < 1)
-                            изменитьЭкскурсиюButton.addActionListener(e -> {
+                        if (изменитьЭкскурсиюButton.getActionListeners().length >= 1)
+                            Arrays.stream(изменитьЭкскурсиюButton.getActionListeners()).forEach(a -> изменитьЭкскурсиюButton.removeActionListener(a));
+                        изменитьЭкскурсиюButton.addActionListener(e -> {
                                 if (parseDate(comboBox22, comboBox23, comboBox24, null, null, null)) return;
                                 if (textField13.getText().isEmpty()) {
                                     JOptionPane.showMessageDialog(null, "некорректно введены данные");
@@ -314,8 +319,9 @@ public class DAIqueries extends JFrame {
                         comboBox28.setModel(getAirplanesModel(airplaneList));
                         List<Flight> flightList = repository.getFlightList();
                         comboBox59.setModel(getFlightModel(flightList));
-                        if (изменитьРейсButton.getActionListeners().length < 1)
-                            изменитьРейсButton.addActionListener(e -> {
+                        if (изменитьРейсButton.getActionListeners().length >= 1)
+                            Arrays.stream(изменитьРейсButton.getActionListeners()).forEach(a -> изменитьРейсButton.removeActionListener(a));
+                        изменитьРейсButton.addActionListener(e -> {
                                 if (parseDate(comboBox25, comboBox26, comboBox27, null, null, null)) return;
                                 repository.alterFlight(flightList.get(comboBox59.getSelectedIndex()), airplaneList.get(comboBox28.getSelectedIndex()), dateIn);
                             });
@@ -324,8 +330,9 @@ public class DAIqueries extends JFrame {
                     case 5: {//hotel
                         List<Hotel> hotelList = repository.getHotelList();
                         comboBox60.setModel(getHotelModel(hotelList));
-                        if (изменитьОтельButton.getActionListeners().length < 1)
-                            изменитьОтельButton.addActionListener(e -> repository.alterHotel(hotelList.get(comboBox60.getSelectedIndex()), textField14.getText()));
+                        if (изменитьОтельButton.getActionListeners().length >= 1)
+                            Arrays.stream(изменитьОтельButton.getActionListeners()).forEach(a -> изменитьОтельButton.removeActionListener(a));
+                        изменитьОтельButton.addActionListener(e -> repository.alterHotel(hotelList.get(comboBox60.getSelectedIndex()), textField14.getText()));
                         break;
                     }
                     case 6: {//passenger
@@ -335,8 +342,9 @@ public class DAIqueries extends JFrame {
                         comboBox30.setModel(getPassengerModel(passengerList));
                         comboBox31.setModel(getFlightModel(flightList));
                         comboBox29.setModel(getTouristModel(touristList));
-                        if (изменитьПассажираButton.getActionListeners().length < 1)
-                            изменитьПассажираButton.addActionListener(e -> {
+                        if (изменитьПассажираButton.getActionListeners().length >= 1)
+                            Arrays.stream(изменитьПассажираButton.getActionListeners()).forEach(a -> изменитьПассажираButton.removeActionListener(a));
+                        изменитьПассажираButton.addActionListener(e -> {
                                 repository.alterPassenger(
                                         passengerList.get(comboBox30.getSelectedIndex()),
                                         flightList.get(comboBox31.getSelectedIndex()),
@@ -349,8 +357,9 @@ public class DAIqueries extends JFrame {
                         List<Hotel> hotelList = repository.getHotelList();
                         comboBox34.setModel(getHotelModel(hotelList));
                         comboBox32.setModel(getRoomModel(roomList));
-                        if (изменитьКомнатуButton.getActionListeners().length < 1)
-                            изменитьКомнатуButton.addActionListener(e -> {
+                        if (изменитьКомнатуButton.getActionListeners().length >= 1)
+                            Arrays.stream(изменитьКомнатуButton.getActionListeners()).forEach(a -> изменитьКомнатуButton.removeActionListener(a));
+                        изменитьКомнатуButton.addActionListener(e -> {
                                 try {
                                     repository.alterRoom(
                                             roomList.get(comboBox32.getSelectedIndex()),
@@ -368,8 +377,9 @@ public class DAIqueries extends JFrame {
                         comboBox35.setModel(getTripModel(tripList));
                         List<Room> roomList = repository.getRoomList();
                         comboBox43.setModel(getRoomModel(roomList));
-                        if (изменитьПоездкуButton.getActionListeners().length < 1)
-                            изменитьПоездкуButton.addActionListener(e -> {
+                        if (изменитьПоездкуButton.getActionListeners().length >= 1)
+                            Arrays.stream(изменитьПоездкуButton.getActionListeners()).forEach(a -> изменитьПоездкуButton.removeActionListener(a));
+                        изменитьПоездкуButton.addActionListener(e -> {
                                 if (parseDate(comboBox36, comboBox38, comboBox40, comboBox37, comboBox39, comboBox41))
                                     return;
                                 if (textField15.getText().isEmpty()) {
@@ -396,50 +406,57 @@ public class DAIqueries extends JFrame {
                     case 0: {//agency
                         List<Agency> agencyList = repository.getAgencies();
                         comboBox44.setModel(getAgenciesModel(agencyList));
-                        if (удалитьАгенствоButton.getActionListeners().length < 1)
-                            удалитьАгенствоButton.addActionListener(e -> repository.deleteAgency(agencyList.get(comboBox44.getSelectedIndex())));
+                        if (удалитьАгенствоButton.getActionListeners().length >= 1)
+                            Arrays.stream(удалитьАгенствоButton.getActionListeners()).forEach(a -> удалитьАгенствоButton.removeActionListener(a));
+                        удалитьАгенствоButton.addActionListener(e -> repository.deleteAgency(agencyList.get(comboBox44.getSelectedIndex())));
                         break;
                     }
                     case 1: {//airplane
                         List<Airplane> airplaneList = repository.getAirplaneList();
                         comboBox45.setModel(getAirplanesModel(airplaneList));
-                        if (удалитьСамолетButton.getActionListeners().length < 1)
-                            удалитьСамолетButton.addActionListener(e -> repository.deleteAirplane(airplaneList.get(comboBox45.getSelectedIndex())));
+                        if (удалитьСамолетButton.getActionListeners().length >= 1)
+                            Arrays.stream(удалитьСамолетButton.getActionListeners()).forEach(a -> удалитьСамолетButton.removeActionListener(a));
+                        удалитьСамолетButton.addActionListener(e -> repository.deleteAirplane(airplaneList.get(comboBox45.getSelectedIndex())));
                         break;
                     }
                     case 2: { //tourist
                         List<Tourist> touristList = repository.getTouristList();
                         comboBox46.setModel(getTouristModel(touristList));
-                        if (удалитьТуристаButton.getActionListeners().length < 1)
-                            удалитьТуристаButton.addActionListener(e -> repository.deleteTourist(touristList.get(comboBox46.getSelectedIndex())));
+                        if (удалитьТуристаButton.getActionListeners().length >= 1)
+                            Arrays.stream(удалитьТуристаButton.getActionListeners()).forEach(a -> удалитьТуристаButton.removeActionListener(a));
+                        удалитьТуристаButton.addActionListener(e -> repository.deleteTourist(touristList.get(comboBox46.getSelectedIndex())));
                         break;
                     }
                     case 3: { //cargo
                         List<Cargo> cargoList = repository.getCargoList();
                         comboBox47.setModel(getCargoModel(cargoList));
-                        if (удалитьГрузButton.getActionListeners().length < 1)
-                            удалитьГрузButton.addActionListener(e -> repository.deleteCargo(cargoList.get(comboBox47.getSelectedIndex())));
+                        if (удалитьГрузButton.getActionListeners().length >= 1)
+                            Arrays.stream(удалитьГрузButton.getActionListeners()).forEach(a -> удалитьГрузButton.removeActionListener(a));
+                        удалитьГрузButton.addActionListener(e -> repository.deleteCargo(cargoList.get(comboBox47.getSelectedIndex())));
                         break;
                     }
                     case 4: {//excursion
                         List<Excursion> agencyList = repository.getExcursions();
                         comboBox48.setModel(getExcursionModel(agencyList));
-                        if (удалитьЭкскурсиюButton.getActionListeners().length < 1)
-                            удалитьЭкскурсиюButton.addActionListener(e -> repository.deleteExcursion(agencyList.get(comboBox48.getSelectedIndex())));
+                        if (удалитьЭкскурсиюButton.getActionListeners().length >= 1)
+                            Arrays.stream(удалитьЭкскурсиюButton.getActionListeners()).forEach(a -> удалитьЭкскурсиюButton.removeActionListener(a));
+                        удалитьЭкскурсиюButton.addActionListener(e -> repository.deleteExcursion(agencyList.get(comboBox48.getSelectedIndex())));
                         break;
                     }
                     case 5: {//flight
-                        List<Flight> airplaneList = repository.getFlightList();
-                        comboBox49.setModel(getFlightModel(airplaneList));
-                        if (удалитьРейсButton.getActionListeners().length < 1)
-                            удалитьРейсButton.addActionListener(e -> repository.deleteFlight(airplaneList.get(comboBox49.getSelectedIndex())));
+                        List<Flight> flightList = repository.getFlightList();
+                        comboBox49.setModel(getFlightModel(flightList));
+                        if (удалитьРейсButton.getActionListeners().length >= 1)
+                            Arrays.stream(удалитьРейсButton.getActionListeners()).forEach(a -> удалитьРейсButton.removeActionListener(a));
+                        удалитьРейсButton.addActionListener(e -> repository.deleteFlight(flightList.get(comboBox49.getSelectedIndex())));
                         break;
                     }
                     case 6: {//hotel
                         List<Hotel> hotelList = repository.getHotelList();
                         comboBox50.setModel(getHotelModel(hotelList));
-                        if (удалитьОтельButton.getActionListeners().length < 1)
-                            удалитьОтельButton.addActionListener(e -> repository.deleteHotel(hotelList.get(comboBox50.getSelectedIndex())));
+                        if (удалитьОтельButton.getActionListeners().length >= 1)
+                            Arrays.stream(удалитьОтельButton.getActionListeners()).forEach(a -> удалитьОтельButton.removeActionListener(a));
+                        удалитьОтельButton.addActionListener(e -> repository.deleteHotel(hotelList.get(comboBox50.getSelectedIndex())));
                         break;
                     }
                     case 7: {//passenger
@@ -447,22 +464,25 @@ public class DAIqueries extends JFrame {
                         List<Flight> flightList = repository.getFlightList();
                         comboBox51.setModel(getFlightModel(flightList));
                         comboBox52.setModel(getTouristModel(touristList));
-                        if (удалитьПассажираButton.getActionListeners().length < 1)
-                            удалитьПассажираButton.addActionListener(e -> repository.deletePassenger(touristList.get(comboBox52.getSelectedIndex()), flightList.get(comboBox51.getSelectedIndex())));
+                        if (удалитьПассажираButton.getActionListeners().length >= 1)
+                            Arrays.stream(удалитьПассажираButton.getActionListeners()).forEach(a -> удалитьПассажираButton.removeActionListener(a));
+                        удалитьПассажираButton.addActionListener(e -> repository.deletePassenger(touristList.get(comboBox52.getSelectedIndex()), flightList.get(comboBox51.getSelectedIndex())));
                         break;
                     }
                     case 8: {//room
                         List<Room> hotelList = repository.getRoomList();
                         comboBox53.setModel(getRoomModel(hotelList));
-                        if (удалитьКомнатуButton.getActionListeners().length < 1)
-                            удалитьКомнатуButton.addActionListener(e -> repository.deleteRoom(hotelList.get(comboBox53.getSelectedIndex())));
+                        if (удалитьКомнатуButton.getActionListeners().length >= 1)
+                            Arrays.stream(удалитьКомнатуButton.getActionListeners()).forEach(a -> удалитьКомнатуButton.removeActionListener(a));
+                        удалитьКомнатуButton.addActionListener(e -> repository.deleteRoom(hotelList.get(comboBox53.getSelectedIndex())));
                         break;
                     }
                     case 9: {//trip
                         List<Trip> tripList = repository.getTripList();
                         comboBox55.setModel(getTripModel(tripList));
-                        if (удалитьПоездкуButton.getActionListeners().length < 1)
-                            удалитьПоездкуButton.addActionListener(e -> repository.deleteTrip(tripList.get(comboBox55.getSelectedIndex())));
+                        if (удалитьПоездкуButton.getActionListeners().length >= 1)
+                            Arrays.stream(удалитьПоездкуButton.getActionListeners()).forEach(a -> удалитьПоездкуButton.removeActionListener(a));
+                        удалитьПоездкуButton.addActionListener(e -> repository.deleteTrip(tripList.get(comboBox55.getSelectedIndex())));
                         break;
                     }
                 }

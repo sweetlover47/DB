@@ -34,7 +34,7 @@ public class Room {
 
     @Getter
     @Setter
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_transaction")
     private Transaction transaction;
 }

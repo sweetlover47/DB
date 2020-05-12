@@ -36,33 +36,14 @@ public class Tourist {
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
     private List<Child> children;
 
-    /*
     @Getter
     @Setter
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "rest_tourist",
-            joinColumns = @JoinColumn(name = "id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "id_excursion", referencedColumnName = "id")
-    )
-    private List<Excursion> excursions;
-
-    @Getter
-    @Setter
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "cargo_tourist",
-            joinColumns = @JoinColumn(name = "id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "id_cargo", referencedColumnName = "id")
-    )
-    private List<Cargo> cargos;
-*/
-    @Getter
-    @Setter
-    @OneToMany(mappedBy = "tourist")
+    @OneToMany(mappedBy = "tourist", cascade = CascadeType.ALL)
     private List<Passenger> passengerList;
 
     @Getter
     @Setter
-    @OneToMany(mappedBy = "tourist")
+    @OneToMany(mappedBy = "tourist", cascade = CascadeType.ALL)
     private List<Trip> tripList;
 
 }

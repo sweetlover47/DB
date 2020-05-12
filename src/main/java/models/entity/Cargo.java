@@ -31,7 +31,7 @@ public class Cargo {
 
     @Getter
     @Setter
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_flight")
     private Flight flight;
 

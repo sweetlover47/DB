@@ -34,6 +34,6 @@ public class Airplane {
 
     @Getter
     @Setter
-    @OneToMany(mappedBy = "airplane")
+    @OneToMany(mappedBy = "airplane", cascade = CascadeType.ALL)
     private List<Flight> flightList;
 }

@@ -1269,47 +1269,62 @@ public class RepositoryPostgres implements Repository {
     @Override
     public void deleteTourist(Tourist tourist) {
         EntityManager entityManager = emf.createEntityManager();
+        entityManager.getTransaction().begin();
+        tourist = entityManager.merge(tourist);
         entityManager.remove(tourist);
+        entityManager.getTransaction().commit();
         entityManager.close();
     }
 
     @Override
     public void deleteCargo(Cargo cargo) {
         EntityManager entityManager = emf.createEntityManager();
-        entityManager.remove(cargo);
+        entityManager.getTransaction().begin();
+        entityManager.remove(entityManager.merge(cargo));
+        entityManager.getTransaction().commit();
         entityManager.close();
     }
 
     @Override
     public void deleteExcursion(Excursion excursion) {
         EntityManager entityManager = emf.createEntityManager();
-        entityManager.remove(excursion);
+        entityManager.getTransaction().begin();
+        entityManager.createQuery("select t from trans t where t.excursion = :e").setParameter("e", excursion).getResultStream().forEach(t -> ((Transaction) t).setExcursion(null));
+        entityManager.remove(entityManager.merge(excursion));
+        entityManager.getTransaction().commit();
         entityManager.close();
     }
 
     @Override
     public void deleteFlight(Flight flight) {
         EntityManager entityManager = emf.createEntityManager();
-        entityManager.remove(flight);
+        entityManager.getTransaction().begin();
+        entityManager.createQuery("select p from Passenger p where p.flight = :f").setParameter("f", flight).getResultStream().forEach(entityManager::remove);
+        entityManager.remove(entityManager.merge(flight));
+        entityManager.getTransaction().commit();
         entityManager.close();
     }
 
     @Override
     public void deleteHotel(Hotel hotel) {
         EntityManager entityManager = emf.createEntityManager();
-        entityManager.remove(hotel);
+        entityManager.getTransaction().begin();
+        entityManager.remove(entityManager.merge(hotel));
+        entityManager.getTransaction().commit();
         entityManager.close();
     }
 
     @Override
     public void deletePassenger(Tourist tourist, Flight flight) {
         EntityManager entityManager = emf.createEntityManager();
+        entityManager.getTransaction().begin();
         Passenger passenger = entityManager
                 .createQuery("select p from Passenger p where p.flight = :f and p.tourist = :t", Passenger.class)
                 .setParameter("f", flight)
                 .setParameter("t", tourist)
                 .getSingleResult();
         entityManager.remove(passenger);
+        entityManager.getTransaction().commit();
         entityManager.close();
     }
 
@@ -1331,14 +1346,26 @@ public class RepositoryPostgres implements Repository {
     @Override
     public void deleteRoom(Room room) {
         EntityManager entityManager = emf.createEntityManager();
+        entityManager.getTransaction().begin();
+        room = entityManager.merge(room);
+        Room finalRoom = room;
+        entityManager.createQuery("select h from Hotel h where :ho = h").setParameter("ho", room.getHotel()).getResultStream().forEach(h -> {
+            List<Room> rooms = ((Hotel)h).getRooms();
+            rooms.remove(finalRoom);
+            ((Hotel)h).setRooms(rooms);
+            entityManager.merge((Hotel)h);
+        });
         entityManager.remove(room);
+        entityManager.getTransaction().commit();
         entityManager.close();
     }
 
     @Override
     public void deleteTrip(Trip trip) {
         EntityManager entityManager = emf.createEntityManager();
-        entityManager.remove(trip);
+        entityManager.getTransaction().begin();
+        entityManager.remove(entityManager.merge(trip));
+        entityManager.getTransaction().commit();
         entityManager.close();
     }
 

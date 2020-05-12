@@ -22,6 +22,6 @@ public class Hotel {
 
     @Getter
     @Setter
-    @OneToMany(mappedBy = "hotel")
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
     private List<Room> rooms;
 }
