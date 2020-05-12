@@ -960,6 +960,14 @@ public class RepositoryPostgres implements Repository {
             e.setDate(new Timestamp(date));
             e.setTitle(title);
             entityManager.persist(e);
+            Transaction t = new Transaction();
+            t.setSum(5200);
+            t.setName("Экскурсия");
+            t.set_income(false);
+            t.setExcursion(e);
+            entityManager.persist(t);
+            e.setTransaction(t);
+            entityManager.merge(e);
             entityManager.getTransaction().commit();
         } catch (RollbackException ex) {
             ex.printStackTrace();
@@ -978,7 +986,15 @@ public class RepositoryPostgres implements Repository {
         f.setPassengerList(new ArrayList<>());
         try {
             entityManager.getTransaction().begin();
+            Transaction t = new Transaction();
+            t.setSum(178500);
+            t.setName("Перелет");
+            t.set_income(false);
+            t.setFlight(f);
             entityManager.persist(f);
+            entityManager.persist(t);
+            f.setTransaction(t);
+            entityManager.merge(f);
             entityManager.getTransaction().commit();
         } catch (RollbackException ex) {
             ex.printStackTrace();
@@ -1090,7 +1106,7 @@ public class RepositoryPostgres implements Repository {
             cargo.setWarehouse(warehouse);
             cargo.setFlight(flight);
             cargo.setDate_in(new Timestamp(dateIn));
-            cargo.setDate_out(new Timestamp(dateOut));
+            if (dateOut != null) cargo.setDate_out(new Timestamp(dateOut));
             cargo.setKind(kind);
             entityManager.merge(cargo);
             entityManager.getTransaction().commit();
@@ -1210,6 +1226,24 @@ public class RepositoryPostgres implements Repository {
                 .getResultList();
         entityManager.close();
         return cargoList;
+    }
+
+    @Override
+    public void alterTrip(Trip trip, String country, Long dateIn, Long dateOut, Room room) {
+        EntityManager entityManager = emf.createEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            trip.setCountry(country);
+            trip.setDate_in(new Timestamp(dateIn));
+            trip.setDate_out(new Timestamp(dateOut));
+            trip.setRoom(room);
+            entityManager.merge(trip);
+            entityManager.getTransaction().commit();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+        entityManager.close();
     }
 
     @Override

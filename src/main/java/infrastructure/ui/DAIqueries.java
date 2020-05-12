@@ -231,10 +231,10 @@ public class DAIqueries extends JFrame {
                             try {
                                 repository.alterAirplane(
                                         airplaneList.get(comboBox13.getSelectedIndex()),
-                                        textField2.getText(),
-                                        textField3.getText(),
-                                        textField4.getText(),
-                                        грузовойCheckBox1.isSelected()
+                                        textField9.getText(),
+                                        textField10.getText(),
+                                        textField11.getText(),
+                                        грузовойCheckBox.isSelected()
                                 );
                             } catch (Exception ex) {
                                 JOptionPane.showMessageDialog(null, "Введите данные корректно");
@@ -276,8 +276,12 @@ public class DAIqueries extends JFrame {
                         comboBox58.setModel(getExcursionModel(excursionList));
                         List<Agency> agencyList = repository.getAgencies();
                         comboBox21.setModel(getAgenciesModel(agencyList));
-                        if (parseDate(comboBox23, comboBox24, comboBox25, null, null, null)) return;
                         изменитьЭкскурсиюButton.addActionListener(e -> {
+                            if (parseDate(comboBox22, comboBox23, comboBox24, null, null, null)) return;
+                            if (textField13.getText().isEmpty()) {
+                                JOptionPane.showMessageDialog(null, "некорректно введены данные");
+                                return;
+                            }
                             repository.alterExcursion(
                                     excursionList.get(comboBox58.getSelectedIndex()),
                                     agencyList.get(comboBox21.getSelectedIndex()),
@@ -340,20 +344,28 @@ public class DAIqueries extends JFrame {
                     case 8: {
                         List<Trip> tripList = repository.getTripList();
                         comboBox35.setModel(getTripModel(tripList));
-                        List<Hotel> hotelList = repository.getHotelList();
-                        comboBox42.setModel(getHotelModel(hotelList));
                         List<Room> roomList = repository.getRoomList();
                         comboBox43.setModel(getRoomModel(roomList));
                         изменитьПоездкуButton.addActionListener(e -> {
                             if (parseDate(comboBox36, comboBox38, comboBox40, comboBox37, comboBox39, comboBox41))
                                 return;
-
+                            if (textField15.getText().isEmpty()) {
+                                JOptionPane.showMessageDialog(null, "Некорректно введены данные");
+                            }
+                            repository.alterTrip(
+                                    tripList.get(comboBox35.getSelectedIndex()),
+                                    textField15.getText(),
+                                    dateIn,
+                                    dateOut,
+                                    roomList.get(comboBox43.getSelectedIndex())
+                            );
                         });
                         break;
                     }
                 }
             }
         });
+
     }
 
     private DefaultComboBoxModel getAirplanesModel(List<Airplane> airplanes) {

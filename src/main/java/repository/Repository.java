@@ -150,4 +150,6 @@ public interface Repository {
     void alterRoom(Room room, Hotel hotel, String num);
 
     List<Trip> getTripList();
+
+    void alterTrip(Trip trip, String country, Long dateIn, Long dateOut, Room room);
 }
