@@ -913,11 +913,11 @@ public class RepositoryPostgres implements Repository {
     @Override
     public void addAgency(String title) {
         EntityManager entityManager = emf.createEntityManager();
-        Agency a = new Agency();
-        a.setExcursions(new ArrayList<>());
-        a.setName(title);
         try {
             entityManager.getTransaction().begin();
+            Agency a = new Agency();
+            a.setExcursions(new ArrayList<>());
+            a.setName(title);
             entityManager.persist(a);
             entityManager.getTransaction().commit();
         } catch (RollbackException ex) {
@@ -951,17 +951,15 @@ public class RepositoryPostgres implements Repository {
     @Override
     public void addExcursion(Agency agency, Long date, String title) {
         EntityManager entityManager = emf.createEntityManager();
-        Excursion e = new Excursion();
-        e.setNumOrders(0);
-        e.setParticipatingTourists(new ArrayList<>());
-        e.setAgency(agency);
-        e.setDate(new Timestamp(date));
-        e.setTitle(title);
         try {
             entityManager.getTransaction().begin();
+            Excursion e = new Excursion();
+            e.setNumOrders(0);
+            e.setParticipatingTourists(new ArrayList<>());
+            e.setAgency(agency);
+            e.setDate(new Timestamp(date));
+            e.setTitle(title);
             entityManager.persist(e);
-            agency.getExcursions().add(e);
-            entityManager.merge(agency);
             entityManager.getTransaction().commit();
         } catch (RollbackException ex) {
             ex.printStackTrace();
@@ -981,8 +979,6 @@ public class RepositoryPostgres implements Repository {
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(f);
-            airplane.getFlightList().add(f);
-            entityManager.merge(airplane);
             entityManager.getTransaction().commit();
         } catch (RollbackException ex) {
             ex.printStackTrace();
@@ -1015,10 +1011,6 @@ public class RepositoryPostgres implements Repository {
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(a);
-            flight.getPassengerList().add(a);
-            tourist.getPassengerList().add(a);
-            entityManager.merge(flight);
-            entityManager.merge(tourist);
             entityManager.getTransaction().commit();
         } catch (RollbackException ex) {
             ex.printStackTrace();
@@ -1037,8 +1029,6 @@ public class RepositoryPostgres implements Repository {
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(a);
-            hotel.getRooms().add(a);
-            entityManager.merge(hotel);
             entityManager.getTransaction().commit();
         } catch (RollbackException ex) {
             ex.printStackTrace();

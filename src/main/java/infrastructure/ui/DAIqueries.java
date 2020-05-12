@@ -127,6 +127,7 @@ public class DAIqueries extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();
         setVisible(true);
+        создатьАгенствоButton.addActionListener(e -> repository.addAgency(textField1.getText()));
 
         addTabPane.addChangeListener(r -> {
             if (r.getSource() instanceof JTabbedPane) {
@@ -270,12 +271,12 @@ public class DAIqueries extends JFrame {
             dateOut = calendarDate.getTimeInMillis();
             if (dateIn > dateOut) {
                 JOptionPane.showMessageDialog(null, "Нельзя поставить дату начала поездки позже даты конца");
-                return false;
+                return true;
             }
-        } catch (NumberFormatException ignored) {
+        } catch (Exception ignored) {
 
         }
-        return true;
+        return false;
     }
 
 }

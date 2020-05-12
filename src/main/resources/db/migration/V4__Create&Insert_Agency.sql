@@ -14,11 +14,11 @@ create table agency
   name varchar
 );
 
-INSERT INTO agency VALUES
-(1,	'Hello, World'),
-(2,	'GreatAgency'),
-(4,	'Trick & Trip'),
-(3,	'Привет, Мир'),
-(6,	'Турнир'),
-(7,	'Лучший тур для вас'),
-(8,	'поТУРции');
+INSERT INTO agency(name) VALUES
+(	'Hello, World'),
+(	'GreatAgency'),
+(	'Trick & Trip'),
+(	'Привет, Мир'),
+(	'Турнир'),
+('Лучший тур для вас'),
+('поТУРции');

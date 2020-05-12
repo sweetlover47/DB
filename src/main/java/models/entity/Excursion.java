@@ -14,6 +14,8 @@ public class Excursion {
     @Id
     @Getter
     @Setter
+    @GeneratedValue(generator="excursion_id_seq", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name="excursion_id_seq",sequenceName="excursion_id_seq", allocationSize=1)
     private Long id;
 
    // @Column(name = "id_agency")
