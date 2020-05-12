@@ -8,6 +8,7 @@ import java.awt.event.ItemEvent;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Map;
 
 import static api.Main.SCREEN_HEIGHT;
 import static api.Main.SCREEN_WIDTH;
@@ -109,7 +110,6 @@ public class DAIqueries extends JFrame {
     private JComboBox comboBox51;
     private JComboBox comboBox52;
     private JComboBox comboBox53;
-    private JComboBox comboBox54;
     private JButton удалитьКомнатуButton;
     private JComboBox comboBox55;
     private JButton удалитьПоездкуButton;
@@ -366,6 +366,75 @@ public class DAIqueries extends JFrame {
             }
         });
 
+        deleteTabPane.addChangeListener(r -> {
+            if (r.getSource() instanceof JTabbedPane) {
+                JTabbedPane pane = (JTabbedPane) r.getSource();
+                switch (pane.getSelectedIndex()) {
+                    case 0: {//agency
+                        List<Agency> agencyList = repository.getAgencies();
+                        comboBox44.setModel(getAgenciesModel(agencyList));
+                        удалитьАгенствоButton.addActionListener(e -> repository.deleteAgency(agencyList.get(comboBox44.getSelectedIndex())));
+                        break;
+                    }
+                    case 1: {//airplane
+                        List<Airplane> airplaneList = repository.getAirplaneList();
+                        comboBox45.setModel(getAirplanesModel(airplaneList));
+                        удалитьСамолетButton.addActionListener(e -> repository.deleteAirplane(airplaneList.get(comboBox45.getSelectedIndex())));
+                        break;
+                    }
+                    case 2: { //tourist
+                        List<Tourist> touristList = repository.getTouristList();
+                        comboBox46.setModel(getTouristModel(touristList));
+                        удалитьТуристаButton.addActionListener(e -> repository.deleteTourist(touristList.get(comboBox46.getSelectedIndex())));
+                        break;
+                    }
+                    case 3: { //cargo
+                        List<Cargo> cargoList = repository.getCargoList();
+                        comboBox47.setModel(getCargoModel(cargoList));
+                        удалитьГрузButton.addActionListener(e -> repository.deleteCargo(cargoList.get(comboBox47.getSelectedIndex())));
+                        break;
+                    }
+                    case 4: {//excursion
+                        List<Excursion> agencyList = repository.getExcursions();
+                        comboBox48.setModel(getExcursionModel(agencyList));
+                        удалитьЭкскурсиюButton.addActionListener(e -> repository.deleteExcursion(agencyList.get(comboBox48.getSelectedIndex())));
+                        break;
+                    }
+                    case 5: {//flight
+                        List<Flight> airplaneList = repository.getFlightList();
+                        comboBox49.setModel(getFlightModel(airplaneList));
+                        удалитьРейсButton.addActionListener(e -> repository.deleteFlight(airplaneList.get(comboBox49.getSelectedIndex())));
+                        break;
+                    }
+                    case 6: {//hotel
+                        List<Hotel> hotelList = repository.getHotelList();
+                        comboBox50.setModel(getHotelModel(hotelList));
+                        удалитьОтельButton.addActionListener(e -> repository.deleteHotel(hotelList.get(comboBox50.getSelectedIndex())));
+                        break;
+                    }
+                    case 7: {//passenger
+                        List<Tourist> touristList = repository.getTouristList();
+                        List<Flight> flightList = repository.getFlightList();
+                        comboBox51.setModel(getFlightModel(flightList));
+                        comboBox52.setModel(getTouristModel(touristList));
+                        удалитьПассажираButton.addActionListener(e -> repository.deletePassenger(touristList.get(comboBox52.getSelectedIndex()), flightList.get(comboBox51.getSelectedIndex())));
+                        break;
+                    }
+                    case 8: {//room
+                        List<Room> hotelList = repository.getRoomList();
+                        comboBox53.setModel(getRoomModel(hotelList));
+                        удалитьКомнатуButton.addActionListener(e -> repository.deleteRoom(hotelList.get(comboBox53.getSelectedIndex())));
+                        break;
+                    }
+                    case 9: {//trip
+                        List<Trip> tripList = repository.getTripList();
+                        comboBox55.setModel(getTripModel(tripList));
+                        удалитьКомнатуButton.addActionListener(e -> repository.deleteTrip(tripList.get(comboBox55.getSelectedIndex())));
+                        break;
+                    }
+                }
+            }
+        });
     }
 
     private DefaultComboBoxModel getAirplanesModel(List<Airplane> airplanes) {
@@ -453,6 +522,14 @@ public class DAIqueries extends JFrame {
         int i = 0;
         for (Trip a : flights)
             ids[i++] = a.getId();
+        return new DefaultComboBoxModel(ids);
+    }
+
+    private DefaultComboBoxModel getRoomNumbersModel(Map<Room, Integer> map) {
+        Long[] ids = new Long[map.size()];
+        int i = 0;
+        for (Map.Entry<Room, Integer> entry : map.entrySet())
+            ids[i++] = Long.valueOf(entry.getValue());
         return new DefaultComboBoxModel(ids);
     }
 

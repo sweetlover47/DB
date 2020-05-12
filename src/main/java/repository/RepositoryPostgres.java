@@ -1247,6 +1247,96 @@ public class RepositoryPostgres implements Repository {
     }
 
     @Override
+    public void deleteAgency(Agency agency) {
+        EntityManager entityManager = emf.createEntityManager();
+        entityManager.remove(agency);
+        entityManager.close();
+    }
+
+    @Override
+    public void deleteAirplane(Airplane airplane) {
+        EntityManager entityManager = emf.createEntityManager();
+        entityManager.remove(airplane);
+        entityManager.close();
+    }
+
+    @Override
+    public void deleteTourist(Tourist tourist) {
+        EntityManager entityManager = emf.createEntityManager();
+        entityManager.remove(tourist);
+        entityManager.close();
+    }
+
+    @Override
+    public void deleteCargo(Cargo cargo) {
+        EntityManager entityManager = emf.createEntityManager();
+        entityManager.remove(cargo);
+        entityManager.close();
+    }
+
+    @Override
+    public void deleteExcursion(Excursion excursion) {
+        EntityManager entityManager = emf.createEntityManager();
+        entityManager.remove(excursion);
+        entityManager.close();
+    }
+
+    @Override
+    public void deleteFlight(Flight flight) {
+        EntityManager entityManager = emf.createEntityManager();
+        entityManager.remove(flight);
+        entityManager.close();
+    }
+
+    @Override
+    public void deleteHotel(Hotel hotel) {
+        EntityManager entityManager = emf.createEntityManager();
+        entityManager.remove(hotel);
+        entityManager.close();
+    }
+
+    @Override
+    public void deletePassenger(Tourist tourist, Flight flight) {
+        EntityManager entityManager = emf.createEntityManager();
+        Passenger passenger = entityManager
+                .createQuery("select p from Passenger p where p.flight = :f and p.tourist = :t", Passenger.class)
+                .setParameter("f", flight)
+                .setParameter("t", tourist)
+                .getSingleResult();
+        entityManager.remove(passenger);
+        entityManager.close();
+    }
+
+    @Override
+    public Map<Room, Integer> getRoomNumbersForHotel(Hotel hotel) {
+        EntityManager entityManager = emf.createEntityManager();
+        Map<Room, Integer> roomsAndNums = entityManager
+                .createQuery("select r as room, r.roomNumber as num from Room r where r.hotel = :h", Tuple.class)
+                .setParameter("h", hotel)
+                .getResultStream()
+                .collect(Collectors.toMap(
+                        tuple -> ((Room)tuple.get("room")),
+                        tuple -> ((Integer)tuple.get("num"))
+                ));
+        entityManager.close();
+        return roomsAndNums;
+    }
+
+    @Override
+    public void deleteRoom(Room room) {
+        EntityManager entityManager = emf.createEntityManager();
+        entityManager.remove(room);
+        entityManager.close();
+    }
+
+    @Override
+    public void deleteTrip(Trip trip) {
+        EntityManager entityManager = emf.createEntityManager();
+        entityManager.remove(trip);
+        entityManager.close();
+    }
+
+    @Override
     public Map<Hotel, Integer> getHotelTookRooms(long dateIn, long dateOut) {
         EntityManager entityManager = emf.createEntityManager();
         Map<Hotel, Integer> agencyFloatMap = entityManager

@@ -152,4 +152,26 @@ public interface Repository {
     List<Trip> getTripList();
 
     void alterTrip(Trip trip, String country, Long dateIn, Long dateOut, Room room);
+
+    void deleteAgency(Agency agency);
+
+    void deleteAirplane(Airplane airplane);
+
+    void deleteTourist(Tourist tourist);
+
+    void deleteCargo(Cargo cargo);
+
+    void deleteExcursion(Excursion excursion);
+
+    void deleteFlight(Flight flight);
+
+    void deleteHotel(Hotel hotel);
+
+    void deletePassenger(Tourist tourist, Flight flight);
+
+    Map<Room, Integer> getRoomNumbersForHotel(Hotel hotel);
+
+    void deleteRoom(Room room);
+
+    void deleteTrip(Trip trip);
 }
