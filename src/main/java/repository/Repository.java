@@ -142,4 +142,12 @@ public interface Repository {
     void alterHotel(Hotel hotel, String title);
 
     List<Passenger> getPassengerList();
+
+    void alterPassenger(Passenger passenger, Flight flight, Tourist tourist);
+
+    List<Room> getRoomList();
+
+    void alterRoom(Room room, Hotel hotel, String num);
+
+    List<Trip> getTripList();
 }

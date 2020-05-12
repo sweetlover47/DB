@@ -15,7 +15,7 @@ public class Trip {
     @Setter
     @GeneratedValue(generator="trip_id_seq", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name="trip_id_seq",sequenceName="trip_id_seq", allocationSize=1)
-    private int id;
+    private long id;
 
     @Getter
     @Setter

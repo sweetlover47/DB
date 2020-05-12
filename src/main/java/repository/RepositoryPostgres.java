@@ -1160,6 +1160,59 @@ public class RepositoryPostgres implements Repository {
     }
 
     @Override
+    public void alterPassenger(Passenger passenger, Flight flight, Tourist tourist) {
+        EntityManager entityManager = emf.createEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            passenger.setFlight(flight);
+            passenger.setTourist(tourist);
+            entityManager.merge(passenger);
+            entityManager.getTransaction().commit();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+        entityManager.close();
+    }
+
+    @Override
+    public List<Room> getRoomList() {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Room> cargoList = entityManager
+                .createQuery("select c from Room c")
+                .getResultList();
+        entityManager.close();
+        return cargoList;
+    }
+
+    @Override
+    public void alterRoom(Room room, Hotel hotel, String num) throws NumberFormatException {
+        EntityManager entityManager = emf.createEntityManager();
+        int number = Integer.parseInt(num);
+        try {
+            entityManager.getTransaction().begin();
+            room.setHotel(hotel);
+            room.setRoomNumber(number);
+            entityManager.merge(room);
+            entityManager.getTransaction().commit();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+        entityManager.close();
+    }
+
+    @Override
+    public List<Trip> getTripList() {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Trip> cargoList = entityManager
+                .createQuery("select c from trip c")
+                .getResultList();
+        entityManager.close();
+        return cargoList;
+    }
+
+    @Override
     public Map<Hotel, Integer> getHotelTookRooms(long dateIn, long dateOut) {
         EntityManager entityManager = emf.createEntityManager();
         Map<Hotel, Integer> agencyFloatMap = entityManager

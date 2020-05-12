@@ -79,7 +79,6 @@ public class DAIqueries extends JFrame {
     private JComboBox comboBox31;
     private JButton изменитьПассажираButton;
     private JComboBox comboBox32;
-    private JComboBox comboBox33;
     private JComboBox comboBox34;
     private JButton изменитьКомнатуButton;
     private JComboBox comboBox35;
@@ -121,6 +120,7 @@ public class DAIqueries extends JFrame {
     private JComboBox comboBox58;
     private JComboBox comboBox59;
     private JComboBox comboBox60;
+    private JTextField textField16;
 
     private Long dateIn, dateOut;
 
@@ -292,7 +292,7 @@ public class DAIqueries extends JFrame {
                         comboBox28.setModel(getAirplanesModel(airplaneList));
                         List<Flight> flightList = repository.getFlightList();
                         comboBox59.setModel(getFlightModel(flightList));
-                        создатьРейсButton.addActionListener(e -> {
+                        изменитьРейсButton.addActionListener(e -> {
                             if (parseDate(comboBox25, comboBox26, comboBox27, null, null, null)) return;
                             repository.alterFlight(flightList.get(comboBox59.getSelectedIndex()), airplaneList.get(comboBox28.getSelectedIndex()), dateIn);
                         });
@@ -301,28 +301,53 @@ public class DAIqueries extends JFrame {
                     case 5: {//hotel
                         List<Hotel> hotelList = repository.getHotelList();
                         comboBox60.setModel(getHotelModel(hotelList));
-                        создатьОтельButton.addActionListener(e -> {
-                            repository.alterHotel(hotelList.get(comboBox60.getSelectedIndex()), textField14.getText());
-                        });
+                        изменитьОтельButton.addActionListener(e -> repository.alterHotel(hotelList.get(comboBox60.getSelectedIndex()), textField14.getText()));
                         break;
                     }
                     case 6: {//passenger
                         List<Passenger> passengerList = repository.getPassengerList();
                         List<Flight> flightList = repository.getFlightList();
                         List<Tourist> touristList = repository.getTouristList();
-                        comboBox30.setModel();
+                        comboBox30.setModel(getPassengerModel(passengerList));
                         comboBox31.setModel(getFlightModel(flightList));
                         comboBox29.setModel(getTouristModel(touristList));
-                        создатьПассажираButton.addActionListener(e -> {
-                            repository.addPassenger(flightList.get(comboBox9.getSelectedIndex()), touristList.get(comboBox10.getSelectedIndex()));
+                        изменитьПассажираButton.addActionListener(e -> {
+                            repository.alterPassenger(
+                                    passengerList.get(comboBox30.getSelectedIndex()),
+                                    flightList.get(comboBox31.getSelectedIndex()),
+                                    touristList.get(comboBox29.getSelectedIndex()));
                         });
                         break;
                     }
-                    case 7: {//room
+                    case 7: { //room
+                        List<Room> roomList = repository.getRoomList();
                         List<Hotel> hotelList = repository.getHotelList();
-                        comboBox11.setModel(getHotelModel(hotelList));
-                        создатьКомнатуButton.addActionListener(e -> {
-                            repository.addRoom(hotelList.get(comboBox11.getSelectedIndex()), textField7.getText());
+                        comboBox34.setModel(getHotelModel(hotelList));
+                        comboBox32.setModel(getRoomModel(roomList));
+                        изменитьКомнатуButton.addActionListener(e -> {
+                            try {
+                                repository.alterRoom(
+                                        roomList.get(comboBox32.getSelectedIndex()),
+                                        hotelList.get(comboBox34.getSelectedIndex()),
+                                        textField16.getText()
+                                );
+                            } catch (Exception exception) {
+                                JOptionPane.showMessageDialog(null, "Некорректно введены данные");
+                            }
+                        });
+                        break;
+                    }
+                    case 8: {
+                        List<Trip> tripList = repository.getTripList();
+                        comboBox35.setModel(getTripModel(tripList));
+                        List<Hotel> hotelList = repository.getHotelList();
+                        comboBox42.setModel(getHotelModel(hotelList));
+                        List<Room> roomList = repository.getRoomList();
+                        comboBox43.setModel(getRoomModel(roomList));
+                        изменитьПоездкуButton.addActionListener(e -> {
+                            if (parseDate(comboBox36, comboBox38, comboBox40, comboBox37, comboBox39, comboBox41))
+                                return;
+
                         });
                         break;
                     }
@@ -402,6 +427,23 @@ public class DAIqueries extends JFrame {
             ids[i++] = a.getId();
         return new DefaultComboBoxModel(ids);
     }
+
+    private DefaultComboBoxModel getRoomModel(List<Room> flights) {
+        Long[] ids = new Long[flights.size()];
+        int i = 0;
+        for (Room a : flights)
+            ids[i++] = a.getId();
+        return new DefaultComboBoxModel(ids);
+    }
+
+    private DefaultComboBoxModel getTripModel(List<Trip> flights) {
+        Long[] ids = new Long[flights.size()];
+        int i = 0;
+        for (Trip a : flights)
+            ids[i++] = a.getId();
+        return new DefaultComboBoxModel(ids);
+    }
+
     private boolean parseDate(JComboBox startD, JComboBox startM, JComboBox startY, JComboBox endD, JComboBox endM, JComboBox endY) {
         dateIn = null;
         dateOut = null;
