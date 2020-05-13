@@ -27,6 +27,11 @@ public class RepositoryPostgres implements Repository {
         return list;
     }
 
+    /**
+     * Получаем туриста на основе его пасспорта
+     * @param passport паспорт туриста (уникальное значение)
+     * @return найденный турист
+     */
     @Override
     public Tourist getTouristByPassport(String passport) {
         EntityManager entityManager = emf.createEntityManager();
@@ -40,6 +45,13 @@ public class RepositoryPostgres implements Repository {
         return tourist;
     }
 
+    /**
+     * Созданиен нового туриста
+     * @param name ФИО туриста
+     * @param passport паспорт
+     * @param sex пол
+     * @param age возраст
+     */
     @Override
     public void putNewTourist(String name, String passport, String sex, int age) {
         Tourist tourist = new Tourist();
@@ -55,15 +67,22 @@ public class RepositoryPostgres implements Repository {
         return;
     }
 
-    //TODO: вместо создания брать имеющегося туриста и менять его
+    /**
+     * Изменение туриста по его айдишнику
+     * @param id айди туриста
+     * @param name новое ФИО
+     * @param age новый возраст
+     * @param passport новый пасспорт
+     * @param sex новый пол
+     * @return если успешно обновлено 0, иначе -1
+     */
     @Override
     public int updateTourist(Long id, String name, int age, String passport, String sex) {
         EntityManager entityManager = emf.createEntityManager();
         try {
             if (!isUniquePassport(id, passport, entityManager))
                 throw new NoSuchElementException();
-            Tourist newTourist = new Tourist();
-            newTourist.setId(id);
+            Tourist newTourist = entityManager.find(Tourist.class, id);
             newTourist.setName(name);
             newTourist.setAge(age);
             newTourist.setPassport(passport);
@@ -80,6 +99,11 @@ public class RepositoryPostgres implements Repository {
         return 0;
     }
 
+    /**
+     * Находит Tourist.class по айдишнику
+     * @param id айди туриста
+     * @return энтити туриста
+     */
     @Override
     public Tourist getTouristById(Long id) {
         EntityManager entityManager = emf.createEntityManager();
@@ -91,6 +115,14 @@ public class RepositoryPostgres implements Repository {
         return tourist;
     }
 
+    /**
+     * Добавление новой поездки за грузом
+     * @param id айдишник
+     * @param statement номер ведомости
+     * @param country страна посещения
+     * @param dateIn дата прибытия
+     * @param dateOut дата отбытия
+     */
     @Override
     public void addNewCargoTrip(Long id, String statement, String country, Timestamp dateIn, Timestamp dateOut) {
         EntityManager entityManager = emf.createEntityManager();
@@ -114,6 +146,14 @@ public class RepositoryPostgres implements Repository {
         entityManager.close();
     }
 
+    /**
+     * Добавление новой поездки с экскурсиями
+     * @param id айдишник туриста
+     * @param country страна посещения
+     * @param dateIn дата прибытия
+     * @param dateOut дата отыбтия
+     * @param joinedExcursions экскурсии, которые турист хочет посетить
+     */
     @Override
     public void addNewRestTrip(Long id, String country, Timestamp dateIn, Timestamp dateOut, List<Excursion> joinedExcursions) {
         EntityManager entityManager = emf.createEntityManager();
@@ -149,6 +189,10 @@ public class RepositoryPostgres implements Repository {
         }
     }
 
+    /**
+     *
+     * @return список агенств
+     */
     @Override
     public List<Agency> getAgencies() {
         EntityManager entityManager = emf.createEntityManager();
@@ -159,6 +203,16 @@ public class RepositoryPostgres implements Repository {
         return agencyList == null ? new ArrayList<>() : agencyList;
     }
 
+    /**
+     * Расширенный поиск экскурсий
+     * @param selectedAgency выбранные агенства, от которых хотим увидеть экскурсии
+     * @param selectedDateIn дата начала промежутка, в котором должна быть экскурсия
+     * @param selectedDateOut дата конца промежутка, в котором должна быть экскурсия
+     * @param sortProperties специальным образом заданные параметры сортировки. В двоичной записи на нечетных позициях начиная с самой правой цифры стоят desc, на четных - asc. Разряды отвечают, сортировка по какому полю будет произведена.
+     * @param ordersMethodName
+     * @param ordersCount
+     * @return
+     */
     @Override
     public List<Excursion> getResultOfAdvancedSearching(List<Agency> selectedAgency, Timestamp selectedDateIn, Timestamp selectedDateOut, int sortProperties, String ordersMethodName, int ordersCount) {
         EntityManager entityManager = emf.createEntityManager();
