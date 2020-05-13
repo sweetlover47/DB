@@ -248,7 +248,7 @@ public class Controller {
         return service.getCargosWeight(f);
     }
 
-    public Service getService(){
+    public Service getService() {
         return service;
     }
 }
