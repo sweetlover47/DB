@@ -251,4 +251,12 @@ public class Controller {
     public Service getService() {
         return service;
     }
+
+    public List<Tourist> getTouristListWithoutGroup() {
+        return service.getTouristListWithoutGroup();
+    }
+
+    public int setNewGroup(List<Tourist> addedTourist) {
+        return service.setNewGroup(addedTourist);
+    }
 }

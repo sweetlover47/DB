@@ -98,16 +98,16 @@ public class PassengersInfo extends JFrame {
 
     private JPanel getCargoPanelTemplate(Object t, JPanel listPanel) {
         String text1 = "", text2 = "", text3 = "";
-        if (t instanceof Tourist){
-            text1 = ((Tourist)t).getName();
+        if (t instanceof Tourist) {
+            text1 = ((Tourist) t).getName();
         }
-        if (t instanceof Hotel){
-            text1 = "Отель \""+((Hotel)t).getTitle()+"\"";
+        if (t instanceof Hotel) {
+            text1 = "Отель \"" + ((Hotel) t).getTitle() + "\"";
         }
-        if (t instanceof Cargo){
-            text1 = "Груз " + ((Cargo)t).getId();
-            text2 = "Тип: " + ((Cargo)t).getKind();
-            text3 = "Номер ведомости: " + ((Cargo)t).getStatement().getId();
+        if (t instanceof Cargo) {
+            text1 = "Груз " + ((Cargo) t).getId();
+            text2 = "Тип: " + ((Cargo) t).getKind();
+            text3 = "Номер ведомости: " + ((Cargo) t).getStatement().getId();
         }
         JPanel template = new JPanel();
         template.setLayout(new GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
@@ -123,4 +123,5 @@ public class PassengersInfo extends JFrame {
         template.add(label3, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         return template;
     }
+
 }

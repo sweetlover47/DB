@@ -1424,6 +1424,41 @@ public class RepositoryPostgres implements Repository {
     }
 
     @Override
+    public List<Tourist> getTouristListWithoutGroup() {
+        EntityManager entityManager = emf.createEntityManager();
+        List<Tourist> touristList = entityManager
+                .createQuery("select t.tourist from trip t where t.group = 0")
+                .getResultList();
+        return touristList;
+    }
+
+    @Override
+    public int setNewGroup(List<Tourist> addedTourist) {
+        EntityManager entityManager = emf.createEntityManager();
+        int group = entityManager
+                .createQuery("select max(t.group) from trip t", Integer.class)
+                .getSingleResult() + 1;
+        try {
+            entityManager.getTransaction().begin();
+
+            List<Trip> tripList = entityManager
+                    .createQuery("select t from trip t where t.tourist in :touristList", Trip.class)
+                    .setParameter("touristList", addedTourist)
+                    .getResultList();
+            tripList.forEach(t -> {
+                t.setGroup(group);
+                entityManager.merge(t);
+            });
+            entityManager.getTransaction().commit();
+        } catch (RollbackException exception) {
+            exception.printStackTrace();
+            entityManager.getTransaction().rollback();
+            return -1;
+        }
+        return group;
+    }
+
+    @Override
     public Map<Hotel, Integer> getHotelTookRooms(long dateIn, long dateOut) {
         EntityManager entityManager = emf.createEntityManager();
         Map<Hotel, Integer> agencyFloatMap = entityManager

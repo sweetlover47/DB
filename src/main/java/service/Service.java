@@ -271,4 +271,12 @@ public class Service {
     public Repository getRepository(){
         return repository;
     }
+
+    public List<Tourist> getTouristListWithoutGroup() {
+        return repository.getTouristListWithoutGroup();
+    }
+
+    public int setNewGroup(List<Tourist> addedTourist) {
+        return repository.setNewGroup(addedTourist);
+    }
 }

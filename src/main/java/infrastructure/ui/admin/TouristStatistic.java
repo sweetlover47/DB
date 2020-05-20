@@ -8,6 +8,7 @@ import models.entity.Excursion;
 import models.entity.Tourist;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 
 import java.awt.*;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
 import static api.Main.SCREEN_HEIGHT;
 import static api.Main.SCREEN_WIDTH;
 
-public class TouristStatistic extends JFrame{
+public class TouristStatistic extends JFrame {
     private JComboBox comboBox1;
     private JButton показатьButton;
     private JPanel totalPanel;
@@ -38,8 +39,8 @@ public class TouristStatistic extends JFrame{
         comboBox1.setModel(new DefaultComboBoxModel(countries.toArray(new String[0])));
         показатьButton.addActionListener(e -> {
             List<Object[]> datesHotel = controller.getDatesHotelForTouristByCountry(t, (String) comboBox1.getSelectedItem());
-            List<Cargo> cargoList = controller.getCargosForTourist(t,(String) comboBox1.getSelectedItem());
-            List<Excursion> excursionList = controller.getExcursionsForTourist(t,(String) comboBox1.getSelectedItem());
+            List<Cargo> cargoList = controller.getCargosForTourist(t, (String) comboBox1.getSelectedItem());
+            List<Excursion> excursionList = controller.getExcursionsForTourist(t, (String) comboBox1.getSelectedItem());
             fillHotelListPanel(datesHotel);
             fillCargoListPanel(cargoList);
             fillExcursionListPanel(excursionList);

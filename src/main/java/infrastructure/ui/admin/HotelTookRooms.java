@@ -71,9 +71,14 @@ public class HotelTookRooms extends JFrame {
             fillListPanel(countTookRooms);
         });
     }
+
     private void fillListPanel(Map<Hotel, Integer> excursions) {
         listPanel.removeAll();
-        if (excursions.isEmpty()){validate();repaint(); return;}
+        if (excursions.isEmpty()) {
+            validate();
+            repaint();
+            return;
+        }
         listPanel.setLayout(new GridLayout(excursions.size(), 1));
         int i = 0;
         int row = 0;
@@ -91,7 +96,7 @@ public class HotelTookRooms extends JFrame {
         template.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
         listPanel.add(template, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label1 = new JLabel();
-        label1.setText("Отель \""+entry.getKey().getTitle()+"\"");
+        label1.setText("Отель \"" + entry.getKey().getTitle() + "\"");
         template.add(label1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
         label2.setText("Количество занятых номеров " + entry.getValue());

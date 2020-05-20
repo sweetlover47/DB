@@ -13,7 +13,7 @@ import java.util.Map;
 import static api.Main.SCREEN_HEIGHT;
 import static api.Main.SCREEN_WIDTH;
 
-public class CargoKindStatistic extends JFrame{
+public class CargoKindStatistic extends JFrame {
     private JPanel totalPanel;
     private JPanel listPanel;
 

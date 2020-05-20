@@ -43,6 +43,7 @@ public class TouristListInCountry extends JFrame {
     private List<Tourist> periodCargoTouristList;
     String country;
     private long dateIn, dateOut;
+
     public TouristListInCountry(Controller controller) {
         setTitle("Main frame");
         setLocation(
@@ -64,7 +65,7 @@ public class TouristListInCountry extends JFrame {
             totalRestTouristList = controller.getRestTouristListAllTime(country);
             totalCargoTouristList = controller.getCargoTouristListAllTime(country);
             totalL.setText("Количество: " + (totalRestTouristList.size() + totalCargoTouristList.size()));
-            totalRatio.setText("Соотношение: " + ((float)totalRestTouristList.size() / totalCargoTouristList.size()));
+            totalRatio.setText("Соотношение: " + ((float) totalRestTouristList.size() / totalCargoTouristList.size()));
             drawTotalPanel();
         });
 
@@ -75,7 +76,7 @@ public class TouristListInCountry extends JFrame {
             periodRestTouristList = controller.getRestTouristListPeriod(country, dateIn, dateOut);
             periodCargoTouristList = controller.getCargoTouristListPeriod(country, dateIn, dateOut);
             periodL.setText("Количество: " + (periodRestTouristList.size() + periodCargoTouristList.size()));
-            periodRatio.setText("Соотношение: " + ((float)periodRestTouristList.size() / periodCargoTouristList.size()));
+            periodRatio.setText("Соотношение: " + ((float) periodRestTouristList.size() / periodCargoTouristList.size()));
             drawPeriodPanel();
         });
         box11.addItemListener(e -> {

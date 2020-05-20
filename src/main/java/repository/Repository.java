@@ -174,4 +174,8 @@ public interface Repository {
     void deleteRoom(Room room);
 
     void deleteTrip(Trip trip);
+
+    List<Tourist> getTouristListWithoutGroup();
+
+    int setNewGroup(List<Tourist> addedTourist);
 }

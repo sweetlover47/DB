@@ -3,6 +3,7 @@ package infrastructure.ui.tourist;
 import api.Controller;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.intellij.uiDesigner.core.Spacer;
 import models.entity.Agency;
 import models.entity.Excursion;
 
@@ -104,7 +105,7 @@ public class AdvanceSearchExcursions extends JFrame {
                 String filter = "";
                 for (Agency a : selectedAgency)
                     filter += (a.getName() + "; ");
-                    agenciesFilter.setText(filter);
+                agenciesFilter.setText(filter);
                 validate();
                 repaint();
             });
@@ -292,8 +293,7 @@ public class AdvanceSearchExcursions extends JFrame {
                 if (titleAscRadioButton.isSelected()) {
                     sortProperties += 1;
                     filter += ("название asc; ");
-                }
-                else if (titleDescRadioButton.isSelected()) {
+                } else if (titleDescRadioButton.isSelected()) {
                     sortProperties += 2;
                     filter += ("название desc; ");
                 }
@@ -301,8 +301,7 @@ public class AdvanceSearchExcursions extends JFrame {
                 if (popularityAscRadioButton.isSelected()) {
                     sortProperties += 4;
                     filter += ("популярность asc; ");
-                }
-                else if (popularityDescRadioButton.isSelected()) {
+                } else if (popularityDescRadioButton.isSelected()) {
                     sortProperties += 8;
                     filter += ("популярность desc; ");
                 }
@@ -310,8 +309,7 @@ public class AdvanceSearchExcursions extends JFrame {
                 if (earlyDateRadioButton.isSelected()) {
                     sortProperties += 16;
                     filter += ("дата asc; ");
-                }
-                else if (lateDateRadioButton.isSelected()) {
+                } else if (lateDateRadioButton.isSelected()) {
                     sortProperties += 32;
                     filter += ("дата desc; ");
                 }
@@ -319,8 +317,7 @@ public class AdvanceSearchExcursions extends JFrame {
                 if (agencyTitleAscRadioButton.isSelected()) {
                     sortProperties += 64;
                     filter += ("название агенства asc; ");
-                }
-                else if (agencyTitleDescRadioButton.isSelected()) {
+                } else if (agencyTitleDescRadioButton.isSelected()) {
                     sortProperties += 128;
                     filter += ("название агенства desc; ");
                 }

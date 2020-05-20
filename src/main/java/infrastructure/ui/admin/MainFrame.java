@@ -1,11 +1,15 @@
 package infrastructure.ui.admin;
 
 import api.Controller;
+import com.intellij.uiDesigner.core.GridConstraints;
+import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.intellij.uiDesigner.core.Spacer;
 import models.entity.Flight;
 import models.entity.Tourist;
 import models.entity.Warehouse;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -26,6 +30,7 @@ public class MainFrame extends JFrame {
     private JComboBox comboBox2;
     private JPanel totalPanel;
     private JComboBox comboBox3;
+    private JButton сформироватьСписокТуристовButton;
 
     public MainFrame(Controller controller) {
         setTitle("Main frame");
@@ -75,5 +80,7 @@ public class MainFrame extends JFrame {
         получитьСведенияОКонкретномButton.addActionListener(e -> new TouristStatistic(controller, touristList.get(comboBox1.getSelectedIndex())));
         получитьСписокГостиницСButton.addActionListener(e -> new HotelTookRooms(controller));
         статистикаГрузооборотаСкладаButton.addActionListener(e -> new WarehouseStatistic(controller, (Long) comboBox3.getSelectedItem()));
+        сформироватьСписокТуристовButton.addActionListener(e -> new CreateTouristList(controller));
     }
+
 }

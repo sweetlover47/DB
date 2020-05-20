@@ -1,11 +1,16 @@
 package infrastructure.ui;
 
+import com.intellij.uiDesigner.core.GridConstraints;
+import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.intellij.uiDesigner.core.Spacer;
 import models.entity.*;
 import repository.Repository;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.util.*;
+import java.util.List;
 
 import static api.Main.SCREEN_HEIGHT;
 import static api.Main.SCREEN_WIDTH;
