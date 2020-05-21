@@ -103,8 +103,6 @@ i
 9src/main/java/infrastructure/ui/tourist/PlanRestTrip.java,a\6\a6d015373b9a96a0d2eb221d82327e056aa9c998
 X
 (src/main/resources/db/migration/drop.sql,0\b\0b3c7a2f21e9a4547bb12647c48d5ce734afe770
-m
-=src/main/resources/db/migration/V2__Create&Insert_Tourist.sql,5\0\50c46d9d6607dff3bbb2dcd7f1b0f82a8fac7119
 `
 0src/main/resources/db/migration/V17__AlterFK.sql,7\9\7954f7553ca47391f0b9a6a03d082b95c6eb44a9
 t

@@ -1,0 +1,41 @@
+
+	java:S116"}Rename this field "Ñ€ĞµĞ´Ğ°ĞºÑ‚Ğ¸Ñ€Ğ¾Ğ²Ğ°Ñ‚ÑŒĞ’ĞµĞ´Ğ¾Ğ¼Ğ¾ÑÑ‚ÑŒButton" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Şä’©úÿÿÿÿ8”ŒëÌ.
+”	java:S116"sRename this field "ÑĞ¾ÑÑ‚Ğ°Ğ²Ğ¸Ñ‚ÑŒĞ¤Ğ¸Ğ½ĞÑ‚Ñ‡ĞµÑ‚Button" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æ’ÏÓıÿÿÿÿ8”ŒëÌ.
+L
+java:S3740f"/Provide the parametrized type for this generic.(ŞùÅ8”ŒëÌ.
+{
+java:S11716"YMove the contents of this initializer to a standard constructor or to field initializers.(ÒÌâ–øÿÿÿÿ8”ŒëÌ.
+ª	java:S116"Rename this field "Ğ¿Ñ€Ğ¾ÑĞ¼Ğ¾Ñ‚Ñ€ĞµÑ‚ÑŒĞŸĞ¾Ğ¿ÑƒĞ»ÑÑ€Ğ½Ñ‹ĞµĞ­ĞºÑĞºÑƒÑ€ÑĞ¸Ğ¸Button" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Àˆš“8”ŒëÌ.
+±
+java:S1450"“Remove the "Ğ¿Ñ€Ğ¾ÑĞ¼Ğ¾Ñ‚Ñ€ĞµÑ‚ÑŒĞšĞ°Ñ‡ĞµÑ‚ÑĞ²ĞµĞ½Ğ½Ñ‹ĞµĞĞ³ĞµĞ½ÑÑ‚Ğ²Ğ°Button" field and declare it as a local variable in the relevant methods.(ƒÄèå8”ŒëÌ.
+]	java:S110"<This class has 6 parents which is greater than 5 authorized.(áõÔ·şÿÿÿÿ8”ŒëÌ.
+£
+java:S1450"…Remove the "Ñ€ĞµĞ´Ğ°ĞºÑ‚Ğ¸Ñ€Ğ¾Ğ²Ğ°Ñ‚ÑŒĞ¡Ğ²ÑĞ·ÑŒĞ“Ñ€ÑƒĞ·Ğ°ĞšButton" field and declare it as a local variable in the relevant methods.(¡ç’8”ŒëÌ.
+’	java:S116"qRename this field "ÑƒĞ´Ğ°Ğ»Ğ¸Ñ‚ÑŒĞ’ĞµĞ´Ğ¾Ğ¼Ğ¾ÑÑ‚ÑŒButton" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(««íúÿÿÿÿ8”ŒëÌ.
+•	java:S116"yRename this field "Ğ¾Ñ‚Ğ²ÑĞ·Ğ°Ñ‚ÑŒĞ“Ñ€ÑƒĞ·ĞÑ‚Ğ¡ĞºĞ»Ğ°Ğ´Ğ°Button" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õ‹ã8”ŒëÌ.
+W
+java:S1128":Remove this unused import 'java.awt.event.ActionListener'.(Ìä¹8”ŒëÌ.
+š
+java:S1450"}Remove the "Ğ¾Ñ‚Ğ²ÑĞ·Ğ°Ñ‚ÑŒĞ“Ñ€ÑƒĞ·ĞÑ‚Ğ¡ĞºĞ»Ğ°Ğ´Ğ°Button" field and declare it as a local variable in the relevant methods.(õ‹ã8”ŒëÌ.
+	java:S116"Rename this field "Ñ€ĞµĞ´Ğ°ĞºÑ‚Ğ¸Ñ€Ğ¾Ğ²Ğ°Ñ‚ÑŒĞ¡Ğ²ÑĞ·ÑŒĞ“Ñ€ÑƒĞ·Ğ°ĞšButton" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡ç’8”ŒëÌ.
+„	java:S116"cRename this field "Ñ€Ğ°ÑÑĞµĞ»Ğ¸Ñ‚ÑŒButton" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(İñü½ÿÿÿÿÿ8”ŒëÌ.
+—
+java:S1450"uRemove the "ÑƒĞ´Ğ°Ğ»Ğ¸Ñ‚ÑŒĞ’ĞµĞ´Ğ¾Ğ¼Ğ¾ÑÑ‚ÑŒButton" field and declare it as a local variable in the relevant methods.(««íúÿÿÿÿ8”ŒëÌ.
+¯
+java:S1450"‘Remove the "Ğ¿Ñ€Ğ¾ÑĞ¼Ğ¾Ñ‚Ñ€ĞµÑ‚ÑŒĞŸĞ¾Ğ¿ÑƒĞ»ÑÑ€Ğ½Ñ‹ĞµĞ­ĞºÑĞºÑƒÑ€ÑĞ¸Ğ¸Button" field and declare it as a local variable in the relevant methods.(Àˆš“8”ŒëÌ.
+T
+java:S1128"7Remove this unused import 'java.awt.event.ActionEvent'.(Úù“‘8”ŒëÌ.
+™
+java:S1450"wRemove the "ÑĞ¾ÑÑ‚Ğ°Ğ²Ğ¸Ñ‚ÑŒĞ¤Ğ¸Ğ½ĞÑ‚Ñ‡ĞµÑ‚Button" field and declare it as a local variable in the relevant methods.(æ’ÏÓıÿÿÿÿ8”ŒëÌ.
+p	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘ ¨úúÿÿÿÿ8”ŒëÌ.
+‰
+java:S1450"gRemove the "Ñ€Ğ°ÑÑĞµĞ»Ğ¸Ñ‚ÑŒButton" field and declare it as a local variable in the relevant methods.(İñü½ÿÿÿÿÿ8”ŒëÌ.
+N
+java:S1602.",Remove useless curly braces around statement(¿“Òãıÿÿÿÿ8”ŒëÌ.
+o	java:S100D"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–­Œßúÿÿÿÿ8”ŒëÌ.
+H
+java:S16021",Remove useless curly braces around statement(Àßê8”ŒëÌ.
+Ÿ
+java:S1450"}Remove the "Ğ¿Ñ€Ğ¸Ğ²ÑĞ·Ğ°Ñ‚ÑŒĞ“Ñ€ÑƒĞ·ĞšĞ¡ĞºĞ»Ğ°Ğ´ÑƒButton" field and declare it as a local variable in the relevant methods.(¬¼ØÛùÿÿÿÿ8”ŒëÌ.
+š	java:S116"yRename this field "Ğ¿Ñ€Ğ¸Ğ²ÑĞ·Ğ°Ñ‚ÑŒĞ“Ñ€ÑƒĞ·ĞšĞ¡ĞºĞ»Ğ°Ğ´ÑƒButton" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬¼ØÛùÿÿÿÿ8”ŒëÌ.
+¬	java:S116"Rename this field "Ğ¿Ñ€Ğ¾ÑĞ¼Ğ¾Ñ‚Ñ€ĞµÑ‚ÑŒĞšĞ°Ñ‡ĞµÑ‚ÑĞ²ĞµĞ½Ğ½Ñ‹ĞµĞĞ³ĞµĞ½ÑÑ‚Ğ²Ğ°Button" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒÄèå8”ŒëÌ.

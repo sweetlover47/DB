@@ -1,0 +1,38 @@
+
+p	java:S100í"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘ ¨úúÿÿÿÿ8ðâ­Ôž.
+X	java:S110"<This class has 6 parents which is greater than 5 authorized.(œ½ÆŠ8Œ÷–¤ž.
+Z
+java:S1128"8Remove this unused import 'java.awt.event.MouseAdapter'.( ÜÍÁûÿÿÿÿ8×¸ËÔž.
+D
+java:S1659L"'Declare "insurance" on a separate line.(á°ÿÖ8®æíÆž.
+V
+java:S1128"9Remove this unused import 'java.awt.event.MouseListener'.(«Äñö8ú®ÏÔž.
+Q
+java:S1948#"/Make "freeCargoList" transient or serializable.(¬‚Ýìùÿÿÿÿ8Ÿ·øÔž.
+v
+java:S1450!"YRemove the "cargoPanel" field and declare it as a local variable in the relevant methods.(…Øú£8úý¾¿ž.
+|
+java:S1171œ"YMove the contents of this initializer to a standard constructor or to field initializers.(ÒÌâ–øÿÿÿÿ8ðâ­Ôž.
+	java:S116"cRename this field "ÑÐ¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒButton" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ò¨Ûº8”€Ç¤ž.
+š	java:S116 "yRename this field "Ñ…Ð¾Ñ‡ÑƒÐ¡Ð¾Ð·Ð´Ð°Ñ‚ÑŒÐÐ¾Ð²Ñ‹Ð¹Ð“Ñ€ÑƒÐ·Button" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ßÍïåøÿÿÿÿ8Ø›†Îž.
+}
+java:S1450"[Remove the "removeButton" field and declare it as a local variable in the relevant methods.(ŠÌÙÚùÿÿÿÿ8´‘¾Åž.
+p	java:S100ª"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–­Œßúÿÿÿÿ8ðâ­Ôž.
+R
+java:S3740²"/Provide the parametrized type for this generic.(¤²èÔüÿÿÿÿ8ðâ­Ôž.
+O
+java:S1948""-Make "addedCargos" transient or serializable.(þÕðÝøÿÿÿÿ8Ûðœ¿ž.
+£
+java:S1186r"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¼ÓáÌýÿÿÿÿ8êÆÚÔž.
+£
+java:S1186n"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ŠüŒ¦ùÿÿÿÿ8›ïÚÔž.
+t
+java:S3776%"RRefactor this method to reduce its Cognitive Complexity from 24 to the 15 allowed.(³’šÕûÿÿÿÿ8Ì·ÖÍž.
+S
+java:S1128"6Remove this unused import 'java.awt.event.MouseEvent'.(Ž›õ8ú®ÏÔž.
+R
+java:S3740²"/Provide the parametrized type for this generic.(¤²èÔüÿÿÿÿ8ðâ­Ôž.
+?
+java:S1659L""Declare "wrap" on a separate line.(á°ÿÖ8®æíÆž.
+M
+java:S3740±"/Provide the parametrized type for this generic.(íáÒŒ8ðâ­Ôž.

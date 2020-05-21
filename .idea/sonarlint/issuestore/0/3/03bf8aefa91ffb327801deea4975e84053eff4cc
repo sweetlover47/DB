@@ -1,0 +1,32 @@
+
+W
+java:S1128":Remove this unused import 'java.awt.event.ActionListener'.(Ìä¹8Šø¯ô.
+R
+java:S3740Ï"/Provide the parametrized type for this generic.(ã²Ó†úÿÿÿÿ8ß·´ô.
+?
+java:S1659e""Declare "wrap" on a separate line.(Üá¬“8ŒŠÁô.
+O
+java:S1948&"-Make "addedCargos" transient or serializable.(şÕğİøÿÿÿÿ8‘Æ™ó.
+p	java:S100§"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–­Œßúÿÿÿÿ8ß·´ô.
+T
+java:S1128"7Remove this unused import 'java.awt.event.ActionEvent'.(Úù“‘8Šø¯ô.
+|
+java:S1171™"YMove the contents of this initializer to a standard constructor or to field initializers.(ÒÌâ–øÿÿÿÿ8ß·´ô.
+A
+java:S1659e"$Declare "weight" on a separate line.(Üá¬“8ŒŠÁô.
+v
+java:S1450 "YRemove the "cargoPanel" field and declare it as a local variable in the relevant methods.(…Øú£8”Ì©ó.
+L
+java:S3740""/Provide the parametrized type for this generic.(Ş¤û±8ÁÍĞğ.
+p	java:S100ê"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘ ¨úúÿÿÿÿ8ß·´ô.
+X	java:S110"<This class has 6 parents which is greater than 5 authorized.(™²È¶8éÄëÌ.
+R
+java:S3740¬"/Provide the parametrized type for this generic.(ŒãİÔùÿÿÿÿ8ß·´ô.
+o
+java:S3776)"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(â§–Á8‘°³ô.
+Q
+java:S1948'"/Make "freeCargoList" transient or serializable.(¬‚İìùÿÿÿÿ8éõ¡ó.
+M
+java:S1948%"+Make "statement" transient or serializable.(„£„÷øÿÿÿÿ8¥€Ôğ.
+}
+java:S1450!"[Remove the "removeButton" field and declare it as a local variable in the relevant methods.(ŠÌÙÚùÿÿÿÿ8”Ì©ó.

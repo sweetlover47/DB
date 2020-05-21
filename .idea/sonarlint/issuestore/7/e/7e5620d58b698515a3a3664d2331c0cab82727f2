@@ -1,0 +1,16 @@
+
+p
+java:S1192_"SDefine a constant instead of duplicating this literal "ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ" 4 times.(‚ýð´8´Ùúÿœ.
+p	java:S100á"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘ ¨úúÿÿÿÿ8­îÑ¥ž.
+p	java:S100›"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–­Œßúÿÿÿÿ8­îÑ¥ž.
+]	java:S110"<This class has 6 parents which is greater than 5 authorized.(çµô¯ûÿÿÿÿ8ê‡”Ñœ.
+f
+java:S1192|"IDefine a constant instead of duplicating this literal "February" 4 times.(€˜Óá8¡‰°‚.
+€
+java:S1450"^Remove the "propertiesPanel" field and declare it as a local variable in the relevant methods.(¤¤·£üÿÿÿÿ8­îÑ¥ž.
+|
+java:S1171"YMove the contents of this initializer to a standard constructor or to field initializers.(ÒÌâ–øÿÿÿÿ8­îÑ¥ž.
+t
+java:S37766"RRefactor this method to reduce its Cognitive Complexity from 59 to the 15 allowed.(ë…†øÿÿÿÿ8¡‰°‚.
+}
+java:S1450""aRemove the "agencyRemoveButton" field and declare it as a local variable in the relevant methods.(ˆðîW8öŒ­‚.

@@ -1,0 +1,27 @@
+
+p
+java:S1450"TRemove the "title" field and declare it as a local variable in the relevant methods.(Éº~8Óí²‹.
+{	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÂÙÔÛüÿÿÿÿ8‘óò .
+‚
+java:S1450"`Remove the "resultScrollPanel" field and declare it as a local variable in the relevant methods.(œºÔúüÿÿÿÿ8ˆª¾¥.
+N
+java:S1481$",Remove this unused "tourist" local variable.(¸Â¹ëüÿÿÿÿ8¬÷Æ‹.
+]	java:S110"<This class has 6 parents which is greater than 5 authorized.(¨‹ú”ÿÿÿÿÿ8øó¾‹.
+g
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(ÂÙÔÛüÿÿÿÿ8‘óò .
+p
+java:S1450"SRemove the "date" field and declare it as a local variable in the relevant methods.(´÷ªÉ8Óí²‹.
+w
+java:S1450"URemove the "agency" field and declare it as a local variable in the relevant methods.(’éÃ§ûÿÿÿÿ8Óí²‹.
+p	java:S100°"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–­Œßúÿÿÿÿ8ˆª¾¥.
+X	java:S125i"<This block of commented-out lines of code should be removed.(¿‚¸´8Ù”Î¡.
+|
+java:S1171¢"YMove the contents of this initializer to a standard constructor or to field initializers.(ÒÌâ–øÿÿÿÿ8ˆª¾¥.
+X	java:S125X"<This block of commented-out lines of code should be removed.(¿‚¸´8“àÌ¡.
+V
+java:S1948!"4Make "searchedExcursions" transient or serializable.(²›Ëúÿÿÿÿ8ú¤ô .
+p	java:S100à"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘ ¨úúÿÿÿÿ8ˆª¾¥.
+t
+java:S1450"XRemove the "numOrders" field and declare it as a local variable in the relevant methods.(”ÆŠx8Óí²‹.
+F
+java:S2387"*"title" is the name of a field in "Frame".(Éº~8øó¾‹.
