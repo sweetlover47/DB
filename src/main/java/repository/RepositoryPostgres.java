@@ -15,6 +15,16 @@ public class RepositoryPostgres implements Repository {
 
     public RepositoryPostgres() {
         emf = Persistence.createEntityManagerFactory("models");
+        EntityManager entityManager = emf.createEntityManager();
+        if (entityManager.createQuery("select count(t) from tourist t where t.passport = '123111'")
+                .getResultList().size() == 0) {
+            StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("insertTouristWithRandomAge");
+            query.setParameter("fio", "Картошков Пирожок Сметанкович");
+            query.setParameter("pass", "123111");
+            query.setParameter("sx", "m");
+            query.execute();
+        }
+        entityManager.close();
     }
 
     @Override
@@ -29,6 +39,7 @@ public class RepositoryPostgres implements Repository {
 
     /**
      * Получаем туриста на основе его пасспорта
+     *
      * @param passport паспорт туриста (уникальное значение)
      * @return найденный турист
      */
@@ -47,10 +58,11 @@ public class RepositoryPostgres implements Repository {
 
     /**
      * Созданиен нового туриста
-     * @param name ФИО туриста
+     *
+     * @param name     ФИО туриста
      * @param passport паспорт
-     * @param sex пол
-     * @param age возраст
+     * @param sex      пол
+     * @param age      возраст
      */
     @Override
     public void putNewTourist(String name, String passport, String sex, int age) {
@@ -69,11 +81,12 @@ public class RepositoryPostgres implements Repository {
 
     /**
      * Изменение туриста по его айдишнику
-     * @param id айди туриста
-     * @param name новое ФИО
-     * @param age новый возраст
+     *
+     * @param id       айди туриста
+     * @param name     новое ФИО
+     * @param age      новый возраст
      * @param passport новый пасспорт
-     * @param sex новый пол
+     * @param sex      новый пол
      * @return если успешно обновлено 0, иначе -1
      */
     @Override
@@ -101,6 +114,7 @@ public class RepositoryPostgres implements Repository {
 
     /**
      * Находит Tourist.class по айдишнику
+     *
      * @param id айди туриста
      * @return энтити туриста
      */
@@ -117,11 +131,12 @@ public class RepositoryPostgres implements Repository {
 
     /**
      * Добавление новой поездки за грузом
-     * @param id айдишник
+     *
+     * @param id        айдишник
      * @param statement номер ведомости
-     * @param country страна посещения
-     * @param dateIn дата прибытия
-     * @param dateOut дата отбытия
+     * @param country   страна посещения
+     * @param dateIn    дата прибытия
+     * @param dateOut   дата отбытия
      */
     @Override
     public void addNewCargoTrip(Long id, String statement, String country, Timestamp dateIn, Timestamp dateOut) {
@@ -148,10 +163,11 @@ public class RepositoryPostgres implements Repository {
 
     /**
      * Добавление новой поездки с экскурсиями
-     * @param id айдишник туриста
-     * @param country страна посещения
-     * @param dateIn дата прибытия
-     * @param dateOut дата отыбтия
+     *
+     * @param id               айдишник туриста
+     * @param country          страна посещения
+     * @param dateIn           дата прибытия
+     * @param dateOut          дата отыбтия
      * @param joinedExcursions экскурсии, которые турист хочет посетить
      */
     @Override
@@ -190,7 +206,6 @@ public class RepositoryPostgres implements Repository {
     }
 
     /**
-     *
      * @return список агенств
      */
     @Override
@@ -205,10 +220,11 @@ public class RepositoryPostgres implements Repository {
 
     /**
      * Расширенный поиск экскурсий
-     * @param selectedAgency выбранные агенства, от которых хотим увидеть экскурсии
-     * @param selectedDateIn дата начала промежутка, в котором должна быть экскурсия
-     * @param selectedDateOut дата конца промежутка, в котором должна быть экскурсия
-     * @param sortProperties специальным образом заданные параметры сортировки. В двоичной записи на нечетных позициях начиная с самой правой цифры стоят desc, на четных - asc. Разряды отвечают, сортировка по какому полю будет произведена.
+     *
+     * @param selectedAgency   выбранные агенства, от которых хотим увидеть экскурсии
+     * @param selectedDateIn   дата начала промежутка, в котором должна быть экскурсия
+     * @param selectedDateOut  дата конца промежутка, в котором должна быть экскурсия
+     * @param sortProperties   специальным образом заданные параметры сортировки. В двоичной записи на нечетных позициях начиная с самой правой цифры стоят desc, на четных - asc. Разряды отвечают, сортировка по какому полю будет произведена.
      * @param ordersMethodName
      * @param ordersCount
      * @return
@@ -1404,10 +1420,10 @@ public class RepositoryPostgres implements Repository {
         room = entityManager.merge(room);
         Room finalRoom = room;
         entityManager.createQuery("select h from Hotel h where :ho = h").setParameter("ho", room.getHotel()).getResultStream().forEach(h -> {
-            List<Room> rooms = ((Hotel)h).getRooms();
+            List<Room> rooms = ((Hotel) h).getRooms();
             rooms.remove(finalRoom);
-            ((Hotel)h).setRooms(rooms);
-            entityManager.merge((Hotel)h);
+            ((Hotel) h).setRooms(rooms);
+            entityManager.merge((Hotel) h);
         });
         entityManager.remove(room);
         entityManager.getTransaction().commit();

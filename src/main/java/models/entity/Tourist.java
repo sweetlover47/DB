@@ -7,12 +7,32 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity(name = "tourist")
+@NamedStoredProcedureQueries({
+        @NamedStoredProcedureQuery(
+                name = "insertTouristWithRandomAge",
+                procedureName = "insert_tourist",
+                parameters = {
+                        @StoredProcedureParameter(
+                                name = "fio",
+                                type = String.class
+                        ),
+                        @StoredProcedureParameter(
+                                name = "pass",
+                                type = String.class
+                        ),
+                        @StoredProcedureParameter(
+                                name = "sx",
+                                type = String.class
+                        )
+                }
+        )
+})
 public class Tourist {
     @Id
     @Getter
     @Setter
-    @GeneratedValue(generator="tourist_id_seq", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name="tourist_id_seq",sequenceName="tourist_id_seq", allocationSize=1)
+    @GeneratedValue(generator = "tourist_id_seq", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "tourist_id_seq", sequenceName = "tourist_id_seq", allocationSize = 1)
     private Long id;
 
     @Getter

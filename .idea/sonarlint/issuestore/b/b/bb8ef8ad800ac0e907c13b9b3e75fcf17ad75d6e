@@ -1,26 +1,107 @@
 
 F
-java:S1148¯"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Ä¶øÇ.
-
-java:S1488¼"^Immediately return this expression instead of assigning it to the temporary variable "result".(ã ì¥ıÿÿÿÿ8ßû .
-T
-java:S1135@"2Complete the task associated to this TODO comment.(Ï±ÿ ùÿÿÿÿ8ßû .
-L
-java:S1481ı".Remove this unused "statement" local variable.(ÁÆæÛ8æÕô.
-^	java:S107Ú"<Method has 8 parameters, which is greater than 7 authorized.(´Áİğúÿÿÿÿ8ãÅ…Ç.
+java:S1148ó"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8—ƒì…£.
+F
+java:S1148À	"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8—ƒì…£.
+D
+java:S1110¿"!Remove these useless parentheses.(åßØñùÿÿÿÿ8›ì†£.
 8
-java:S3626="Remove this redundant jump.(ûÁİ…8ßû .
+java:S3626C"Remove this redundant jump.(ûÁİ…8ßû .
+I
+java:S1168´"+Return an empty collection instead of null.(¥¹ï8—ƒì…£.
 A
-java:S1148‡"#Use a logger to log this exception.(Ç’Çê8ßóÙô.
+java:S1148¾"#Use a logger to log this exception.(Ç’Çê8—ƒì…£.
 F
-java:S1148—"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ßû .
-h
-java:S1192È"JDefine a constant instead of duplicating this literal "numOrders" 3 times.(ëÕñ 8ãÅ…Ç.
+java:S1148š"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8—ƒì…£.
+A
+java:S1148ƒ"#Use a logger to log this exception.(Ç’Çê8—ƒì…£.
+A
+java:S1148Ï"#Use a logger to log this exception.(Ç’Çê8ßóÙô.
 F
-java:S1148à"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Øø¨Ò.
-[
-java:S1854ı"=Remove this useless assignment to local variable "statement".(ÁÆæÛ8æÕô.
+java:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8—ƒì…£.
+g
+java:S2583¸"DChange this condition so that it does not always evaluate to "false"(ºö…°øÿÿÿÿ8—ƒì…£.
+‡
+java:S4144’"dUpdate this method so that its implementation is not identical to "addCargoToWarehouse" on line 505.(•‡†ìüÿÿÿÿ8—ƒì…£.
 F
-java:S1148ê"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ãÅ…Ç.
+java:S1148â"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Øø¨Ò.
+A
+java:S1148¾"#Use a logger to log this exception.(Ç’Çê8—ƒì…£.
+A
+java:S1148é"#Use a logger to log this exception.(Ç’Çê8—ƒì…£.
+i
+java:S1192÷"FDefine a constant instead of duplicating this literal "title" 3 times.(úÁ€òûÿÿÿÿ8—ƒì…£.
+k
+java:S1192õ"HDefine a constant instead of duplicating this literal "country" 5 times.(õÜî üÿÿÿÿ8—ƒì…£.
 e
-java:S1192Ğ"GDefine a constant instead of duplicating this literal "agency" 3 times.(áúÊ¾8ãÅ…Ç.
+java:S1192ƒ"GDefine a constant instead of duplicating this literal "agency" 3 times.(áúÊ¾8ãÅ…Ç.
+B
+java:S1659"Declare "c" on a separate line.(ğ ³¾úÿÿÿÿ8—ƒì…£.
+F
+java:S1148‘
+"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8—ƒì…£.
+F
+java:S1148ç"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8—ƒì…£.
+A
+java:S1148Ò"#Use a logger to log this exception.(Ç’Çê8—ƒì…£.
+A
+java:S1148®"#Use a logger to log this exception.(òçøì8˜î†£.
+A
+java:S1148Ğ"#Use a logger to log this exception.(Ç’Çê8—ƒì…£.
+€
+java:S1488•"cImmediately return this expression instead of assigning it to the temporary variable "touristList".(–¦ÚV8˜€ª†£.
+F
+java:S1148õ	"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8—ƒì…£.
+
+java:S1130Ø"jRemove the declaration of thrown exception 'java.lang.NumberFormatException' which is a runtime exception.(ÅÕÀşÿÿÿÿ8—ƒì…£.
+
+java:S1488ï"^Immediately return this expression instead of assigning it to the temporary variable "result".(ã ì¥ıÿÿÿÿ8ßû .
+A
+java:S1148®"#Use a logger to log this exception.(Ç’Çê8—ƒì…£.
+^	java:S107"<Method has 8 parameters, which is greater than 7 authorized.(´Áİğúÿÿÿÿ8ãÅ…Ç.
+F
+java:S1148¡	"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8—ƒì…£.
+I
+java:S1168Á"+Return an empty collection instead of null.(¥¹ï8—ƒì…£.
+ˆ
+java:S1130å"jRemove the declaration of thrown exception 'java.lang.NumberFormatException' which is a runtime exception.(á‹¶Ë8—ƒì…£.
+d
+java:S1192¥"FDefine a constant instead of duplicating this literal "group" 3 times.(Ñè÷§8—ƒì…£.
+F
+java:S1148Ş"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8—ƒì…£.
+a
+java:S2583®"DChange this condition so that it does not always evaluate to "false"(Ô×¥;8—ƒì…£.
+F
+java:S1148“"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ãÅ…Ç.
+Z
+java:S2589©"7Remove this expression which always evaluates to "true"(âéÉøÿÿÿÿ8—ƒì…£.
+A
+java:S1148è"#Use a logger to log this exception.(Ç’Çê8—ƒì…£.
+B
+java:S1659"Declare "l" on a separate line.(ğ ³¾úÿÿÿÿ8—ƒì…£.
+F
+java:S1148¼"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Ä¶øÇ.
+F
+java:S1148	"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8—ƒì…£.
+h
+java:S1192û"JDefine a constant instead of duplicating this literal "numOrders" 4 times.(ëÕñ 8ãÅ…Ç.
+e
+java:S1192¼"GDefine a constant instead of duplicating this literal "flight" 3 times.(çºıã8—ƒì…£.
+F
+java:S1148±	"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8—ƒì…£.
+F
+java:S1148Ú	"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8—ƒì…£.
+F
+java:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ßû .
+D
+java:S1110¨"!Remove these useless parentheses.(¢Ëò†ÿÿÿÿÿ8—ƒì…£.
+
+java:S1130ë	"jRemove the declaration of thrown exception 'java.lang.NumberFormatException' which is a runtime exception.(ëØ™Çùÿÿÿÿ8—ƒì…£.
+A
+java:S1148"#Use a logger to log this exception.(Ç’Çê8—ƒì…£.
+F
+java:S1148Ò"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8—ƒì…£.
+g
+java:S2583³"DChange this condition so that it does not always evaluate to "false"(öøâ«ûÿÿÿÿ8—ƒì…£.
+B
+java:S1659"Declare "f" on a separate line.(ğ ³¾úÿÿÿÿ8—ƒì…£.

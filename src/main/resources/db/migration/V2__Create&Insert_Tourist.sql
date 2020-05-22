@@ -66,20 +66,15 @@ create trigger tourist_checking
     for each row
 execute procedure tourist_validation();
 
-create function insert_tourist(fio varchar, pass varchar, sx varchar)
-returns table(n varchar, p varchar, s varchar(1), a int) as
+create function insert_tourist(fio text, pass text, sx text)
+    returns int as
 $$
 DECLARE
     a1 int ;
 begin
     a1 = floor(random() * 122 + 1)::int;
     insert into tourist (name, passport, sex, age) values (fio, pass, sx, a1);
-    n = fio;
-    p = pass;
-    s = sx;
-    a = a1;
-    return next;
-
+    return 0;
 end;
 $$ language plpgsql;
 

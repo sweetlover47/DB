@@ -1,16 +1,13 @@
 
-‡	java:S116"kRename this field "Ğ°Ğ´Ğ¼Ğ¸Ğ½Ğ¸ÑÑ‚Ñ€Ğ°Ñ‚Ğ¾Ñ€Button" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(éíÇƒ8ìé°‘˜.
-‘	java:S116"uRename this field "Ñ‚ÑƒÑ€Ğ¸ÑÑ‚Ğ¸Ñ‡ĞµÑĞºĞ°ÑĞ¤Ğ¸Ñ€Ğ¼Ğ°Button" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨óÃÃ8ìé°‘˜.
+~	java:S116"]Rename this field "Ñ‚ÑƒÑ€Ğ¸ÑÑ‚Button" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦äÄæÿÿÿÿÿ8ìé°‘˜.
+‡	java:S116"kRename this field "Ğ°Ğ´Ğ¼Ğ¸Ğ½Ğ¸ÑÑ‚Ñ€Ğ°Ñ‚Ğ¾Ñ€Button" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(éíÇƒ8ìé°‘˜.
+]	java:S110"<This class has 6 parents which is greater than 5 authorized.(€ïçœÿÿÿÿÿ8ìé°‘˜.
+‘	java:S116"uRename this field "Ñ‚ÑƒÑ€Ğ¸ÑÑ‚Ğ¸Ñ‡ĞµÑĞºĞ°ÑĞ¤Ğ¸Ñ€Ğ¼Ğ°Button" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨óÃÃ8ìé°‘˜.
 J
-java:S1604)"(Make this anonymous inner class a lambda(ñ´’·ÿÿÿÿÿ8¿–ï¢.
-~	java:S116"]Rename this field "Ñ‚ÑƒÑ€Ğ¸ÑÑ‚Button" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦äÄæÿÿÿÿÿ8ìé°‘˜.
-]	java:S110"<This class has 6 parents which is greater than 5 authorized.(€ïçœÿÿÿÿÿ8ìé°‘˜.
-”	java:S116"sRename this field "Ğ¿Ñ€ĞµĞ´ÑÑ‚Ğ°Ğ²Ğ¸Ñ‚ĞµĞ»ÑŒÑÑ‚Ğ²Ğ¾Button" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(úššÿÿÿÿÿ8ìé°‘˜.
-Œ
-java:S1450"oRemove the "Ğ°Ğ´Ğ¼Ğ¸Ğ½Ğ¸ÑÑ‚Ñ€Ğ°Ñ‚Ğ¾Ñ€Button" field and declare it as a local variable in the relevant methods.(éíÇƒ8…îÑ¥.
-™
-java:S1450"wRemove the "Ğ¿Ñ€ĞµĞ´ÑÑ‚Ğ°Ğ²Ğ¸Ñ‚ĞµĞ»ÑŒÑÑ‚Ğ²Ğ¾Button" field and declare it as a local variable in the relevant methods.(úššÿÿÿÿÿ8…îÑ¥.
-{
-java:S11712"YMove the contents of this initializer to a standard constructor or to field initializers.(ÒÌâ–øÿÿÿÿ8…îÑ¥.
-o	java:S100@"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–­Œßúÿÿÿÿ8…îÑ¥.
-o	java:S100b"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘ ¨úúÿÿÿÿ8…îÑ¥.
+java:S16040"(Make this anonymous inner class a lambda(É¸¸ïøÿÿÿÿ8âø¢‡£.
+h
+java:S1128"KRemove this unused import 'com.intellij.uiDesigner.core.GridLayoutManager'.(‡ĞºÁ8âø¢‡£.
+e
+java:S1128"IRemove this unused import 'com.intellij.uiDesigner.core.GridConstraints'.(ş·ô(8âø¢‡£.
+]
+java:S1128"@Remove this unused import 'com.intellij.uiDesigner.core.Spacer'.(­ åÀ8âø¢‡£.

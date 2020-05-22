@@ -9,9 +9,9 @@ import java.awt.*;
 import java.io.IOException;
 
 public class Main {
-    private static final String url = "jdbc:postgresql://localhost:54325/postgres"; //*/ "jdbc:postgresql://localhost:5432/travelagency";
-    private static final String user = "postgres"; //*/ "nastya";
-    private static final String password = "mysecretpassword"; //*/ "123456";
+    private static final String url = "jdbc:postgresql://localhost:5432/travelagency";//"jdbc:postgresql://localhost:54325/postgres";
+    private static final String user = "nastya"; //
+    private static final String password = "123456"; //"mysecretpassword";
 
     public static final int SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
     public static final int SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;

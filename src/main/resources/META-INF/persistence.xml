@@ -5,9 +5,9 @@
     <persistence-unit name="models">
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
-            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:54325/postgres"/><!--"jdbc:postgresql://localhost:5432/travelagency"-->
-            <property name="hibernate.connection.username" value="postgres"/>
-            <property name="hibernate.connection.password" value="mysecretpassword"/>
+            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/travelagency"/><!--"jdbc:postgresql://localhost:54325/postgres"-->
+            <property name="hibernate.connection.username" value="nastya"/>
+            <property name="hibernate.connection.password" value="123456"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL95Dialect"/>
         </properties>
     </persistence-unit>
